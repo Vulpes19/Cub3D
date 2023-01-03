@@ -8,8 +8,11 @@ FILES = main.c error_printing.c draw.c close.c
 #* SOURCE FILES *#
 SRC = $(addprefix src/, $(FILES))
 
+#* OBJECT DIRECTORY *#
+OBJ_DIR = obj
+
 #* OBJECT FILES *#
-OBJS = $(SRC:%.c=%.o)
+OBJS = $(SRC:src/%.c=$(OBJ_DIR)/%.o)
 
 #* FLAGS *#
 FLAGS = -Wall -Wextra -Werror
@@ -28,7 +31,7 @@ DEL = rm -rf
 all: $(TARGET)
 	
 
-%.o: %.c
+$(OBJ_DIR)/%.o: src/%.c
 	cc $(FLAGS) -c -I $(INCLUDE) $< -o $@
 
 $(TARGET): $(OBJS) $(INCLUDE)
