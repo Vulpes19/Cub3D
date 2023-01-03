@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   window.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/03 10:39:45 by abaioumy         ###   ########.fr       */
+/*   Created: 2023/01/03 10:48:37 by abaioumy          #+#    #+#             */
+/*   Updated: 2023/01/03 10:50:57 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "draw.h"
+#ifndef WINDOW_H
+#define WINDOW_H
 
-void	ft_draw_pixel(t_pixel *pixel, int x, int y, int color)
+#include <mlx.h>
+#include <stdlib.h>
+
+typedef struct s_mlx
 {
-	char	*dest;
+    void	*init;
+	void	*window;
+}   t_mlx;
 
-	dest = pixel->address + (y * pixel->line_len + x * (pixel->bits_per_pixel / 8));
-	*(unsigned int*)dest = color;
-}
+#endif
