@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.h                                             :+:      :+:    :+:   */
+/*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 10:31:07 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/03 12:25:35 by abaioumy         ###   ########.fr       */
+/*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
+/*   Updated: 2023/01/03 12:48:17 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAW_H
-#define DRAW_H
+#include "game.h"
+#include "window.h"
+#include "draw.h"
 
-#define WIDTH 1080
-#define HEIGHT 720
-#include <mlx.h>
-#include <stdint.h>
-
-typedef struct s_pixel
+void    ft_raycasting(t_game *game, t_mlx *mlx, t_pixel *pixel)
 {
-	void	*image;
-	char	*address;
-	int		bits_per_pixel;
-	int		line_len;
-	int		endian;
-}	t_pixel;
+	int	x;
 
-void	ft_draw_pixel(t_pixel *pixel, int x, int y, int color);
-int		ft_convert_rgb(uint8_t red, uint8_t green, uint8_t blue);
-
-#endif
+	x = 0;
+	while (x < WIDTH)
+	{
+		game->camera.camera_x = 2 * x / (double)WIDTH - 1;
+		game->ray.ray_x = game->player.dir_x + game->camera.plane_x * game->camera.camera_x;
+		game->ray.ray_y = game->player.dir_y + game->camera.plane_y * game->camera.camera_x;
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:14:17 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/03 11:02:16 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/03 12:39:24 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 #include "error.h"
 #include "draw.h"
 #include "close.h"
+#include "game.h"
 
 int	main(void)
 {
-	t_mlx	mlx;
-	t_pixel	pixel;
+	t_mlx		mlx;
+	t_game		game;
+	t_pixel		pixel;
 
 	mlx.init = mlx_init();
 	if (!mlx.init)
@@ -38,7 +40,11 @@ int	main(void)
 	pixel.address = mlx_get_data_addr(pixel.image, &pixel.bits_per_pixel, &pixel.line_len, &pixel.endian);
 	ft_draw_pixel(&pixel, 5, 5, 0x00FF0000);
 	mlx_put_image_to_window(mlx.init, mlx.window, pixel.image, 0, 0);
-	mlx_hook(mlx.window, 17, 1L << 0, ft_close_x, &mlx);
-	mlx_hook(mlx.window, 2, 1L << 0, ft_close_esc, &mlx);
-	mlx_loop(mlx.init);
+	while (1)
+	{
+		ft_raycasting(&game, &mlx, &pixel);
+		mlx_hook(mlx.window, 17, 1L << 0, ft_close_x, &mlx);
+		mlx_hook(mlx.window, 2, 1L << 0, ft_close_esc, &mlx);
+		mlx_loop(mlx.init);
+	}
 }
