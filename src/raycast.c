@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/05 17:09:34 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:55:10 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 #include "input.h"
 #include <stdio.h>
 
-int    ft_raycasting(t_game *game, t_mlx *mlx)
+int    ft_raycasting(t_game *game)
 {
 	int	x;
-	game->move_speed = 5.0;
-	game->rot_speed = 3.0;
 	int	map[24][24] =
 	{
 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -47,23 +45,23 @@ int    ft_raycasting(t_game *game, t_mlx *mlx)
 		{1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}
 	};
 	x = 0;
-		mlx->pixel.image = mlx_new_image(mlx->init, WIDTH, HEIGHT);
-		mlx->pixel.address = mlx_get_data_addr(mlx->pixel.image, &mlx->pixel.bits_per_pixel, &mlx->pixel.line_len, &mlx->pixel.endian);
-	while (x < WIDTH - 1)
+	game->mlx->pixel->image = mlx_new_image(game->mlx->init, WIDTH, HEIGHT);
+	game->mlx->pixel->address = mlx_get_data_addr(game->mlx->pixel->image, &game->mlx->pixel->bits_per_pixel, &game->mlx->pixel->line_len, &game->mlx->pixel->endian);
+	while (x < WIDTH)
 	{
-		game->camera.camera_x = 2 * x / (double)WIDTH - 1;
-		game->ray.vec.x = game->player.vec.x + game->camera.plane_x * game->camera.camera_x;
-		game->ray.vec.x = game->player.vec.y + game->camera.plane_y * game->camera.camera_x;
+		game->camera->camera_x = 2 * x / (double)WIDTH - 1;
+		game->ray->x = game->player->x + game->camera->plane_x * game->camera->camera_x;
+		game->ray->x = game->player->y + game->camera->plane_y * game->camera->camera_x;
 
 		//the box of the map we're in
-		int map_x = (int)game->player.pos_x;
-		int map_y = (int)game->player.pos_y;
+		int map_x = (int)game->player->pos_x;
+		int map_y = (int)game->player->pos_y;
 
 		double side_dist_x;
 		double side_dist_y;
 
-		double	delta_dist_x = fabs(1 / game->ray.vec.x);
-		double	delta_dist_y = fabs(1 / game->ray.vec.y);
+		double	delta_dist_x = fabs(1 / game->ray->x);
+		double	delta_dist_y = fabs(1 / game->ray->y);
 
 		double	wall_dist;
 
@@ -74,25 +72,25 @@ int    ft_raycasting(t_game *game, t_mlx *mlx)
 		int	hit = 0;
 		int	side;
 
-		if (game->ray.vec.x < 0)
+		if (game->ray->x < 0)
 		{
 			step_x = -1;
-			side_dist_x = (game->player.pos_x - map_x) * delta_dist_x;
+			side_dist_x = (game->player->pos_x - map_x) * delta_dist_x;
 		}
 		else
 		{
 			step_x = 1;
-			side_dist_x = (map_x + 1.0 - game->player.pos_x) * delta_dist_x;
+			side_dist_x = (map_x + 1.0 - game->player->pos_x) * delta_dist_x;
 		}
-		if (game->ray.vec.y < 0)
+		if (game->ray->y < 0)
 		{
 			step_y = -1;
-			side_dist_y = (game->player.pos_y - map_y) * delta_dist_y;
+			side_dist_y = (game->player->pos_y - map_y) * delta_dist_y;
 		}
 		else
 		{
 			step_y = 1;
-			side_dist_y = (map_y + 1.0 - game->player.pos_y) * delta_dist_y;
+			side_dist_y = (map_y + 1.0 - game->player->pos_y) * delta_dist_y;
 		}
 		while (hit == 0)
 		{
@@ -126,15 +124,11 @@ int    ft_raycasting(t_game *game, t_mlx *mlx)
 		int color = ft_convert_rgb(0, 0, 255);
 		if (side == 1)
 			color = color / 2;
-		// printf("x:%d\ndraw_start:%d\ndraw_end:%d\n", x, draw_start, draw_end);
-		// mlx->pixel.image = mlx_new_image(mlx->init, WIDTH, HEIGHT);
-		// mlx->pixel.address = mlx_get_data_addr(mlx->pixel.image, &mlx->pixel.bits_per_pixel, &mlx->pixel.line_len, &mlx->pixel.endian);
-		ft_draw_line(x, draw_start, draw_end, color, mlx);
-		printf("%d\n", x);
-		// mlx_key_hook(mlx->window, ft_input_handler, game);
+		ft_draw_line(x, draw_start, draw_end, color, game);
+		mlx_key_hook(game->mlx->window, ft_input_handler, game);
 		x++;
 	}
-	mlx_put_image_to_window(mlx->init, mlx->window, mlx->pixel.image, 0, 0);
-    	// mlx_destroy_image(mlx->init, mlx->pixel.image);
+	mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->pixel->image, 0, 0);
+    mlx_destroy_image(game->mlx->init, game->mlx->pixel->image);
 	return (0);
 }

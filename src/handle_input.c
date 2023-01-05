@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:25:50 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/05 17:14:55 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:18:49 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,34 +44,34 @@ int	ft_input_handler(int keycode, t_game *game)
 	if (keycode == W_KEY)
 	{
 		if (map[(int)(game->player->pos_x + game->player->x * game->move_speed)][(int)game->player->pos_y] == 0)
-			game->player.pos_x += game->player.vec.x * game->move_speed;
-		if (map[(int)game->player.pos_x][(int)(game->player.pos_y + game->player.vec.y * game->move_speed)] == 0)
-			game->player.pos_y += game->player.vec.y * game->move_speed;
+			game->player->pos_x += game->player->x * game->move_speed;
+		if (map[(int)game->player->pos_x][(int)(game->player->pos_y + game->player->y * game->move_speed)] == 0)
+			game->player->pos_y += game->player->y * game->move_speed;
 	}
 	if (keycode == S_KEY)
 	{
-		if (map[(int)(game->player.pos_x - game->player.vec.x * game->move_speed)][(int)game->player.pos_y] == 0)
-			game->player.pos_x -= game->player.vec.x * game->move_speed;
-		if (map[(int)game->player.pos_x][(int)(game->player.pos_y - game->player.vec.y * game->move_speed)] == 0)
-			game->player.pos_y -= game->player.vec.y * game->move_speed;
+		if (map[(int)(game->player->pos_x - game->player->x * game->move_speed)][(int)game->player->pos_y] == 0)
+			game->player->pos_x -= game->player->x * game->move_speed;
+		if (map[(int)game->player->pos_x][(int)(game->player->pos_y - game->player->y * game->move_speed)] == 0)
+			game->player->pos_y -= game->player->y * game->move_speed;
 	}
 	if (keycode == D_KEY)
 	{
-		double old_dir_x = game->player.vec.x;
-		game->player.vec.x = game->player.vec.x * cos(-(game->rot_speed)) - game->player.vec.y * sin(-(game->rot_speed));
-		game->player.vec.y = old_dir_x * sin(-(game->rot_speed)) + game->player.vec.y * cos(-(game->rot_speed));
-		double old_plane_x = game->camera.plane_x;
-		game->camera.plane_x = game->camera.plane_x  * cos(-(game->rot_speed)) - game->camera.plane_y  * sin(-(game->rot_speed));
-		game->camera.plane_y = old_plane_x * sin(-(game->rot_speed)) + game->camera.plane_y* cos(-(game->rot_speed));
+		double old_dir_x = game->player->x;
+		game->player->x = game->player->x * cos(-(game->rot_speed)) - game->player->y * sin(-(game->rot_speed));
+		game->player->y = old_dir_x * sin(-(game->rot_speed)) + game->player->y * cos(-(game->rot_speed));
+		double old_plane_x = game->camera->plane_x;
+		game->camera->plane_x = game->camera->plane_x  * cos(-(game->rot_speed)) - game->camera->plane_y  * sin(-(game->rot_speed));
+		game->camera->plane_y = old_plane_x * sin(-(game->rot_speed)) + game->camera->plane_y* cos(-(game->rot_speed));
 	}
 	if (keycode == A_KEY)
 	{
-		double old_dir_x = game->player.vec.x;
-		game->player.vec.x = game->player.vec.x * cos(game->rot_speed) - game->player.vec.y * sin(game->rot_speed);
-		game->player.vec.y = old_dir_x * sin(game->rot_speed) + game->player.vec.y * cos(game->rot_speed);
-		double old_plane_x = game->camera.plane_x;
-		game->camera.plane_x = game->camera.plane_x  * cos(game->rot_speed) - game->camera.plane_y  * sin(game->rot_speed);
-		game->camera.plane_y = old_plane_x * sin(game->rot_speed) + game->camera.plane_y* cos(game->rot_speed);
+		double old_dir_x = game->player->x;
+		game->player->x = game->player->x * cos(game->rot_speed) - game->player->y * sin(game->rot_speed);
+		game->player->y = old_dir_x * sin(game->rot_speed) + game->player->y * cos(game->rot_speed);
+		double old_plane_x = game->camera->plane_x;
+		game->camera->plane_x = game->camera->plane_x  * cos(game->rot_speed) - game->camera->plane_y  * sin(game->rot_speed);
+		game->camera->plane_y = old_plane_x * sin(game->rot_speed) + game->camera->plane_y* cos(game->rot_speed);
 	}
 	return (0);
 }
