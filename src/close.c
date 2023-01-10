@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:47:14 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/03 10:59:00 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/06 14:06:21 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	ft_close_esc(int keycode, t_mlx *mlx)
 {
 	if (keycode == ESC)
 	{
+		mlx_destroy_image(mlx->init, mlx->pixel->image);
 		mlx_clear_window(mlx->init, mlx->window);
 		system("leaks cub3D");
 		exit(0);

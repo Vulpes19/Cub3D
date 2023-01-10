@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:25:47 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/05 17:49:34 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:39:33 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,16 @@
 # include <mlx.h>
 # include <math.h>
 
+# define TILE 64
+# define HEIGHT 64
+# define PLANEWIDTH 320
+# define PLANEHEIGHT 200
+
+enum	t_bool
+{
+	TRUE = 1,
+	FALSE = 0
+};
 
 typedef struct s_pixel
 {
@@ -35,30 +45,34 @@ typedef struct s_mlx
 
 typedef struct s_player
 {
-	double	x;
-	double	y;
-	double		pos_x;
-	double		pos_y;
+	double	pos_x;
+	double	pos_y;
+	int		map_x;
+	int		map_y;
+	double	fov;
+	int		height;
+	int		speed;
+	double	distance_to_plane;
 }	t_player;
 
-typedef struct s_camera
+typedef struct s_plane
 {
-	double	plane_x;
-	double	plane_y;
-	double	camera_x;
-}	t_camera;
+	double	width;
+	double	height;
+	double	center;
+}	t_plane;
 
 typedef struct s_ray
 {
+	double	angle;
 	double x;
 	double y;
 }	t_ray;
 
 typedef struct s_game
 {
-	int			map[24][24];
 	t_player	*player;
-	t_camera	*camera;
+	t_plane		*plane;
 	t_ray		*ray;
 	double		move_speed;
 	double		rot_speed;

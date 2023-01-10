@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:14:17 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/05 17:51:10 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:39:12 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "draw.h"
 #include "close.h"
 #include "error.h"
+#include "input.h"
 
 int	main(void)
 {
@@ -26,17 +27,16 @@ int	main(void)
 	game->mlx = (t_mlx*)malloc(sizeof(t_mlx));
 	game->mlx->pixel = (t_pixel *)malloc(sizeof(t_pixel));
 	game->player = (t_player *)malloc(sizeof(t_player));
-	game->camera = (t_camera *)malloc(sizeof(t_camera));
+	game->plane = (t_plane *)malloc(sizeof(t_plane));
 	game->ray = (t_ray *)malloc(sizeof(t_ray));
-	game->player->pos_x = 22;
-	game->player->pos_y = 12;
-	game->player->x = -1;
-	game->player->y = 0;
-	game->camera->plane_x = 0;
-	game->camera->plane_y = 0.66;
-	game->move_speed = 5.0;
-	game->rot_speed = 3.0;
 	game->mlx->init = mlx_init();
+	game->player->pos_x = 100;
+	game->player->pos_x = 160;
+	game->player->fov = 60;
+	game->player->distance_to_plane = 277;
+	game->player->height = 32;
+	game->player->speed = 16;
+	game->plane->center = PLANEHEIGHT / 2;
 	if (!game->mlx->init)
 	{
 		ft_putstr_fd("failed to init mlx", STDERR_FILENO);
@@ -51,6 +51,7 @@ int	main(void)
 	mlx_hook(game->mlx->window, 17, 1L << 0, ft_close_x, game);
 	mlx_hook(game->mlx->window, 2, 1L << 0, ft_close_esc, game);
 	mlx_loop_hook(game->mlx->init, ft_raycasting, game);
+	// mlx_key_hook(game->mlx->window, ft_input_handler, game);
     // mlx_destroy_image(mlx->init, mlx->pixel->image);
 	mlx_loop(game->mlx->init);
 }
