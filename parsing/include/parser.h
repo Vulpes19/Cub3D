@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:17:19 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 20:05:29 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/11 20:15:19 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ typedef struct	s_parse
 
 void    ft_readMap(t_parse *data);
 status	ft_SN_border(char *map);
+status	ft_EW_border(char *map);
 
 #endif

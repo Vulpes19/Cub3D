@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:07:04 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 20:09:54 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/11 20:18:11 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,9 @@ status	ft_examineLine(char	*map, size_t index)
 
 	flag = GOOD;
 	if (index == 0 || index == (ft_strlen(map) - 1))
-	{
-		printf("here\n");
 		flag = ft_SN_border(map);
-	}
-	// else
-	// 	flag = ft_EW_border(map);
+	else
+		flag = ft_EW_border(map);
 	return (flag);
 }
 
@@ -38,7 +35,6 @@ status	ft_examineMap(t_parse *data)
 	while (flag == GOOD && data->map[i])
 	{
 		flag = ft_examineLine(data->map[i], i);
-		printf("%s\n", data->map[i]);
 		i++;
 	}
 	return (flag);
@@ -61,4 +57,5 @@ void    ft_readMap(t_parse *data)
 		printf("all good\n");
 	else
 		printf("error\n");
+	system ("leaks test");
 }
