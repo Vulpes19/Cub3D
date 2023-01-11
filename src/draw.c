@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/05 17:53:19 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:32:52 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,38 @@ void	ft_draw_line(int x, int draw_start, int draw_end, int color, t_game *game)
 		ft_draw_pixel(game, x, draw_start, color);
 		draw_start++;
 	}
-	// mlx_put_image_to_window(mlx->init, mlx->window, mlx->pixel.image, 0, 0);
+}
+
+void	ft_draw_point(t_game *game)
+{
+	int i;
+	int	j;
+
+	i = game->player->pos_y;
+	while (i < game->player->pos_y + 4)
+	{
+		j = game->player->pos_x;
+		while (j < game->player->pos_x + 4)
+		{
+			ft_draw_pixel(game, j++, i, ft_convert_rgb(228, 208, 10));
+		}
+		++i;
+	}
+}
+
+void	ft_draw_square(int x, int y, t_game *game)
+{
+	int i;
+	int	j;
+
+	i = y;
+	while (i < y + 64)
+	{
+		j = x;
+		while (j < x + 64)
+		{
+			ft_draw_pixel(game, j++, i, ft_convert_rgb(228, 208, 10));
+		}
+		++i;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:25:47 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/10 17:39:33 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:54:02 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <math.h>
 
 # define TILE 64
-# define HEIGHT 64
 # define PLANEWIDTH 320
 # define PLANEHEIGHT 200
 
