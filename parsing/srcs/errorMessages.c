@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   protection.c                                       :+:      :+:    :+:   */
+/*   errorMessages.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 17:25:06 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 17:29:04 by mbaioumy         ###   ########.fr       */
+/*   Created: 2023/01/11 19:18:42 by mbaioumy          #+#    #+#             */
+/*   Updated: 2023/01/11 19:29:37 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/parser.h"
-#include "include/libft.h"
+#include "../include/parser.h"
+#include "../include/libft.h"
 
 
 void    ft_file_error()
 {
-    ft_putstr("File could not be opened or doesn't exist");
+	ft_putstr("Error: File could not be opened or doesn't exist.\n");
+}
+
+void    ft_arguments_error()
+{
+	ft_putstr("Error: Not enough arguments.\n"); 
 }

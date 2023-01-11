@@ -6,11 +6,11 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:39:46 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 17:39:54 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/11 19:07:49 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/libft.h"
+#include "../include/libft.h"
 
 void	freethis1(char **str)
 {

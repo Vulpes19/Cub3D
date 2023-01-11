@@ -6,12 +6,12 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:18:01 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 17:24:03 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/11 19:08:08 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/libft.h"
-#include "include/parser.h"
+#include "../include/libft.h"
+#include "../include/parser.h"
 
 size_t	ft_strlen(char *str)
 {

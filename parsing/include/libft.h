@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:18:48 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 17:27:10 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/11 19:20:36 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ char			*ft_strjoin(char *s1, char *s2);
 char			**ft_split(char const *s, char c);
 void            ft_file_error();
 void            ft_putstr(char *str);
+void            ft_arguments_error();
 
 #endif
