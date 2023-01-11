@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 16:32:52 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:38:56 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,18 @@ void	ft_draw_point(t_game *game)
 	}
 }
 
-void	ft_draw_square(int x, int y, t_game *game)
+void	ft_draw_square(int x, int y, t_game *game, int color)
 {
 	int i;
 	int	j;
 
 	i = y;
-	while (i < y + 64)
+	while (i < y + 63)
 	{
 		j = x;
-		while (j < x + 64)
+		while (j < x + 63)
 		{
-			ft_draw_pixel(game, j++, i, ft_convert_rgb(228, 208, 10));
+			ft_draw_pixel(game, j++, i, color);
 		}
 		++i;
 	}

@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 16:31:58 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:39:03 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int    ft_raycasting(t_game *game)
 	int	map[8][8] =
 	{
 		{1,1,1,1,1,1,1,1},
+		{1,0,0,0,1,0,0,1},
 		{1,0,0,0,0,0,0,1},
 		{1,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,1},
+		{1,0,0,0,1,1,1,1},
+		{1,0,0,0,1,0,0,1},
 		{1,0,0,0,0,0,0,1},
 		{1,1,1,1,1,1,1,1}
 	};
@@ -42,14 +42,16 @@ int    ft_raycasting(t_game *game)
 		{
 			if(map[y][x] == 1)
 			{
-				ft_draw_square(x * 64, y * 64, game);
+				ft_draw_square(x * 64, y * 64, game, ft_convert_rgb(228, 208, 10));
 			}
+			else
+				ft_draw_square(x * 64, y * 64, game, ft_convert_rgb(255, 255, 255));
 			x++;
 		}
 		y++;
 	}
 	ft_draw_point(game);
 	mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->pixel->image, 0, 0);
-	// mlx_destroy_image(game->mlx->init, game->mlx->pixel->image);
+	mlx_destroy_image(game->mlx->init, game->mlx->pixel->image);
 	return (0);
 }
