@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:25:06 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 20:16:28 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:21:05 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,20 @@ status	ft_EW_border(char *map)
 	while (map[i] <= 32)
 		i++;
 	if (map[i] == '1' && map[end] == '1')
+		return (GOOD);
+	return (ERROR);
+}
+
+status	ft_examineBox_SN(char N, char S)
+{
+	if ((N == 1 && S == 1) || (N == 0 && S == 0))
+		return (GOOD);
+	return (ERROR);
+}
+
+status	ft_examineBox_EW(char E, char W)
+{
+	if ((W == 1 && E == 1) || (W == 0 && E == 0))
 		return (GOOD);
 	return (ERROR);
 }
