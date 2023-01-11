@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:47:14 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 15:56:47 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:38:04 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ int	ft_close_esc(int keycode, t_mlx *mlx)
 {
 	if (keycode == ESC)
 	{
+		free(mlx->window);
 		// mlx_destroy_image(mlx->init, mlx->pixel->image);
-		mlx_clear_window(mlx->init, mlx->window);
+		// mlx_clear_window(mlx->init, mlx->window);
 		system("leaks cub3D");
 		exit(0);
 	}
@@ -26,7 +27,8 @@ int	ft_close_esc(int keycode, t_mlx *mlx)
 
 int ft_close_x(t_mlx *mlx)
 {
-	mlx_clear_window(mlx->init, mlx->window);
+		free(mlx->window);
+	// mlx_clear_window(mlx->init, mlx->window);
 	system("leaks cub3D");
 	exit(0);
 	return (0);

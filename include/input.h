@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:25:56 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/05 16:42:14 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:58:18 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # define S_KEY 1
 # define D_KEY 2
 # define A_KEY 0
+# define UP_ARROW 126
+# define DOWN_ARROW 125
+# define RIGHT_ARROW 124
+# define LEFT_ARROW 123
 
 #include <mlx.h>
 #include "game.h"

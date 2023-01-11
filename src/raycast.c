@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 16:39:03 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/11 19:18:14 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "draw.h"
 #include "input.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int    ft_raycasting(t_game *game)
 {
@@ -42,15 +43,18 @@ int    ft_raycasting(t_game *game)
 		{
 			if(map[y][x] == 1)
 			{
-				ft_draw_square(x * 64, y * 64, game, ft_convert_rgb(228, 208, 10));
+				ft_draw_square(x * TILE, y * TILE, game, ft_convert_rgb(228, 208, 10));
 			}
 			else
-				ft_draw_square(x * 64, y * 64, game, ft_convert_rgb(255, 255, 255));
+				ft_draw_square(x * TILE, y * TILE, game, ft_convert_rgb(255, 255, 255));
 			x++;
 		}
 		y++;
 	}
 	ft_draw_point(game);
+	printf("%f\n", game->player->angle);
+	// printf("rot_x: %f\n", game->player->rot_x);
+	// printf("rot_y: %f\n", game->player->rot_y);
 	mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->pixel->image, 0, 0);
 	mlx_destroy_image(game->mlx->init, game->mlx->pixel->image);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 16:38:56 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/11 19:17:15 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,65 @@ void	ft_draw_line(int x, int draw_start, int draw_end, int color, t_game *game)
 	}
 }
 
+// void	ft_draw_line_rot(int x, int y, int end_x, int end_y, int color, t_game *game)
+// {
+// 	int	delta_x;
+// 	int	delta_y;
+// 	int	inc_x;
+// 	int	inc_y;
+// 	int	steps;
+
+// 	delta_x = end_x - x;
+// 	delta_y = end_y - y;
+// 	if (delta_x > delta_y)
+// 		steps = delta_x;
+// 	else
+// 		steps = delta_y;
+// 	inc_x = delta_x / steps;
+// 	inc_y = delta_y / steps;
+// 	while (x < end_x && y < end_y)
+// 	{
+// 		ft_draw_pixel(game, x, y, color);
+// 		x += inc_x;
+// 		y += inc_y;
+// 	}
+// }
+
+void	ft_draw_line_rot(int x, int y, int end_x, int end_y, int color, t_game *game)
+{
+	int	delta_x;
+	int	delta_y;
+	int	inc_x;
+	int	inc_y;
+	int	steps;
+	int	i;
+
+	delta_x = end_x - x;
+	delta_y = end_y - y;
+	if (delta_x > delta_y)
+		steps = delta_x;
+	else
+		steps = delta_y;
+	inc_x = delta_x / steps;
+	inc_y = delta_y / steps;
+	i = 0;
+	while (i < steps)
+	{
+		ft_draw_pixel(game, x, y, color);
+		x += inc_x;
+		y += inc_y;
+		i++;
+	}
+}
+
 void	ft_draw_point(t_game *game)
 {
 	int i;
 	int	j;
+	// int tmp;
 
 	i = game->player->pos_y;
+	ft_draw_line_rot(game->player->pos_x, game->player->pos_y, game->player->pos_x + game->player->rot_x * 5, game->player->pos_y + game->player->rot_y * 5, ft_convert_rgb(228, 208, 10), game);
 	while (i < game->player->pos_y + 4)
 	{
 		j = game->player->pos_x;
@@ -58,10 +111,10 @@ void	ft_draw_square(int x, int y, t_game *game, int color)
 	int	j;
 
 	i = y;
-	while (i < y + 63)
+	while (i < y + TILE - 1)
 	{
 		j = x;
-		while (j < x + 63)
+		while (j < x + TILE - 1)
 		{
 			ft_draw_pixel(game, j++, i, color);
 		}

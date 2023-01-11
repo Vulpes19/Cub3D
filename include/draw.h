@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:07 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 16:39:08 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:29:57 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int		ft_raycasting(t_game *game);
 void	ft_draw_line( int x, int draw_start, int draw_end, int color, t_game *game);
 void	ft_draw_point(t_game *game);
 void	ft_draw_square(int x, int y, t_game *game, int color);
+char	*ft_itoa(int n);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:25:47 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 15:54:02 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:03:43 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 # include <math.h>
 
 # define TILE 64
-# define PLANEWIDTH 320
-# define PLANEHEIGHT 200
+# define PI 3.14159265359
 
 enum	t_bool
 {
@@ -46,8 +45,9 @@ typedef struct s_player
 {
 	double	pos_x;
 	double	pos_y;
-	int		map_x;
-	int		map_y;
+	double	angle;
+	double	rot_x;
+	double	rot_y;
 	double	fov;
 	int		height;
 	int		speed;
