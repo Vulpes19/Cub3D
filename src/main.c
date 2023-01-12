@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:14:17 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/12 15:30:50 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:51:42 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,15 @@ int	main(void)
 	game->mlx->init = mlx_init();
 	game->player->pos_x = 100;
 	game->player->pos_y = 160;
-	game->player->angle = 0;
+	game->player->angle = PI;
 	game->player->rot_x = cos(game->player->angle) * 5;
 	game->player->rot_y = sin(game->player->angle) * 5;
 	game->player->fov = 60;
 	game->player->distance_to_plane = 277;
 	game->player->height = 32;
 	game->player->speed = 16;
+	game->ray->angle = game->player->angle - (game->player->fov / 2);
+	
 	if (!game->mlx->init)
 	{
 		ft_putstr_fd("failed to init mlx", STDERR_FILENO);

@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/12 15:21:23 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:45:35 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	ft_draw_point(t_game *game)
 	int	j;
 
 	i = game->player->pos_y;
-	ft_draw_pixel(game, game->player->pos_x, game->player->pos_y, ft_convert_rgb(228, 208, 10));
 	ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->player->pos_x + game->player->rot_x * 5, game->player->pos_y + game->player->rot_y * 5, ft_convert_rgb(228, 208, 10), game);
 	while (i < game->player->pos_y + 4)
 	{

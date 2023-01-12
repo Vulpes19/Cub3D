@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:25:47 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 17:03:43 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:43:26 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,10 @@ typedef struct s_plane
 typedef struct s_ray
 {
 	double	angle;
-	double x;
-	double y;
+	int x;
+	int y;
+	double x_a;
+	double y_a;
 }	t_ray;
 
 typedef struct s_game
