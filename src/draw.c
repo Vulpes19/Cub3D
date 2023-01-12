@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/12 18:45:35 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/12 20:22:11 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	ft_draw_line_ddb(int x, int y, int end_x, int end_y, int color, t_game *gam
 	int	steps;
 	int	i;
 
+	i = 0;
 	delta_x = end_x - x;
 	delta_y = end_y - y;
 	if (delta_x > delta_y)
@@ -52,7 +53,6 @@ void	ft_draw_line_ddb(int x, int y, int end_x, int end_y, int color, t_game *gam
 		steps = delta_y;
 	inc_x = delta_x / steps;
 	inc_y = delta_y / steps;
-	i = 0;
 	while (i < steps)
 	{
 		ft_draw_pixel(game, x, y, color);
@@ -67,12 +67,12 @@ void	ft_draw_point(t_game *game)
 	int i;
 	int	j;
 
-	i = game->player->pos_y;
+	i = (int)game->player->pos_y;
 	ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->player->pos_x + game->player->rot_x * 5, game->player->pos_y + game->player->rot_y * 5, ft_convert_rgb(228, 208, 10), game);
-	while (i < game->player->pos_y + 4)
+	while (i < (int)(game->player->pos_y + 4))
 	{
 		j = game->player->pos_x;
-		while (j < game->player->pos_x + 4)
+		while (j < (int)(game->player->pos_x + 4))
 		{
 			ft_draw_pixel(game, j++, i, ft_convert_rgb(228, 208, 10));
 		}
