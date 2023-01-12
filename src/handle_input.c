@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:25:50 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 19:21:52 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:33:48 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void	ft_movement(int keycode, t_game *game)
 		}
 		game->player->rot_x = cos(game->player->angle) * 5;
 		game->player->rot_y = sin(game->player->angle) * 5;
-
-		// game->player->pos_x -= game->player->rot_x;
 	}
 	if (keycode == A_KEY)
 	{
@@ -47,32 +45,31 @@ void	ft_movement(int keycode, t_game *game)
 			game->player->rot_y = sin(game->player->angle) * 5;
 		}
 	}
-		// game->player->pos_x += game->player->rot_x;
 }
 
-void	ft_rotation(int keycode, t_game *game)
-{
-	if (keycode == RIGHT_ARROW)
-	{
-		game->player->angle -= 0.1;
-		if (game->player->angle < 0)
-		{
-			game->player->angle += 2 * PI;
-			game->player->rot_x = cos(game->player->angle) * 5;
-			game->player->rot_y = sin(game->player->angle) * 5;
-		}
-	}
-	if (keycode == LEFT_ARROW)
-	{
-		game->player->angle += 0.1;
-		if (game->player->angle > 2 * PI)
-		{
-			game->player->angle -= 2 * PI;
-		}
-		game->player->rot_x = cos(game->player->angle) * 5;
-		game->player->rot_y = sin(game->player->angle) * 5;
-	}
-}
+// void	ft_rotation(int keycode, t_game *game)
+// {
+// 	if (keycode == RIGHT_ARROW)
+// 	{
+// 		game->player->angle -= 0.1;
+// 		if (game->player->angle < 0)
+// 		{
+// 			game->player->angle += 2 * PI;
+// 			game->player->rot_x = cos(game->player->angle) * 5;
+// 			game->player->rot_y = sin(game->player->angle) * 5;
+// 		}
+// 	}
+// 	if (keycode == LEFT_ARROW)
+// 	{
+// 		game->player->angle += 0.1;
+// 		if (game->player->angle > 2 * PI)
+// 		{
+// 			game->player->angle -= 2 * PI;
+// 		}
+// 		game->player->rot_x = cos(game->player->angle) * 5;
+// 		game->player->rot_y = sin(game->player->angle) * 5;
+// 	}
+// }
 
 int	ft_input_handler(int keycode, t_game *game)
 {

@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 19:17:15 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:21:23 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,31 +35,7 @@ void	ft_draw_line(int x, int draw_start, int draw_end, int color, t_game *game)
 	}
 }
 
-// void	ft_draw_line_rot(int x, int y, int end_x, int end_y, int color, t_game *game)
-// {
-// 	int	delta_x;
-// 	int	delta_y;
-// 	int	inc_x;
-// 	int	inc_y;
-// 	int	steps;
-
-// 	delta_x = end_x - x;
-// 	delta_y = end_y - y;
-// 	if (delta_x > delta_y)
-// 		steps = delta_x;
-// 	else
-// 		steps = delta_y;
-// 	inc_x = delta_x / steps;
-// 	inc_y = delta_y / steps;
-// 	while (x < end_x && y < end_y)
-// 	{
-// 		ft_draw_pixel(game, x, y, color);
-// 		x += inc_x;
-// 		y += inc_y;
-// 	}
-// }
-
-void	ft_draw_line_rot(int x, int y, int end_x, int end_y, int color, t_game *game)
+void	ft_draw_line_ddb(int x, int y, int end_x, int end_y, int color, t_game *game)
 {
 	int	delta_x;
 	int	delta_y;
@@ -90,10 +66,10 @@ void	ft_draw_point(t_game *game)
 {
 	int i;
 	int	j;
-	// int tmp;
 
 	i = game->player->pos_y;
-	ft_draw_line_rot(game->player->pos_x, game->player->pos_y, game->player->pos_x + game->player->rot_x * 5, game->player->pos_y + game->player->rot_y * 5, ft_convert_rgb(228, 208, 10), game);
+	ft_draw_pixel(game, game->player->pos_x, game->player->pos_y, ft_convert_rgb(228, 208, 10));
+	ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->player->pos_x + game->player->rot_x * 5, game->player->pos_y + game->player->rot_y * 5, ft_convert_rgb(228, 208, 10), game);
 	while (i < game->player->pos_y + 4)
 	{
 		j = game->player->pos_x;

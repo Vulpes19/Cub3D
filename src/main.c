@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:14:17 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 17:53:00 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:30:50 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	main(void)
 	game->player->pos_x = 100;
 	game->player->pos_y = 160;
 	game->player->angle = 0;
-	game->player->rot_x = 5;
-	game->player->rot_y = 5;
+	game->player->rot_x = cos(game->player->angle) * 5;
+	game->player->rot_y = sin(game->player->angle) * 5;
 	game->player->fov = 60;
 	game->player->distance_to_plane = 277;
 	game->player->height = 32;
@@ -53,6 +53,7 @@ int	main(void)
 	mlx_hook(game->mlx->window, 17, 1L << 0, ft_close_x, game);
 	mlx_hook(game->mlx->window, 2, 1L << 0, ft_close_esc, game);
 	mlx_loop_hook(game->mlx->init, ft_raycasting, game);
-	mlx_key_hook(game->mlx->window, ft_input_handler, game);
+	mlx_hook(game->mlx->window, 2, 1L << 0, ft_input_handler, game);
+	// mlx_key_hook(game->mlx->window, ft_input_handler, game);
 	mlx_loop(game->mlx->init);
 }
