@@ -6,21 +6,21 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:25:06 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/12 18:32:39 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/12 21:37:59 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/parser.h"
 #include "../include/libft.h"
 
-int		ft_is_space(char c)
+int	ft_is_space(char c)
 {
 	if (c <= 32)
 		return (1);
 	return (0);
 }
 
-status	ft_SN_border(char *map)
+t_status	ft_sn_border(char *map)
 {
 	size_t	i;
 	size_t	end;
@@ -38,7 +38,7 @@ status	ft_SN_border(char *map)
 	return (ERROR);
 }
 
-status	ft_EW_border(char *map)
+t_status	ft_ew_border(char *map)
 {
 	int		i;
 	size_t	end;
@@ -52,43 +52,9 @@ status	ft_EW_border(char *map)
 	return (ERROR);
 }
 
-status	ft_examineBox_SN(char N, char S)
+t_status	ft_examine_box_sn(char N, char S)
 {
-	if ((N == 1 && S == 1) || (N == 0 && S == 0))
-		return (GOOD);
-	return (ERROR);
-}
-
-status	ft_examineBox_EW(char E, char W)
-{
-	if ((W == 1 && E == 1) || (W == 0 && E == 0))
-		return (GOOD);
-	return (ERROR);
-}
-
-status	ft_examineBlock(char *upBlock, char *downBlock)
-{
-	int		i;
-	int		j;
-	status	flag;
-
-	i = 0;
-	j = 0;
-	flag = GOOD;
-	while (upBlock[i] <= 32 && upBlock[i])
-	{
-		while (downBlock[j] == '1')
-			j++;
-		i++;
-	}
-	if (i <= j && ft_examineReverseBlock(upBlock, downBlock) == GOOD)
-		return (GOOD);
-	return (ERROR);
-}
-
-status	ft_examineReverseBlock(char *upBlock, char *downBlock)
-{
-	printf("%s\n%s\n", upBlock, downBlock);
-	printf("len upBlock: %zu\nlen downBloc: %zu\n", ft_strlen(upBlock), ft_strlen(downBlock));
-	return (ERROR);
+	if ((N <= 32 || N == '\0') || (S <= 32 || S == '\0'))
+		return (ERROR);
+	return (GOOD);
 }

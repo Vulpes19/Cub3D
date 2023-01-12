@@ -6,38 +6,35 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:17:19 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/12 18:29:21 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/12 21:39:45 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
-#define PARSER_H
+# define PARSER_H
+# include <stdlib.h>
 
-#include <stdlib.h>
-
-typedef enum
+typedef enum s_status
 {
 	GOOD,
 	ERROR
-} status;
+}	t_status;
 
-typedef struct	s_parse
+typedef struct s_parse
 {
-	int 	file;
-	char    *buff;
-	char	*tmp;
-	char    **map;
-	char	*leaks;
-	int		i;
-	int		j;
-}	t_parse ;
+	int			file;
+	char		*buff;
+	char		*tmp;
+	char		**map;
+	char		*leaks;
+	int			i;
+	int			j;
+	t_status	flag;
+}	t_parse;
 
-void    ft_readMap(t_parse *data);
-status	ft_SN_border(char *map);
-status	ft_EW_border(char *map);
-status	ft_examineBox_SN(char N, char S);
-status	ft_examineBox_EW(char E, char W);
-status	ft_examineBlock(char *upBlock, char *downBlock);
-status	ft_examineReverseBlock(char *upBlock, char *downBlock);
+void		ft_read_map(t_parse *data);
+t_status	ft_sn_border(char *map);
+t_status	ft_ew_border(char *map);
+t_status	ft_examine_box_sn(char N, char S);
 
 #endif

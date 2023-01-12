@@ -6,22 +6,12 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:18:01 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 19:08:08 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/12 21:32:36 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 #include "../include/parser.h"
-
-size_t	ft_strlen(char *str)
-{
-	size_t	len;
-
-	len = 0;
-	while (str[len] != '\0')
-		len++;
-	return (len);
-}
 
 void	*ft_calloc(size_t count, size_t size)
 {
@@ -110,19 +100,19 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (tab);
 }
 
-int     ft_strncmp(char *s1, char *s2, unsigned int n)
+int	ft_strncmp(char *s1, char *s2, unsigned int n)
 {
-        unsigned int    i;
+	unsigned int	i;
 
-        i = 0;
-        if (n == 0)
-                return (0);
-        while (s1[i] && s2[i] && i < n - 1)
-        {
-                if (s1[i] == s2[i])
-                        i++;
-                else
-                        break ;
-        }
-        return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (s1[i] && s2[i] && i < n - 1)
+	{
+		if (s1[i] == s2[i])
+			i++;
+		else
+			break ;
+	}
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

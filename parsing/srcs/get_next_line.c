@@ -6,14 +6,14 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:18:11 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 19:08:15 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/12 21:33:54 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 #include "../include/parser.h"
 
-# define BUFFER_SIZE 1024
+#define BUFFER_SIZE 1024
 
 void	freethis(void *ptr)
 {
