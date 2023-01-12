@@ -2,6 +2,13 @@
     "files.associations": {
         "limits.h": "c",
         "game.h": "c",
-        "window.h": "c"
+        "window.h": "c",
+        "libft.h": "c",
+        "parser.h": "c",
+        "array": "c",
+        "iterator": "c",
+        "string": "c",
+        "string_view": "c",
+        "vector": "c"
     }
 }

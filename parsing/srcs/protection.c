@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:25:06 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 21:21:05 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:32:39 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,32 @@ status	ft_examineBox_EW(char E, char W)
 {
 	if ((W == 1 && E == 1) || (W == 0 && E == 0))
 		return (GOOD);
+	return (ERROR);
+}
+
+status	ft_examineBlock(char *upBlock, char *downBlock)
+{
+	int		i;
+	int		j;
+	status	flag;
+
+	i = 0;
+	j = 0;
+	flag = GOOD;
+	while (upBlock[i] <= 32 && upBlock[i])
+	{
+		while (downBlock[j] == '1')
+			j++;
+		i++;
+	}
+	if (i <= j && ft_examineReverseBlock(upBlock, downBlock) == GOOD)
+		return (GOOD);
+	return (ERROR);
+}
+
+status	ft_examineReverseBlock(char *upBlock, char *downBlock)
+{
+	printf("%s\n%s\n", upBlock, downBlock);
+	printf("len upBlock: %zu\nlen downBloc: %zu\n", ft_strlen(upBlock), ft_strlen(downBlock));
 	return (ERROR);
 }

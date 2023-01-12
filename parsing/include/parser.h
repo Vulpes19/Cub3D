@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:17:19 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 21:21:32 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:29:21 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ status	ft_SN_border(char *map);
 status	ft_EW_border(char *map);
 status	ft_examineBox_SN(char N, char S);
 status	ft_examineBox_EW(char E, char W);
+status	ft_examineBlock(char *upBlock, char *downBlock);
+status	ft_examineReverseBlock(char *upBlock, char *downBlock);
 
 #endif

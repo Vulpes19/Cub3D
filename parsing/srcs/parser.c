@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:07:04 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 21:22:14 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:51:52 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,9 @@ status	ft_examineMap(t_parse *data)
 	flag = GOOD;
 	while (flag == GOOD && data->map[i])
 	{
-		j = 0;
 		flag = ft_examineLine(data->map[i], i);
-		if (i > 0)
-		{
-			while (flag == GOOD && data->map[i][j])
-			{
-				if (data->map[i][j] == '0')
-				{
-					flag = ft_examineBox_SN(data->map[i + 1][j], data->map[i - 1][j]);
-					
-					// flag = ft_examineBox_EW(data->map[i][j + 1], data->map[i][j - 1]);
-				}
-				j++;
-			}
-		}
+		if (data->map[i][0] <= 32 && data->map[i + 1][0] > 32)
+			flag = ft_examineBlock(data->map[i], data->map[i + 1]);
 		i++;
 	}
 	return (flag);
