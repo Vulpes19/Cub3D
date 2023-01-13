@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:07:04 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/13 19:38:58 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/13 21:05:17 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,14 @@ void	ft_colors(t_parse *data, char *color)
 	{
 		data->d_tmp = ft_split(color, ' ');
 		data->floor = ft_strdup(data->d_tmp[1]);
+		printf("%s\n", data->floor);
 		freethis1(data->d_tmp);
 	}
 	else if (ft_strncmp(color, "C", 1) == 0)
 	{
 		data->d_tmp = ft_split(color, ' ');
 		data->cieling = ft_strdup(data->d_tmp[1]);
+		printf("%s\n", data->cieling);
 		freethis1(data->d_tmp);
 	}
 }
