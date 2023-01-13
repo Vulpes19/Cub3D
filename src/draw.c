@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/12 20:22:11 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/13 19:08:17 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	ft_draw_line_ddb(int x, int y, int end_x, int end_y, int color, t_game *gam
 		steps = delta_x;
 	else
 		steps = delta_y;
+	if (steps == 0)
+		return ;
 	inc_x = delta_x / steps;
 	inc_y = delta_y / steps;
 	while (i < steps)

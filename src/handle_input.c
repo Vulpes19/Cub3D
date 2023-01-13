@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:25:50 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/12 15:33:48 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:52:32 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	ft_movement(int keycode, t_game *game)
 		if (game->player->angle < 0)
 		{
 			game->player->angle += 2 * PI;
-			game->player->rot_x = cos(game->player->angle) * 5;
-			game->player->rot_y = sin(game->player->angle) * 5;
 		}
+		game->player->rot_x = cos(game->player->angle) * 5;
+		game->player->rot_y = sin(game->player->angle) * 5;
 	}
 }
 
