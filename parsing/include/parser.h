@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:17:19 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/12 21:39:45 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/13 19:17:24 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,15 @@ typedef struct s_parse
 	int			file;
 	char		*buff;
 	char		*tmp;
+	char		*no;
+	char		**d_tmp;
+	char		*so;
+	char		*we;
+	char		*ea;
+	char		*floor;
+	char		*cieling;
 	char		**map;
+	char		**textures_colors;
 	char		*leaks;
 	int			i;
 	int			j;

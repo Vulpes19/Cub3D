@@ -6,12 +6,91 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:07:04 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/12 21:41:47 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/13 19:38:58 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/parser.h"
 #include "../include/libft.h"
+
+void	ft_paths(t_parse *data, char *path)
+{
+	if (ft_strncmp(path, "NO", 2) == 0)
+	{	
+		data->d_tmp = ft_split(path, ' ');
+		data->no = ft_strdup(data->d_tmp[1]);
+		freethis1(data->d_tmp);
+	}
+	else if (ft_strncmp(path, "WE", 2) == 0)
+	{
+		data->d_tmp = ft_split(path, ' ');
+		data->we = ft_strdup(data->d_tmp[1]);
+		freethis1(data->d_tmp);
+	}
+	else if (ft_strncmp(path, "SO", 2) == 0)
+	{
+		data->d_tmp = ft_split(path, ' ');
+		data->so = ft_strdup(data->d_tmp[1]);
+		freethis1(data->d_tmp);
+	}
+	else if (ft_strncmp(path, "EA", 2) == 0)
+	{
+		data->d_tmp = ft_split(path, ' ');
+		data->ea = ft_strdup(data->d_tmp[1]);
+		freethis1(data->d_tmp);
+	}
+}
+
+void	ft_colors(t_parse *data, char *color)
+{
+	if (ft_strncmp(color, "F", 1) == 0)
+	{
+		data->d_tmp = ft_split(color, ' ');
+		data->floor = ft_strdup(data->d_tmp[1]);
+		freethis1(data->d_tmp);
+	}
+	else if (ft_strncmp(color, "C", 1) == 0)
+	{
+		data->d_tmp = ft_split(color, ' ');
+		data->cieling = ft_strdup(data->d_tmp[1]);
+		freethis1(data->d_tmp);
+	}
+}
+
+void	ft_organize(t_parse *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->textures_colors[i])
+	{
+		ft_paths(data, data->textures_colors[i]);
+		ft_colors(data, data->textures_colors[i]);
+		i++;
+	}
+}
+
+void	ft_parse(t_parse *data)
+{
+	int	i;
+
+	i = 1;
+	data->buff = get_next_line(data->file);
+	data->tmp = ft_strdup("");
+	while (i < 8)
+	{
+		data->leaks = data->tmp;
+		data->tmp = ft_strjoin(data->tmp, data->buff);
+		free(data->leaks);
+		free(data->buff);
+		data->buff = get_next_line(data->file);
+		i++;
+	}
+	free(data->buff);
+	data->textures_colors = ft_split(data->tmp, '\n');
+	ft_organize(data);
+	free(data->tmp);
+}
 
 t_status	ft_examine_line(char	*map, size_t index)
 {
@@ -28,7 +107,7 @@ t_status	ft_examine_line(char	*map, size_t index)
 t_status	ft_examine_map(t_parse *data)
 {
 	size_t		i;
-	t_status		flag;	
+	t_status	flag;	
 	size_t		j;
 
 	i = 0;
@@ -49,8 +128,22 @@ t_status	ft_examine_map(t_parse *data)
 	return (flag);
 }
 
+void	ft_free(t_parse *data)
+{
+	freethis1(data->map);
+	free(data->tmp);
+	freethis1(data->textures_colors);
+	free(data->no);
+	free(data->so);
+	free(data->we);
+	free(data->ea);
+	free(data->cieling);
+	free(data->floor);
+}
+
 void	ft_read_map(t_parse *data)
 {
+	ft_parse(data);
 	data->tmp = ft_strdup("");
 	data->buff = get_next_line(data->file);
 	while (data->buff)
@@ -66,6 +159,5 @@ void	ft_read_map(t_parse *data)
 		printf("all good\n");
 	else
 		printf("error\n");
-	freethis1(data->map);
-	free(data->tmp);
+	ft_free(data);
 }
