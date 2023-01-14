@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/14 15:17:46 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/14 15:33:08 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 
 double ft_distance(double x1, double y1, double x2, double y2)
 {
-	return (sqrt( (x2 - x1) * (y2 - y1) + (y2 - y1) * (y2 - y1) ));
+	// return (sqrt( (x2 - x1) * (y2 - y1) + (y2 - y1) * (y2 - y1) ));
+	return (sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2)));
 }
 void	ft_check_horizontal( t_game *game, double *h_pos_x, double *h_pos_y, double *dist )
 {
@@ -58,13 +59,13 @@ void	ft_check_horizontal( t_game *game, double *h_pos_x, double *h_pos_y, double
 	}
 	while (dof < 8)
 	{
-		ft_draw_pixel(game, game->ray->x, game->ray->y, 0xff);
-		ft_draw_pixel(game, game->ray->x + 1, game->ray->y, 0xff);
-		ft_draw_pixel(game, game->ray->x, game->ray->y + 1, 0xff);
-		ft_draw_pixel(game, game->ray->x + 1, game->ray->y + 1, 0xff);
-		ft_draw_pixel(game, game->ray->x - 1, game->ray->y, 0xff);
-		ft_draw_pixel(game, game->ray->x, game->ray->y - 1, 0xff);
-		ft_draw_pixel(game, game->ray->x - 1, game->ray->y - 1, 0xff);
+		// ft_draw_pixel(game, game->ray->x, game->ray->y, 0xff);
+		// ft_draw_pixel(game, game->ray->x + 1, game->ray->y, 0xff);
+		// ft_draw_pixel(game, game->ray->x, game->ray->y + 1, 0xff);
+		// ft_draw_pixel(game, game->ray->x + 1, game->ray->y + 1, 0xff);
+		// ft_draw_pixel(game, game->ray->x - 1, game->ray->y, 0xff);
+		// ft_draw_pixel(game, game->ray->x, game->ray->y - 1, 0xff);
+		// ft_draw_pixel(game, game->ray->x - 1, game->ray->y - 1, 0xff);
 
 		int mx = (int)(game->ray->x / TILE);
 		int my = (int)(game->ray->y / TILE);
@@ -124,13 +125,13 @@ void	ft_check_vertical( t_game *game, double *v_pos_x, double *v_pos_y, double *
 	}
 	while (dof < 8)
 	{
-		ft_draw_pixel(game, game->ray->x, game->ray->y, 0xff);
-		ft_draw_pixel(game, game->ray->x + 1, game->ray->y, 0xff);
-		ft_draw_pixel(game, game->ray->x, game->ray->y + 1, 0xff);
-		ft_draw_pixel(game, game->ray->x + 1, game->ray->y + 1, 0xff);
-		ft_draw_pixel(game, game->ray->x - 1, game->ray->y, 0xff);
-		ft_draw_pixel(game, game->ray->x, game->ray->y - 1, 0xff);
-		ft_draw_pixel(game, game->ray->x - 1, game->ray->y - 1, 0xff);
+		// ft_draw_pixel(game, game->ray->x, game->ray->y, 0xff);
+		// ft_draw_pixel(game, game->ray->x + 1, game->ray->y, 0xff);
+		// ft_draw_pixel(game, game->ray->x, game->ray->y + 1, 0xff);
+		// ft_draw_pixel(game, game->ray->x + 1, game->ray->y + 1, 0xff);
+		// ft_draw_pixel(game, game->ray->x - 1, game->ray->y, 0xff);
+		// ft_draw_pixel(game, game->ray->x, game->ray->y - 1, 0xff);
+		// ft_draw_pixel(game, game->ray->x - 1, game->ray->y - 1, 0xff);
 		int mx = (int)(game->ray->x / TILE);
 		int my = (int)(game->ray->y / TILE);
 		if (my < 0 || mx < 0)
@@ -192,24 +193,21 @@ int    ft_raycasting(t_game *game)
 	int i = 0;
 
 	//intersection loop
-	while (i < 1)
+	while (i < 10)
 	{
 		double dist_h = 1000000;
 		double dist_v = 1000000;
-		game->ray->angle = game->player->angle;
+		game->ray->angle = game->player->angle - RADIAN * 30 + RADIAN * 6 * i;
+		if (game->ray->angle < 0)
+			game->ray->angle += 2 * PI;
+		if (game->ray->angle > 2 * PI)
+			game->ray->angle -= 2 * PI;
 		double h_pos_x = game->player->pos_x;
 		double h_pos_y = game->player->pos_y;
 		ft_check_horizontal(game, &h_pos_x, &h_pos_y, &dist_h);
-		printf("dist_h = %f\n", dist_h);
-		// dist_h = sqrt(pow(game->player->pos_x - game->ray->x, 2) + pow(game->player->pos_y - game->ray->y, 2));
-		// dist_h = ft_distance(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y);
-		// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, ft_convert_rgb(255, 0, 0), game);
 		double v_pos_x = game->player->pos_x;
 		double v_pos_y = game->player->pos_y;
 		ft_check_vertical(game, &v_pos_x, &v_pos_y, &dist_v);
-		printf("dist_v = %f\n", dist_v);
-		// dist_v = sqrt(pow(game->player->pos_x - game->ray->x, 2) + pow(game->player->pos_y - game->ray->y, 2));
-		// dist_h = ft_distance(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y);
 		if (dist_h < dist_v)
 		{
 			printf("I'm horizontal\n");
@@ -225,6 +223,11 @@ int    ft_raycasting(t_game *game)
 		// printf("pos_x = %f, pos_y = %f, ray_x = %d, ray_y = %d\n", game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y);
 		ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, ft_convert_rgb(0, 0, 0), game);
 		i++;
+		game->ray->angle += RADIAN * 30;
+		if (game->ray->angle < 0)
+			game->ray->angle += 2 * PI;
+		if (game->ray->angle > 2 * PI)
+			game->ray->angle -= 2 * PI;
 	}
 
 	//direction line

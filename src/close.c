@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:47:14 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/13 19:24:50 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/14 15:32:10 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_close_esc(int keycode, t_mlx *mlx)
 		free(mlx->window);
 		// mlx_destroy_image(mlx->init, mlx->pixel->image);
 		// mlx_clear_window(mlx->init, mlx->window);
-		system("leaks cub3D");
+		// system("leaks cub3D");
 		exit(0);
 	}
 	return (0);
@@ -27,9 +27,9 @@ int	ft_close_esc(int keycode, t_mlx *mlx)
 
 int ft_close_x(t_mlx *mlx)
 {
-		free(mlx->window);
+	free(mlx->window);
 	// mlx_clear_window(mlx->init, mlx->window);
-	system("leaks cub3D");
+	// system("leaks cub3D");
 	exit(0);
 	return (0);
 }
