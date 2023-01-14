@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:17:19 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/13 19:17:24 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/14 15:21:40 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,10 @@ void		ft_read_map(t_parse *data);
 t_status	ft_sn_border(char *map);
 t_status	ft_ew_border(char *map);
 t_status	ft_examine_box_sn(char N, char S);
+void		ft_mapname_error(void);
+int			ft_mapname_protection(char *name);
+void		ft_paths(t_parse *data, char *path);
+void		ft_colors(t_parse *data, char *color);
+void		ft_organize(t_parse *data);
 
 #endif

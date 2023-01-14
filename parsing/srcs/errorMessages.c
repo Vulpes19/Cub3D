@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:18:42 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/12 21:27:44 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/14 15:23:20 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,9 @@ void	ft_file_error(void)
 void	ft_arguments_error(void)
 {
 	ft_putstr("Error: Not enough arguments.\n");
+}
+
+void	ft_mapname_error(void)
+{
+	ft_putstr("Error: File name is invalid!\n");
 }

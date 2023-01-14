@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:25:06 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/12 21:37:59 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/14 15:23:30 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,11 @@ t_status	ft_examine_box_sn(char N, char S)
 	if ((N <= 32 || N == '\0') || (S <= 32 || S == '\0'))
 		return (ERROR);
 	return (GOOD);
+}
+
+int	ft_mapname_protection(char *name)
+{
+	if (ft_strncmp(name + (ft_strlen(name) - 4), ".cub", 4) == 0)
+		return (1);
+	return (0);
 }

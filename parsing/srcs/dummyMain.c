@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:20:09 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/13 18:14:25 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/14 15:19:01 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,20 @@ int	main(int argc, char **argv)
 
 	if (argc == 2)
 	{
-		data = malloc(sizeof(t_parse));
-		data->file = open(argv[1], O_RDONLY);
-		if (data->file > 0)
-			ft_read_map(data);
+		if (ft_mapname_protection(argv[1]))
+		{
+			data = malloc(sizeof(t_parse));
+			data->file = open(argv[1], O_RDONLY);
+			if (data->file > 0)
+				ft_read_map(data);
+			else
+				ft_file_error();
+			free(data);
+		}
 		else
-			ft_file_error();
-		free(data);
+			ft_mapname_error();
 	}
 	else
 		ft_arguments_error();
-	system ("leaks test");
 	return (0);
 }

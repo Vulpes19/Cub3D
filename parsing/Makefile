@@ -1,6 +1,6 @@
 TARGET = test
 
-SRCS = srcs/dummyMain.c srcs/errorMessages.c srcs/ft_split.c srcs/get_next_line_utils.c srcs/get_next_line.c srcs/libft.c srcs/parser.c srcs/protection.c
+SRCS = srcs/dummyMain.c srcs/errorMessages.c srcs/ft_split.c srcs/get_next_line_utils.c srcs/get_next_line.c srcs/organizers.c srcs/libft.c srcs/parser.c srcs/protection.c
 
 OBJS = $(SRCS:%.c=%.o)
 
