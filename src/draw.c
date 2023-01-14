@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/13 19:08:17 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/14 12:35:56 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_draw_pixel(t_game *game, int x, int y, int color)
 {
 	char	*dest;
 
+	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT)
+		return ;	
 	dest = game->mlx->pixel->address + (y * game->mlx->pixel->line_len + x * (game->mlx->pixel->bits_per_pixel / 8));
 	*(unsigned int*)dest = color;
 }
@@ -37,31 +39,48 @@ void	ft_draw_line(int x, int draw_start, int draw_end, int color, t_game *game)
 
 void	ft_draw_line_ddb(int x, int y, int end_x, int end_y, int color, t_game *game)
 {
-	int	delta_x;
-	int	delta_y;
-	int	inc_x;
-	int	inc_y;
-	int	steps;
-	int	i;
+	// int	delta_x;
+	// int	delta_y;
+	// int	inc_x;
+	// int	inc_y;
+	// int	steps;
+	// int	i;
 
-	i = 0;
-	delta_x = end_x - x;
-	delta_y = end_y - y;
-	if (delta_x > delta_y)
-		steps = delta_x;
-	else
-		steps = delta_y;
-	if (steps == 0)
-		return ;
-	inc_x = delta_x / steps;
-	inc_y = delta_y / steps;
-	while (i < steps)
-	{
-		ft_draw_pixel(game, x, y, color);
-		x += inc_x;
-		y += inc_y;
-		i++;
-	}
+	// i = 0;
+	// delta_x = end_x - x;
+	// delta_y = end_y - y;
+	// if (delta_x > delta_y)
+	// 	steps = delta_x;
+	// else
+	// 	steps = delta_y;
+	// if (steps == 0)
+	// 	return ;
+	// inc_x = delta_x / steps;
+	// inc_y = delta_y / steps;
+	// while (i < steps)
+	// {
+	// 	ft_draw_pixel(game, x, y, color);
+	// 	x += inc_x;
+	// 	y += inc_y;
+	// 	i++;
+	// }
+	double    middle_x;
+	double    middle_y;
+    double    d_middle_x;
+    double    d_middle_y;
+    double    distance;
+
+    middle_x = 0;
+    middle_y = 0;
+    distance = sqrt(pow(end_x - x, 2) + pow(end_y - y, 2));
+    d_middle_x = (end_x - x) / distance;
+    d_middle_y = (end_y - y) / distance;
+    while (distance-- > 0)
+    {
+        ft_draw_pixel(game, x + middle_x, y + middle_y, color);
+        middle_x += d_middle_x;
+        middle_y += d_middle_y;
+    }
 }
 
 void	ft_draw_point(t_game *game)
@@ -70,7 +89,7 @@ void	ft_draw_point(t_game *game)
 	int	j;
 
 	i = (int)game->player->pos_y;
-	ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->player->pos_x + game->player->rot_x * 5, game->player->pos_y + game->player->rot_y * 5, ft_convert_rgb(228, 208, 10), game);
+	ft_draw_line_ddb(game->player->pos_x, game->player->pos_y,game->player->pos_x +  cos(game->player->angle) * 50,game->player->pos_y +  sin(game->player->angle) * 50 , ft_convert_rgb(00, 0xff, 00), game);
 	while (i < (int)(game->player->pos_y + 4))
 	{
 		j = game->player->pos_x;
