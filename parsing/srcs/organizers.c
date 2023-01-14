@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:20:27 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/14 15:21:09 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/14 15:31:10 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_colors(t_parse *data, char *color)
 	}
 }
 
-void	ft_organize(t_parse *data)
+t_status	ft_organize(t_parse *data)
 {
 	int	i;
 
@@ -68,4 +68,9 @@ void	ft_organize(t_parse *data)
 		ft_colors(data, data->textures_colors[i]);
 		i++;
 	}
+	if (!data->cieling || !data->floor)
+		return (ERROR);
+	if (!data->ea || !data->no || !data->so || !data->we)
+		return (ERROR);
+	return (GOOD);
 }

@@ -6,14 +6,14 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:07:04 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/14 15:20:50 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/14 15:35:16 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/parser.h"
 #include "../include/libft.h"
 
-void	ft_parse(t_parse *data)
+t_status	ft_parse(t_parse *data)
 {
 	int	i;
 
@@ -31,8 +31,13 @@ void	ft_parse(t_parse *data)
 	}
 	free(data->buff);
 	data->textures_colors = ft_split(data->tmp, '\n');
-	ft_organize(data);
+	if (ft_organize(data) == GOOD)
+	{	
+		free(data->tmp);
+		return (GOOD);
+	}
 	free(data->tmp);
+	return (ERROR);
 }
 
 t_status	ft_examine_line(char	*map, size_t index)
@@ -86,21 +91,25 @@ void	ft_free(t_parse *data)
 
 void	ft_read_map(t_parse *data)
 {
-	ft_parse(data);
-	data->tmp = ft_strdup("");
-	data->buff = get_next_line(data->file);
-	while (data->buff)
-	{
-		data->leaks = data->tmp;
-		data->tmp = ft_strjoin(data->tmp, data->buff);
-		free(data->leaks);
-		free(data->buff);
+	if (ft_parse(data) == GOOD)
+	{	
+		data->tmp = ft_strdup("");
 		data->buff = get_next_line(data->file);
+		while (data->buff)
+		{
+			data->leaks = data->tmp;
+			data->tmp = ft_strjoin(data->tmp, data->buff);
+			free(data->leaks);
+			free(data->buff);
+			data->buff = get_next_line(data->file);
+		}
+		data->map = ft_split(data->tmp, '\n');
+		if (ft_examine_map(data) == GOOD)
+			printf("all good\n");
+		else
+			printf("error\n");
+		ft_free(data);
 	}
-	data->map = ft_split(data->tmp, '\n');
-	if (ft_examine_map(data) == GOOD)
-		printf("all good\n");
 	else
-		printf("error\n");
-	ft_free(data);
+		printf("parsing error\n");
 }
