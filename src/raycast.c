@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/14 13:13:05 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/14 14:30:48 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_check_horizontal( t_game *game )
 	int	dof = 0;
 	if (game->ray->angle > PI)
 	{
-		game->ray->y = floor(game->player->pos_y / TILE) * TILE - 1/*- 1*/;
+		game->ray->y = floor(game->player->pos_y / TILE) * TILE - 1;
 		game->ray->x = (int)(game->player->pos_x - (game->player->pos_y - game->ray->y) / tan(game->ray->angle));
 		game->ray->y_a = -TILE;
 		game->ray->x_a = game->ray->y_a / tan(game->ray->angle);
@@ -40,7 +40,7 @@ void	ft_check_horizontal( t_game *game )
 	}
 	if (game->ray->angle < PI)
 	{
-		game->ray->y = floor(game->player->pos_y / TILE) * TILE + TILE /*+ TILE*/;
+		game->ray->y = floor(game->player->pos_y / TILE) * TILE + TILE;
 		game->ray->x = (int)(game->player->pos_x - (game->player->pos_y - game->ray->y) / tan(game->ray->angle));
 		game->ray->y_a = TILE;
 		game->ray->x_a = game->ray->y_a / tan(game->ray->angle);
@@ -74,7 +74,6 @@ void	ft_check_horizontal( t_game *game )
 			game->ray->y += game->ray->y_a;
 			dof += 1;
 		}
-		// draw a dot on the ray position 5px * 5px
 	}
 	if (game->ray->angle > PI)
 		game->ray->y += 1;
@@ -101,17 +100,17 @@ void	ft_check_vertical( t_game *game )
 	int	dof = 0;
 	if (game->ray->angle > PI / 2 && game->ray->angle < 3 * PI / 2)
 	{
-		game->ray->x = (int)(game->player->pos_x / TILE) * TILE - 0.0001;
-		game->ray->y = (int)(game->player->pos_y + (game->player->pos_x - game->ray->x) * tan(game->ray->angle));
+		game->ray->x = (int)(game->player->pos_x / TILE) * TILE - 1;
+		game->ray->y = (int)(game->player->pos_y + (game->ray->x - game->player->pos_x) * tan(game->ray->angle));
 		game->ray->x_a = -64;
-		game->ray->y_a = TILE * tan(game->ray->angle);
+		game->ray->y_a = game->ray->x_a * tan(game->ray->angle);
 	}
 	if (game->ray->angle < PI / 2 || game->ray->angle > 3 * PI / 2)
 	{
 		game->ray->x = (int)(game->player->pos_x / TILE) * TILE + TILE;
-		game->ray->y = (int)(game->player->pos_y + (game->player->pos_x - game->ray->x) * tan(game->ray->angle));
+		game->ray->y = (int)(game->player->pos_y - (game->player->pos_x - game->ray->x) * tan(game->ray->angle));
 		game->ray->x_a = TILE;
-		game->ray->y_a = TILE * tan(game->ray->angle);
+		game->ray->y_a = game->ray->x_a * tan(game->ray->angle);
 	}
 	if (game->ray->angle == 0 || game->ray->angle == PI)
 	{
@@ -121,8 +120,17 @@ void	ft_check_vertical( t_game *game )
 	}
 	while (dof < 8)
 	{
+		ft_draw_pixel(game, game->ray->x, game->ray->y, 0xff);
+		ft_draw_pixel(game, game->ray->x + 1, game->ray->y, 0xff);
+		ft_draw_pixel(game, game->ray->x, game->ray->y + 1, 0xff);
+		ft_draw_pixel(game, game->ray->x + 1, game->ray->y + 1, 0xff);
+		ft_draw_pixel(game, game->ray->x - 1, game->ray->y, 0xff);
+		ft_draw_pixel(game, game->ray->x, game->ray->y - 1, 0xff);
+		ft_draw_pixel(game, game->ray->x - 1, game->ray->y - 1, 0xff);
 		int mx = (int)(game->ray->x / TILE);
 		int my = (int)(game->ray->y / TILE);
+		if (my < 0 || mx < 0)
+			break ;
 		if (mx < 8 && my < 8 && map[my][mx] == 1)
 			dof = 8;
 		else
@@ -174,10 +182,11 @@ int    ft_raycasting(t_game *game)
 		game->ray->angle = game->player->angle;
 		ft_check_horizontal(game);
 		ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, ft_convert_rgb(255, 0, 0), game);
-		// ft_check_vertical(game);
-		// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, ft_convert_rgb(255, 0, 0), game);
+		ft_check_vertical(game);
+		ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, ft_convert_rgb(255, 200, 0), game);
 		i++;
 	}
+	ft_draw_line_ddb(game->player->pos_x, game->player->pos_y,game->player->pos_x +  cos(game->player->angle) * 50,game->player->pos_y +  sin(game->player->angle) * 50 , ft_convert_rgb(00, 0xff, 00), game);
 	mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->pixel->image, 0, 0);
 	mlx_destroy_image(game->mlx->init, game->mlx->pixel->image);
 	return (0);
