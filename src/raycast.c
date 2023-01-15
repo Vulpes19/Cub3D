@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/15 15:49:47 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/15 15:57:32 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,22 +174,22 @@ int    ft_raycasting(t_game *game)
 	game->mlx->pixel->address = mlx_get_data_addr(game->mlx->pixel->image, &game->mlx->pixel->bits_per_pixel, &game->mlx->pixel->line_len, &game->mlx->pixel->endian);
 	
 	//grid drawing
-	while (y < 8)
-	{
-		x = 0;
-		while (x < 8)
-		{
-			if(map[y][x] == 1)
-				ft_draw_square(x * TILE, y * TILE, game, ft_convert_rgb(228, 208, 10));
-			else
-				ft_draw_square(x * TILE, y * TILE, game, ft_convert_rgb(255, 255, 255));
-			x++;
-		}
-		y++;
-	}
+	// while (y < 8)
+	// {
+	// 	x = 0;
+	// 	while (x < 8)
+	// 	{
+	// 		if(map[y][x] == 1)
+	// 			ft_draw_square(x * TILE, y * TILE, game, ft_convert_rgb(228, 208, 10));
+	// 		else
+	// 			ft_draw_square(x * TILE, y * TILE, game, ft_convert_rgb(255, 255, 255));
+	// 		x++;
+	// 	}
+	// 	y++;
+	// }
 
 	//player
-	ft_draw_point(game);
+	// ft_draw_point(game);
 	int i = 0;
 
 	//intersection loop
@@ -232,13 +232,13 @@ int    ft_raycasting(t_game *game)
 			dist = dist_v;
 		}
 		// printf("pos_x = %f, pos_y = %f, ray_x = %d, ray_y = %d\n", game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y);
-		ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, ft_convert_rgb(0, 0, 0), game);
-		height = (TILE * 320 / dist) * 277;
+		// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, ft_convert_rgb(0, 0, 0), game);
+		height = (TILE / dist) * 277;
 		begin_draw = -height / 2 + HEIGHT / 2;
-		end_draw = height / 2 + HEIGHT / 2;
+		// end_draw = height / 2 + HEIGHT / 2;
 		game->wall[i].height = height;
 		game->wall[i].top = begin_draw;
-		game->wall[i].bottom = end_draw;
+		game->wall[i].bottom = HEIGHT - begin_draw;
 		game->wall[i].distance = dist;
 		game->wall[i].x = game->ray->x;
 		game->wall[i].y = game->ray->y;
@@ -251,16 +251,15 @@ int    ft_raycasting(t_game *game)
 			game->ray->angle -= 2 * PI;
 	}
 	i = 0;
-	// int wall_width;
-	// while (i < 15)
-	// {
-	// 	game->wall[i].distance = game->wall[i].distance * cos(game->player->angle - game->ray->angle);
-	// 	wall_width = (game->wall[i].distance / 200) * 64;
-	// 	ft_draw_rectangle(game->wall[i].x, game->wall[i].y, wall_width, game->wall[i].height, ft_convert_rgb(255,160,122), game);
-	// 	i++;
-	// }
+	int wall_width;
+	while (i < WIDTH)
+	{
+		wall_width = 1;
+		ft_draw_rectangle(i, game->wall[i].top, wall_width, game->wall[i].height, ft_convert_rgb(255,160,122), game);
+		i++;
+	}
 	//direction line
-	ft_draw_line_ddb(game->player->pos_x, game->player->pos_y,game->player->pos_x +  cos(game->player->angle) * 50,game->player->pos_y +  sin(game->player->angle) * 50 , ft_convert_rgb(00, 0xff, 00), game);
+	// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y,game->player->pos_x +  cos(game->player->angle) * 50,game->player->pos_y +  sin(game->player->angle) * 50 , ft_convert_rgb(00, 0xff, 00), game);
 	
 	mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->pixel->image, 0, 0);
 	mlx_destroy_image(game->mlx->init, game->mlx->pixel->image);
