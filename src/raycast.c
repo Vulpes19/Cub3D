@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/15 17:13:07 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/15 17:38:37 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,6 +213,8 @@ int    ft_raycasting(t_game *game)
 	{
 		wall_width = 2;
 		ft_draw_rectangle(i, game->wall[i].begin_draw, wall_width, game->wall[i].height, ft_convert_rgb(255,160,122), game);
+		ft_draw_rectangle(i, game->wall[i].begin_draw + game->wall[i].height, wall_width, HEIGHT - (game->wall[i].begin_draw + game->wall[i].height), ft_convert_rgb(255, 255, 255), game);
+		ft_draw_rectangle(i, 0, wall_width, game->wall[i].begin_draw, ft_convert_rgb(255, 255, 255), game);
 		i++;
 	}
 	//direction line
