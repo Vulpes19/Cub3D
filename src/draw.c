@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/14 14:30:35 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/14 17:24:34 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,33 +37,25 @@ void	ft_draw_line(int x, int draw_start, int draw_end, int color, t_game *game)
 	}
 }
 
+void ft_draw_rectangle(int x, int y, int width, int height, int color, t_game *game)
+{
+	int i;
+	int j;
+
+	i = y;
+	while (i < y + height)
+	{
+		j = x;
+		while (j < x + width)
+		{
+			ft_draw_pixel(game, j++, i, color);
+		}
+		++i;
+	}
+}
+
 void	ft_draw_line_ddb(int x, int y, int end_x, int end_y, int color, t_game *game)
 {
-	// int	delta_x;
-	// int	delta_y;
-	// int	inc_x;
-	// int	inc_y;
-	// int	steps;
-	// int	i;
-
-	// i = 0;
-	// delta_x = end_x - x;
-	// delta_y = end_y - y;
-	// if (delta_x > delta_y)
-	// 	steps = delta_x;
-	// else
-	// 	steps = delta_y;
-	// if (steps == 0)
-	// 	return ;
-	// inc_x = delta_x / steps;
-	// inc_y = delta_y / steps;
-	// while (i < steps)
-	// {
-	// 	ft_draw_pixel(game, x, y, color);
-	// 	x += inc_x;
-	// 	y += inc_y;
-	// 	i++;
-	// }
 	double    middle_x;
 	double    middle_y;
     double    d_middle_x;

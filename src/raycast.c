@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/14 15:33:08 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/15 15:49:47 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,11 +193,20 @@ int    ft_raycasting(t_game *game)
 	int i = 0;
 
 	//intersection loop
-	while (i < 10)
+	while (i < WIDTH)
 	{
 		double dist_h = 1000000;
 		double dist_v = 1000000;
-		game->ray->angle = game->player->angle - RADIAN * 30 + RADIAN * 6 * i;
+		double dist;
+		double height;
+		double begin_draw;
+		double end_draw;
+		double wall_y;
+		double inc;
+		// game->ray->angle = game->player->angle - RADIAN * 6 + RADIAN * 6 * i;
+		game->ray->angle = game->player->angle - (game->player->half_fov) + (game->player->half_fov * 2) * i / WIDTH;
+		// game->ray->angle = game->player->angle - game->player->half_fov;
+		// inc = game->ray->÷÷
 		if (game->ray->angle < 0)
 			game->ray->angle += 2 * PI;
 		if (game->ray->angle > 2 * PI)
@@ -210,26 +219,46 @@ int    ft_raycasting(t_game *game)
 		ft_check_vertical(game, &v_pos_x, &v_pos_y, &dist_v);
 		if (dist_h < dist_v)
 		{
-			printf("I'm horizontal\n");
+			// printf("I'm horizontal\n");
 			game->ray->x = (int)h_pos_x;
 			game->ray->y = (int)h_pos_y;
+			dist = dist_h;
 		}
 		if (dist_h > dist_v)
 		{
-			printf("I'm vertical\n");
+			// printf("I'm vertical\n");
 			game->ray->x = (int)v_pos_x;
 			game->ray->y = (int)v_pos_y;
+			dist = dist_v;
 		}
 		// printf("pos_x = %f, pos_y = %f, ray_x = %d, ray_y = %d\n", game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y);
 		ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, ft_convert_rgb(0, 0, 0), game);
+		height = (TILE * 320 / dist) * 277;
+		begin_draw = -height / 2 + HEIGHT / 2;
+		end_draw = height / 2 + HEIGHT / 2;
+		game->wall[i].height = height;
+		game->wall[i].top = begin_draw;
+		game->wall[i].bottom = end_draw;
+		game->wall[i].distance = dist;
+		game->wall[i].x = game->ray->x;
+		game->wall[i].y = game->ray->y;
 		i++;
-		game->ray->angle += RADIAN * 30;
+		// game->ray->angle += RADIAN * 6;
+		game->ray->angle += game->player->fov / WIDTH;
 		if (game->ray->angle < 0)
 			game->ray->angle += 2 * PI;
 		if (game->ray->angle > 2 * PI)
 			game->ray->angle -= 2 * PI;
 	}
-
+	i = 0;
+	// int wall_width;
+	// while (i < 15)
+	// {
+	// 	game->wall[i].distance = game->wall[i].distance * cos(game->player->angle - game->ray->angle);
+	// 	wall_width = (game->wall[i].distance / 200) * 64;
+	// 	ft_draw_rectangle(game->wall[i].x, game->wall[i].y, wall_width, game->wall[i].height, ft_convert_rgb(255,160,122), game);
+	// 	i++;
+	// }
 	//direction line
 	ft_draw_line_ddb(game->player->pos_x, game->player->pos_y,game->player->pos_x +  cos(game->player->angle) * 50,game->player->pos_y +  sin(game->player->angle) * 50 , ft_convert_rgb(00, 0xff, 00), game);
 	

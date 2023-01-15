@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:25:47 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/14 15:28:19 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/15 15:35:36 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_player
 	double	rot_x;
 	double	rot_y;
 	double	fov;
+	double	half_fov;
 	int		height;
 	int		speed;
 	double	distance_to_plane;
@@ -71,11 +72,22 @@ typedef struct s_ray
 	double y_a;
 }	t_ray;
 
+typedef	struct s_wall
+{
+	int		x;
+	int	y;
+	double	height;
+	double	distance;
+	double	distance_proj;
+	double	top;
+	double	bottom;
+}	t_wall;
 typedef struct s_game
 {
 	t_player	*player;
 	t_plane		*plane;
 	t_ray		*ray;
+	t_wall		*wall;
 	double		move_speed;
 	double		rot_speed;
 	t_mlx		*mlx;

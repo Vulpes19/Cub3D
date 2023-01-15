@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:14:17 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/14 12:08:30 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/15 15:50:01 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,15 @@ int	main(void)
 	game->player = (t_player *)malloc(sizeof(t_player));
 	game->plane = (t_plane *)malloc(sizeof(t_plane));
 	game->ray = (t_ray *)malloc(sizeof(t_ray));
+	game->wall = (t_wall *)malloc(sizeof(t_wall) * WIDTH);
 	game->mlx->init = mlx_init();
 	game->player->pos_x = 100;
 	game->player->pos_y = 160;
 	game->player->angle = 0;
 	game->player->rot_x = cos(game->player->angle) * 5;
 	game->player->rot_y = sin(game->player->angle) * 5;
-	game->player->fov = 60;
+	game->player->fov = 60 * (PI / 180);
+	game->player->half_fov = game->player->fov / 2;
 	game->player->distance_to_plane = 277;
 	game->player->height = 32;
 	game->player->speed = 16;
