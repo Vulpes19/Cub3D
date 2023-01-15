@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/15 15:57:32 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/15 16:02:34 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,14 +222,14 @@ int    ft_raycasting(t_game *game)
 			// printf("I'm horizontal\n");
 			game->ray->x = (int)h_pos_x;
 			game->ray->y = (int)h_pos_y;
-			dist = dist_h;
+			dist = dist_h * cos(game->player->angle - game->ray->angle);
 		}
 		if (dist_h > dist_v)
 		{
 			// printf("I'm vertical\n");
 			game->ray->x = (int)v_pos_x;
 			game->ray->y = (int)v_pos_y;
-			dist = dist_v;
+			dist = dist_v * cos(game->player->angle - game->ray->angle);
 		}
 		// printf("pos_x = %f, pos_y = %f, ray_x = %d, ray_y = %d\n", game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y);
 		// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, ft_convert_rgb(0, 0, 0), game);
