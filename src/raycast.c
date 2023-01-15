@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/15 16:02:34 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/15 17:13:07 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-double ft_distance(double x1, double y1, double x2, double y2)
-{
-	// return (sqrt( (x2 - x1) * (y2 - y1) + (y2 - y1) * (y2 - y1) ));
-	return (sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2)));
-}
-void	ft_check_horizontal( t_game *game, double *h_pos_x, double *h_pos_y, double *dist )
+void	ft_check_horizontal(t_game *game)
 {
 	int	map[8][8] =
 	{
@@ -37,19 +32,17 @@ void	ft_check_horizontal( t_game *game, double *h_pos_x, double *h_pos_y, double
 	int	dof = 0;
 	if (game->ray->angle > PI)
 	{
-		game->ray->y = floor(game->player->pos_y / TILE) * TILE - 1;
-		game->ray->x = (int)(game->player->pos_x - (game->player->pos_y - game->ray->y) / tan(game->ray->angle));
+		game->ray->y = floor(game->player->pos_y / TILE) * TILE - 0.0001;
+		game->ray->x = game->player->pos_x - (game->player->pos_y - game->ray->y) / tan(game->ray->angle);
 		game->ray->y_a = -TILE;
 		game->ray->x_a = game->ray->y_a / tan(game->ray->angle);
-		// printf("x_a = %f, pl_a = %f ray_a = %f\n", game->ray->x_a, game->player->angle, game->ray->angle);
 	}
 	if (game->ray->angle < PI)
 	{
 		game->ray->y = floor(game->player->pos_y / TILE) * TILE + TILE;
-		game->ray->x = (int)(game->player->pos_x - (game->player->pos_y - game->ray->y) / tan(game->ray->angle));
+		game->ray->x = game->player->pos_x - (game->player->pos_y - game->ray->y) / tan(game->ray->angle);
 		game->ray->y_a = TILE;
 		game->ray->x_a = game->ray->y_a / tan(game->ray->angle);
-		// printf("x_a = %f, pl_a = %f ray_a = %f\n", game->ray->x_a, game->player->angle, game->ray->angle);
 	}
 	if (game->ray->angle == 0 || game->ray->angle == PI)
 	{
@@ -73,9 +66,9 @@ void	ft_check_horizontal( t_game *game, double *h_pos_x, double *h_pos_y, double
 			break ;
 		if (my < 8 && mx < 8 && map[my][mx] == 1)
 		{
-			*h_pos_x = game->ray->x;
-			*h_pos_y = game->ray->y;
-			*dist = ft_distance(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y);
+			game->ray->h_pos_x = game->ray->x;
+			game->ray->h_pos_y = game->ray->y;
+			game->ray->distance_h = ft_distance(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y);
 			dof = 8;
 		}
 		else
@@ -85,11 +78,9 @@ void	ft_check_horizontal( t_game *game, double *h_pos_x, double *h_pos_y, double
 			dof += 1;
 		}
 	}
-	if (game->ray->angle > PI)
-		game->ray->y += 1;
 }
 
-void	ft_check_vertical( t_game *game, double *v_pos_x, double *v_pos_y, double *dist )
+void	ft_check_vertical(t_game *game)
 {
 	int	map[8][8] =
 	{
@@ -105,15 +96,15 @@ void	ft_check_vertical( t_game *game, double *v_pos_x, double *v_pos_y, double *
 	int	dof = 0;
 	if (game->ray->angle > PI / 2 && game->ray->angle < 3 * PI / 2)
 	{
-		game->ray->x = (int)(game->player->pos_x / TILE) * TILE - 1;
-		game->ray->y = (int)(game->player->pos_y + (game->ray->x - game->player->pos_x) * tan(game->ray->angle));
+		game->ray->x = floor(game->player->pos_x / TILE) * TILE - 0.0001;
+		game->ray->y = game->player->pos_y + (game->ray->x - game->player->pos_x) * tan(game->ray->angle);
 		game->ray->x_a = -64;
 		game->ray->y_a = game->ray->x_a * tan(game->ray->angle);
 	}
 	if (game->ray->angle < PI / 2 || game->ray->angle > 3 * PI / 2)
 	{
-		game->ray->x = (int)(game->player->pos_x / TILE) * TILE + TILE;
-		game->ray->y = (int)(game->player->pos_y - (game->player->pos_x - game->ray->x) * tan(game->ray->angle));
+		game->ray->x = floor(game->player->pos_x / TILE) * TILE + TILE;
+		game->ray->y = game->player->pos_y - (game->player->pos_x - game->ray->x) * tan(game->ray->angle);
 		game->ray->x_a = TILE;
 		game->ray->y_a = game->ray->x_a * tan(game->ray->angle);
 	}
@@ -138,9 +129,9 @@ void	ft_check_vertical( t_game *game, double *v_pos_x, double *v_pos_y, double *
 			break ;
 		if (mx < 8 && my < 8 && map[my][mx] == 1)
 		{
-			*v_pos_x = game->ray->x;
-			*v_pos_y = game->ray->y;
-			*dist = ft_distance(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y);
+			game->ray->v_pos_x = game->ray->x;
+			game->ray->v_pos_y = game->ray->y;
+			game->ray->distance_v = ft_distance(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y);
 			dof = 8;
 		}
 		else
@@ -154,8 +145,6 @@ void	ft_check_vertical( t_game *game, double *v_pos_x, double *v_pos_y, double *
 
 int    ft_raycasting(t_game *game)
 {
-	int	x;
-	int	y;
 	int	map[8][8] =
 	{
 		{1,1,1,1,1,1,1,1},
@@ -167,26 +156,11 @@ int    ft_raycasting(t_game *game)
 		{1,0,0,0,0,0,0,1},
 		{1,1,1,1,1,1,1,1}
 	};
-
-	x = 0;
-	y = 0;
 	game->mlx->pixel->image = mlx_new_image(game->mlx->init, WIDTH, HEIGHT);
 	game->mlx->pixel->address = mlx_get_data_addr(game->mlx->pixel->image, &game->mlx->pixel->bits_per_pixel, &game->mlx->pixel->line_len, &game->mlx->pixel->endian);
 	
 	//grid drawing
-	// while (y < 8)
-	// {
-	// 	x = 0;
-	// 	while (x < 8)
-	// 	{
-	// 		if(map[y][x] == 1)
-	// 			ft_draw_square(x * TILE, y * TILE, game, ft_convert_rgb(228, 208, 10));
-	// 		else
-	// 			ft_draw_square(x * TILE, y * TILE, game, ft_convert_rgb(255, 255, 255));
-	// 		x++;
-	// 	}
-	// 	y++;
-	// }
+	// ft_draw_grid(game);
 
 	//player
 	// ft_draw_point(game);
@@ -195,53 +169,36 @@ int    ft_raycasting(t_game *game)
 	//intersection loop
 	while (i < WIDTH)
 	{
-		double dist_h = 1000000;
-		double dist_v = 1000000;
-		double dist;
-		double height;
-		double begin_draw;
-		double end_draw;
-		double wall_y;
-		double inc;
-		// game->ray->angle = game->player->angle - RADIAN * 6 + RADIAN * 6 * i;
+		game->ray->distance_h = 1000000;
+		game->ray->distance_v = 1000000;
 		game->ray->angle = game->player->angle - (game->player->half_fov) + (game->player->half_fov * 2) * i / WIDTH;
-		// game->ray->angle = game->player->angle - game->player->half_fov;
-		// inc = game->ray->÷÷
 		if (game->ray->angle < 0)
 			game->ray->angle += 2 * PI;
 		if (game->ray->angle > 2 * PI)
 			game->ray->angle -= 2 * PI;
-		double h_pos_x = game->player->pos_x;
-		double h_pos_y = game->player->pos_y;
-		ft_check_horizontal(game, &h_pos_x, &h_pos_y, &dist_h);
-		double v_pos_x = game->player->pos_x;
-		double v_pos_y = game->player->pos_y;
-		ft_check_vertical(game, &v_pos_x, &v_pos_y, &dist_v);
-		if (dist_h < dist_v)
+		game->ray->h_pos_x = game->player->pos_x;
+		game->ray->h_pos_y = game->player->pos_y;
+		ft_check_horizontal(game);
+		game->ray->v_pos_x = game->player->pos_x;
+		game->ray->v_pos_y = game->player->pos_y;
+		ft_check_vertical(game);
+		if (game->ray->distance_h < game->ray->distance_v)
 		{
 			// printf("I'm horizontal\n");
-			game->ray->x = (int)h_pos_x;
-			game->ray->y = (int)h_pos_y;
-			dist = dist_h * cos(game->player->angle - game->ray->angle);
+			game->ray->x = (int)game->ray->h_pos_x;
+			game->ray->y = (int)game->ray->h_pos_y;
+			game->ray->distance = game->ray->distance_h * cos(game->player->angle - game->ray->angle);
 		}
-		if (dist_h > dist_v)
+		if (game->ray->distance_h > game->ray->distance_v)
 		{
 			// printf("I'm vertical\n");
-			game->ray->x = (int)v_pos_x;
-			game->ray->y = (int)v_pos_y;
-			dist = dist_v * cos(game->player->angle - game->ray->angle);
+			game->ray->x = (int)game->ray->v_pos_x;
+			game->ray->y = (int)game->ray->v_pos_y;
+			game->ray->distance = game->ray->distance_v * cos(game->player->angle - game->ray->angle);
 		}
-		// printf("pos_x = %f, pos_y = %f, ray_x = %d, ray_y = %d\n", game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y);
 		// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, ft_convert_rgb(0, 0, 0), game);
-		height = (TILE / dist) * 277;
-		begin_draw = -height / 2 + HEIGHT / 2;
-		// end_draw = height / 2 + HEIGHT / 2;
-		game->wall[i].height = height;
-		game->wall[i].top = begin_draw;
-		game->wall[i].bottom = HEIGHT - begin_draw;
-		game->wall[i].distance = dist;
-		game->wall[i].x = game->ray->x;
-		game->wall[i].y = game->ray->y;
+		game->wall[i].height = (TILE / game->ray->distance) * 277;;
+		game->wall[i].begin_draw = -game->wall[i].height / 2 + HEIGHT / 2;;
 		i++;
 		// game->ray->angle += RADIAN * 6;
 		game->ray->angle += game->player->fov / WIDTH;
@@ -254,8 +211,8 @@ int    ft_raycasting(t_game *game)
 	int wall_width;
 	while (i < WIDTH)
 	{
-		wall_width = 1;
-		ft_draw_rectangle(i, game->wall[i].top, wall_width, game->wall[i].height, ft_convert_rgb(255,160,122), game);
+		wall_width = 2;
+		ft_draw_rectangle(i, game->wall[i].begin_draw, wall_width, game->wall[i].height, ft_convert_rgb(255,160,122), game);
 		i++;
 	}
 	//direction line

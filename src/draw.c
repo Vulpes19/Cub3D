@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/14 17:24:34 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/15 16:37:46 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,38 @@ void	ft_draw_square(int x, int y, t_game *game, int color)
 			ft_draw_pixel(game, j++, i, color);
 		}
 		++i;
+	}
+}
+
+void	ft_draw_grid(t_game *game)
+{
+	int	x;
+	int	y;
+	int	map[8][8] =
+	{
+		{1,1,1,1,1,1,1,1},
+		{1,0,0,0,1,0,0,1},
+		{1,0,0,0,0,0,0,1},
+		{1,0,0,0,0,0,0,1},
+		{1,0,0,0,1,1,1,1},
+		{1,0,0,0,1,0,0,1},
+		{1,0,0,0,0,0,0,1},
+		{1,1,1,1,1,1,1,1}
+	};
+
+	x = 0;
+	y = 0;
+	while (y < 8)
+	{
+		x = 0;
+		while (x < 8)
+		{
+			if(map[y][x] == 1)
+				ft_draw_square(x * TILE, y * TILE, game, ft_convert_rgb(228, 208, 10));
+			else
+				ft_draw_square(x * TILE, y * TILE, game, ft_convert_rgb(255, 255, 255));
+			x++;
+		}
+		y++;
 	}
 }
