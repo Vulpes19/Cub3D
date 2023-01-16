@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:25:50 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/14 12:19:28 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/16 11:02:37 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,25 @@
 
 void	ft_movement(int keycode, t_game *game)
 {
-	if (keycode == W_KEY)
+	int	map[8][8] =
 	{
-		// game->player->pos_x -= game->player->rot_x;
-		// game->player->pos_y -= game->player->rot_y;
+		{1,1,1,1,1,1,1,1},
+		{1,0,0,0,1,0,0,1},
+		{1,0,0,0,0,0,0,1},
+		{1,0,0,0,0,0,0,1},
+		{1,0,0,0,1,1,1,1},
+		{1,0,0,0,1,0,0,1},
+		{1,0,0,0,0,0,0,1},
+		{1,1,1,1,1,1,1,1}
+	};
+	int mx = floor(game->player->pos_x + cos(game->player->angle) * 5) / TILE;
+	int my = floor(game->player->pos_y + sin(game->player->angle) * 5) / TILE;
+	if (keycode == W_KEY && map[my][mx] == 0)
+	{
 		game->player->pos_x += cos(game->player->angle) * 5;
 		game->player->pos_y += sin(game->player->angle) * 5;
 	}
-	if (keycode == S_KEY)
+	if (keycode == S_KEY  && map[my][mx] == 0)
 	{
 		game->player->pos_x -= cos(game->player->angle) * 5;
 		game->player->pos_y -= sin(game->player->angle) * 5;
@@ -35,9 +46,7 @@ void	ft_movement(int keycode, t_game *game)
 		{
 			game->player->angle -= 2 * PI;
 		}
-		game->ray->angle = game->player->angle /*- (game->player->fov / 2)*/;
-		// game->player->rot_x = cos(game->player->angle) * 5;
-		// game->player->rot_y = sin(game->player->angle) * 5;
+		game->ray->angle = game->player->angle;
 	}
 	if (keycode == A_KEY)
 	{
@@ -46,9 +55,7 @@ void	ft_movement(int keycode, t_game *game)
 		{
 			game->player->angle += 2 * PI;
 		}
-		game->ray->angle = game->player->angle /*- (game->player->fov / 2)*/;
-		// game->player->rot_x = cos(game->player->angle) * 5;
-		// game->player->rot_y = sin(game->player->angle) * 5;
+		game->ray->angle = game->player->angle;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:47:14 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/14 15:32:10 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/16 10:22:41 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int ft_close_x(t_mlx *mlx)
 {
 	free(mlx->window);
 	// mlx_clear_window(mlx->init, mlx->window);
-	// system("leaks cub3D");
+	system("leaks cub3D");
 	exit(0);
 	return (0);
 }

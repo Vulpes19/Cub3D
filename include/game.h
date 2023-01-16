@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:25:47 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/15 17:09:02 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/16 10:15:28 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef	struct s_wall
 	double	height;
 	double	begin_draw;
 	double	bottom;
+	int		color;
 }	t_wall;
 typedef struct s_game
 {
