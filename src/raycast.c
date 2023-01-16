@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/16 10:46:43 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/16 11:12:00 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,10 +151,10 @@ int    ft_raycasting(t_game *game)
 	game->mlx->pixel->address = mlx_get_data_addr(game->mlx->pixel->image, &game->mlx->pixel->bits_per_pixel, &game->mlx->pixel->line_len, &game->mlx->pixel->endian);
 	
 	//grid drawing
-	ft_draw_grid(game);
+	// ft_draw_grid(game);
 
 	//player
-	ft_draw_point(game);
+	// ft_draw_point(game);
 	int i = 0;
 
 	//intersection loop
@@ -189,7 +189,7 @@ int    ft_raycasting(t_game *game)
 			game->ray->distance = game->ray->distance_v * cos(game->player->angle - game->ray->angle);
 			game->wall[i].color = color2;
 		}
-		ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, ft_convert_rgb(0, 0, 0), game);
+		// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, ft_convert_rgb(0, 0, 0), game);
 		game->wall[i].height = (TILE / game->ray->distance) * 277;;
 		game->wall[i].begin_draw = -game->wall[i].height / 2 + HEIGHT / 2;;
 		i++;
@@ -200,18 +200,20 @@ int    ft_raycasting(t_game *game)
 		if (game->ray->angle > 2 * PI)
 			game->ray->angle -= 2 * PI;
 	}
-	// i = 0;
-	// int wall_width;
-	// while (i < WIDTH)
-	// {
-	// 	wall_width = 1;
-	// 	ft_draw_rectangle(i, game->wall[i].begin_draw, wall_width, game->wall[i].height, game->wall[i].color, game);
-	// 	ft_draw_rectangle(i, game->wall[i].begin_draw + game->wall[i].height, wall_width, HEIGHT - (game->wall[i].begin_draw + game->wall[i].height), 0xB0E298, game);
-	// 	ft_draw_rectangle(i, 0, wall_width, game->wall[i].begin_draw, 0x6883BA, game);
-	// 	i++;
-	// }
+	i = 0;
+	int wall_width;
+	while (i < WIDTH)
+	{
+		wall_width = 1;
+		ft_draw_rectangle(i, game->wall[i].begin_draw, wall_width, game->wall[i].height, game->wall[i].color, game);
+		//floors
+		ft_draw_rectangle(i, game->wall[i].begin_draw + game->wall[i].height - 1, wall_width, HEIGHT - (game->wall[i].begin_draw + game->wall[i].height), 0xB0E298, game);
+		//ceiling
+		ft_draw_rectangle(i, 0, wall_width, game->wall[i].begin_draw, 0x6883BA, game);
+		i++;
+	}
 	//direction line
-	ft_draw_line_ddb(game->player->pos_x, game->player->pos_y,game->player->pos_x +  cos(game->player->angle) * 50,game->player->pos_y +  sin(game->player->angle) * 50 , ft_convert_rgb(00, 0xff, 00), game);
+	// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y,game->player->pos_x +  cos(game->player->angle) * 50,game->player->pos_y +  sin(game->player->angle) * 50 , ft_convert_rgb(00, 0xff, 00), game);
 	
 	mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->pixel->image, 0, 0);
 	mlx_destroy_image(game->mlx->init, game->mlx->pixel->image);
