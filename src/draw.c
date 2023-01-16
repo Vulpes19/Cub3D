@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/16 16:21:44 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:32:02 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	ft_draw_line_ddb(int x, int y, int end_x, int end_y, int color, t_game *gam
     d_middle_y = (end_y - y) / distance;
     while (distance-- > 0)
     {
-        ft_draw_pixel_mini_map(game, x + middle_x, y + middle_y, color);
+        ft_draw_pixel(game, x + middle_x, y + middle_y, color);
         middle_x += d_middle_x;
         middle_y += d_middle_y;
     }
@@ -97,7 +97,7 @@ void	ft_draw_point(t_game *game)
 		j = game->player->pos_x;
 		while (j < (int)(game->player->pos_x + 4))
 		{
-			ft_draw_pixel_mini_map(game, j++, i, ft_convert_rgb(228, 208, 10));
+			ft_draw_pixel(game, j++, i, ft_convert_rgb(228, 208, 10));
 		}
 		++i;
 	}
@@ -109,10 +109,10 @@ void	ft_draw_square(int x, int y, t_game *game, int color)
 	int	j;
 
 	i = y;
-	while (i < y + TILE - 1)
+	while (i < y + TILE)
 	{
 		j = x;
-		while (j < x + TILE - 1)
+		while (j < x + TILE)
 		{
 			ft_draw_pixel_mini_map(game, j++, i, color);
 		}

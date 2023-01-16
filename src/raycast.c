@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/16 18:22:06 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:38:18 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ int    ft_raycasting(t_game *game)
 		game->wall[ray].color = color_north;
 		if (game->ray->distance_h < game->ray->distance_v)
 		{
-			printf("I'm horizontal\n");
+			// printf("I'm horizontal\n");
 			game->ray->x = (int)game->ray->h_pos_x;
 			game->ray->y = (int)game->ray->h_pos_y;
 			game->ray->distance = game->ray->distance_h * cos(game->player->angle - game->ray->angle);
@@ -188,12 +188,10 @@ int    ft_raycasting(t_game *game)
 				game->wall[ray].color = color_south;
 			else if (game->player->angle > PI && game->player->angle < 2 * PI)
 				game->wall[ray].color = color_north;
-			// else if (game->player->angle < PI / 2 || game->player->angle > 3 * PI / 2)
-			// game->wall[ray].color = color1;
 		}
 		if (game->ray->distance_h > game->ray->distance_v)
 		{
-			printf("I'm vertical\n");
+			// printf("I'm vertical\n");
 			game->ray->x = (int)game->ray->v_pos_x;
 			game->ray->y = (int)game->ray->v_pos_y;
 			game->ray->distance = game->ray->distance_v * cos(game->player->angle - game->ray->angle);
@@ -201,8 +199,6 @@ int    ft_raycasting(t_game *game)
 				game->wall[ray].color = color_east;
 			else if (game->player->angle < PI / 2 || game->player->angle > 3 * PI / 2)
 				game->wall[ray].color = color_west;
-			// else if (game->player->angle > PI && game->player->angle < 2 * PI)
-			// game->wall[ray].color = color2;
 		}
 		// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, ft_convert_rgb(0, 0, 0), game);
 		game->wall[ray].height = (TILE / game->ray->distance) * 277;;
@@ -215,13 +211,24 @@ int    ft_raycasting(t_game *game)
 		if (game->ray->angle > 2 * PI)
 			game->ray->angle -= 2 * PI;
 	}
+	//3D walls
 	ft_draw_walls(game);
+
+	//mini map
+	// ft_draw_grid(game);
+	// ft_draw_point(game);
+
 	//direction line
 	// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y,game->player->pos_x +  cos(game->player->angle) * 50,game->player->pos_y +  sin(game->player->angle) * 50 , ft_convert_rgb(00, 0xff, 00), game);
 	
 	mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->pixel->image, 0, 0);
 	// mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->mini_map->image, 0, 0);
 	mlx_destroy_image(game->mlx->init, game->mlx->pixel->image);
+	// game->mlx->pixel->image = mlx_new_image(game->mlx->init, 100, 100);
+	// game->mlx->pixel->address = mlx_get_data_addr(game->mlx->pixel->image, &game->mlx->pixel->bits_per_pixel, &game->mlx->pixel->line_len, &game->mlx->pixel->endian);
+	// ft_draw_grid(game);
+	// ft_draw_point(game);
+	// mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->pixel->image, 0, 0);
 	// mlx_destroy_image(game->mlx->init, game->mlx->mini_map->image);
 	return (0);
 }
