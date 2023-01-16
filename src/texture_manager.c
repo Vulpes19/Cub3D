@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close.h                                            :+:      :+:    :+:   */
+/*   texture_manager.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 10:47:39 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/16 11:48:56 by abaioumy         ###   ########.fr       */
+/*   Created: 2023/01/16 11:29:57 by abaioumy          #+#    #+#             */
+/*   Updated: 2023/01/16 12:11:32 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLOSE_H
-#define CLOSE_H
+#include "game.h"
 
-#define ESC 53
-#include <stdlib.h>
-#include "draw.h"
-
-int	ft_close_esc(int keycode, t_game *mlx);
-int	ft_close_x(t_mlx *mlx);
-
-#endif
+void    ft_load_texture(t_game *game)
+{
+    game->texture->width = 64;
+    game->texture->height = 64;
+    game->texture->img = mlx_xpm_file_to_image(game->mlx->init, "assets/spongebob-64x64.xpm", &game->texture->width, &game->texture->height);
+}

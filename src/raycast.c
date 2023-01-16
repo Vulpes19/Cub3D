@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/16 11:12:00 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:22:06 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void	ft_check_horizontal(t_game *game)
+void	ft_horizontal_intersections(t_game *game)
 {
 	int	map[8][8] =
 	{
@@ -80,7 +80,7 @@ void	ft_check_horizontal(t_game *game)
 	}
 }
 
-void	ft_check_vertical(t_game *game)
+void	ft_vertical_intersections(t_game *game)
 {
 	int	map[8][8] =
 	{
@@ -145,77 +145,83 @@ void	ft_check_vertical(t_game *game)
 
 int    ft_raycasting(t_game *game)
 {
-	int	color1 = 0xE072A4;
-	int color2 = 0xDE689D;
+	int	color_north = 0xE072A4;
+	int color_south = 0xDE689D;
+	int color_east = 0x9C4D8C;
+	int color_west = 0x6C3B7B;
 	game->mlx->pixel->image = mlx_new_image(game->mlx->init, WIDTH, HEIGHT);
 	game->mlx->pixel->address = mlx_get_data_addr(game->mlx->pixel->image, &game->mlx->pixel->bits_per_pixel, &game->mlx->pixel->line_len, &game->mlx->pixel->endian);
-	
+	// game->mlx->mini_map->image = mlx_new_image(game->mlx->init, 100, 100);
+	// game->mlx->mini_map->address = mlx_get_data_addr(game->mlx->mini_map->image, &game->mlx->mini_map->bits_per_pixel, &game->mlx->mini_map->line_len, &game->mlx->mini_map->endian);
+	// ft_load_textures(game);
 	//grid drawing
 	// ft_draw_grid(game);
 
 	//player
 	// ft_draw_point(game);
-	int i = 0;
+	int ray = 0;
 
 	//intersection loop
-	while (i < WIDTH)
+	while (ray < WIDTH)
 	{
 		game->ray->distance_h = 1000000;
 		game->ray->distance_v = 1000000;
-		game->ray->angle = game->player->angle - (game->player->half_fov) + (game->player->half_fov * 2) * i / WIDTH;
+		game->ray->angle = game->player->angle - (game->player->half_fov) + (game->player->half_fov * 2) * ray / WIDTH;
 		if (game->ray->angle < 0)
 			game->ray->angle += 2 * PI;
 		if (game->ray->angle > 2 * PI)
 			game->ray->angle -= 2 * PI;
 		game->ray->h_pos_x = game->player->pos_x;
 		game->ray->h_pos_y = game->player->pos_y;
-		ft_check_horizontal(game);
+		ft_horizontal_intersections(game);
 		game->ray->v_pos_x = game->player->pos_x;
 		game->ray->v_pos_y = game->player->pos_y;
-		ft_check_vertical(game);
+		ft_vertical_intersections(game);
+		game->wall[ray].color = color_north;
 		if (game->ray->distance_h < game->ray->distance_v)
 		{
-			// printf("I'm horizontal\n");
+			printf("I'm horizontal\n");
 			game->ray->x = (int)game->ray->h_pos_x;
 			game->ray->y = (int)game->ray->h_pos_y;
 			game->ray->distance = game->ray->distance_h * cos(game->player->angle - game->ray->angle);
-			game->wall[i].color = color1;
+			if (game->ray->angle > 0 && game->ray->angle < PI)
+				game->wall[ray].color = color_south;
+			else if (game->player->angle > PI && game->player->angle < 2 * PI)
+				game->wall[ray].color = color_north;
+			// else if (game->player->angle < PI / 2 || game->player->angle > 3 * PI / 2)
+			// game->wall[ray].color = color1;
 		}
 		if (game->ray->distance_h > game->ray->distance_v)
 		{
-			// printf("I'm vertical\n");
+			printf("I'm vertical\n");
 			game->ray->x = (int)game->ray->v_pos_x;
 			game->ray->y = (int)game->ray->v_pos_y;
 			game->ray->distance = game->ray->distance_v * cos(game->player->angle - game->ray->angle);
-			game->wall[i].color = color2;
+			if (game->ray->angle > PI / 2 && game->ray->angle < 3 * PI / 2)
+				game->wall[ray].color = color_east;
+			else if (game->player->angle < PI / 2 || game->player->angle > 3 * PI / 2)
+				game->wall[ray].color = color_west;
+			// else if (game->player->angle > PI && game->player->angle < 2 * PI)
+			// game->wall[ray].color = color2;
 		}
 		// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, ft_convert_rgb(0, 0, 0), game);
-		game->wall[i].height = (TILE / game->ray->distance) * 277;;
-		game->wall[i].begin_draw = -game->wall[i].height / 2 + HEIGHT / 2;;
-		i++;
-		// game->ray->angle += RADIAN * 6;
+		game->wall[ray].height = (TILE / game->ray->distance) * 277;;
+		game->wall[ray].offset = (game->wall[ray].height * TILE) / (2 * game->ray->distance);
+		game->wall[ray].begin_draw = -game->wall[ray].height / 2 + HEIGHT / 2;;
+		ray++;
 		game->ray->angle += game->player->fov / WIDTH;
 		if (game->ray->angle < 0)
 			game->ray->angle += 2 * PI;
 		if (game->ray->angle > 2 * PI)
 			game->ray->angle -= 2 * PI;
 	}
-	i = 0;
-	int wall_width;
-	while (i < WIDTH)
-	{
-		wall_width = 1;
-		ft_draw_rectangle(i, game->wall[i].begin_draw, wall_width, game->wall[i].height, game->wall[i].color, game);
-		//floors
-		ft_draw_rectangle(i, game->wall[i].begin_draw + game->wall[i].height - 1, wall_width, HEIGHT - (game->wall[i].begin_draw + game->wall[i].height), 0xB0E298, game);
-		//ceiling
-		ft_draw_rectangle(i, 0, wall_width, game->wall[i].begin_draw, 0x6883BA, game);
-		i++;
-	}
+	ft_draw_walls(game);
 	//direction line
 	// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y,game->player->pos_x +  cos(game->player->angle) * 50,game->player->pos_y +  sin(game->player->angle) * 50 , ft_convert_rgb(00, 0xff, 00), game);
 	
 	mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->pixel->image, 0, 0);
+	// mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->mini_map->image, 0, 0);
 	mlx_destroy_image(game->mlx->init, game->mlx->pixel->image);
+	// mlx_destroy_image(game->mlx->init, game->mlx->mini_map->image);
 	return (0);
 }

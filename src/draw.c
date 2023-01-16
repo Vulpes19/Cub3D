@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/15 16:37:46 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:21:44 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@ void	ft_draw_pixel(t_game *game, int x, int y, int color)
 	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT)
 		return ;	
 	dest = game->mlx->pixel->address + (y * game->mlx->pixel->line_len + x * (game->mlx->pixel->bits_per_pixel / 8));
+	*(unsigned int*)dest = color;
+}
+
+void	ft_draw_pixel_mini_map(t_game *game, int x, int y, int color)
+{
+	char	*dest;
+
+	if (x < 0 || y < 0 || x >= 100 || y >= 100)
+		return ;	
+	dest = game->mlx->mini_map->address + (y * game->mlx->mini_map->line_len + x * (game->mlx->mini_map->bits_per_pixel / 8));
 	*(unsigned int*)dest = color;
 }
 
@@ -69,7 +79,7 @@ void	ft_draw_line_ddb(int x, int y, int end_x, int end_y, int color, t_game *gam
     d_middle_y = (end_y - y) / distance;
     while (distance-- > 0)
     {
-        ft_draw_pixel(game, x + middle_x, y + middle_y, color);
+        ft_draw_pixel_mini_map(game, x + middle_x, y + middle_y, color);
         middle_x += d_middle_x;
         middle_y += d_middle_y;
     }
@@ -87,7 +97,7 @@ void	ft_draw_point(t_game *game)
 		j = game->player->pos_x;
 		while (j < (int)(game->player->pos_x + 4))
 		{
-			ft_draw_pixel(game, j++, i, ft_convert_rgb(228, 208, 10));
+			ft_draw_pixel_mini_map(game, j++, i, ft_convert_rgb(228, 208, 10));
 		}
 		++i;
 	}
@@ -104,7 +114,7 @@ void	ft_draw_square(int x, int y, t_game *game, int color)
 		j = x;
 		while (j < x + TILE - 1)
 		{
-			ft_draw_pixel(game, j++, i, color);
+			ft_draw_pixel_mini_map(game, j++, i, color);
 		}
 		++i;
 	}
@@ -140,5 +150,23 @@ void	ft_draw_grid(t_game *game)
 			x++;
 		}
 		y++;
+	}
+}
+
+void	ft_draw_walls(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < WIDTH)
+	{
+		ft_draw_rectangle(i, game->wall[i].begin_draw, 1, game->wall[i].height, game->wall[i].color, game);
+		// mlx_put_image_to_window()
+		// ft_draw_rectangle(i, game->wall[i].begin_draw, 1, game->wall[i].height, ft_convert_rgb(255,160,122), game);
+		//floors
+		ft_draw_rectangle(i, game->wall[i].begin_draw + game->wall[i].height - 1, 1, HEIGHT - (game->wall[i].begin_draw + game->wall[i].height), 0xB0E298, game);
+		//ceiling
+		ft_draw_rectangle(i, 0, 1, game->wall[i].begin_draw, 0x6883BA, game);
+		i++;
 	}
 }

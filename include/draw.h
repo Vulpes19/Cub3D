@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:07 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/15 16:37:49 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/16 11:59:00 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	ft_draw_square(int x, int y, t_game *game, int color);
 char	*ft_itoa(int n);
 void    ft_draw_rectangle(int x, int y, int width, int height, int color, t_game *game);
 double ft_distance(double x1, double y1, double x2, double y2);
+double ft_distance_abs(t_game *game);
 void	ft_draw_grid(t_game *game);
+void	ft_draw_walls(t_game *game);
 
 #endif

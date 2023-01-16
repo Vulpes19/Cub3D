@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:14:17 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/15 17:28:17 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:12:06 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(void)
 	game->player = (t_player *)malloc(sizeof(t_player));
 	game->ray = (t_ray *)malloc(sizeof(t_ray));
 	game->wall = (t_wall *)malloc(sizeof(t_wall) * WIDTH);
+	game->texture = (t_texture *)malloc(sizeof(t_texture));
 	game->mlx->init = mlx_init();
 	game->player->pos_x = 100;
 	game->player->pos_y = 160;

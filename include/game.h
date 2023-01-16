@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:25:47 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/16 10:15:28 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:13:43 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@ enum	t_bool
 	FALSE = 0
 };
 
+typedef struct s_texture
+{
+	void	*image;
+	int		x;
+	int		y;
+	int		width;
+	int		height;
+}	t_texture;
+
 typedef struct s_pixel
 {
 	void	*image;
@@ -40,6 +49,7 @@ typedef struct s_mlx
     void	*init;
 	void	*window;
     t_pixel *pixel;
+	t_pixel *mini_map;
 }   t_mlx;
 
 typedef struct s_player
@@ -77,12 +87,14 @@ typedef	struct s_wall
 	double	begin_draw;
 	double	bottom;
 	int		color;
+	int		offset;
 }	t_wall;
 typedef struct s_game
 {
 	t_player	*player;
 	t_ray		*ray;
 	t_wall		*wall;
+	t_texture	*texture;
 	double		move_speed;
 	double		rot_speed;
 	t_mlx		*mlx;
