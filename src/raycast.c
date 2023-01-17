@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/17 11:42:36 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:38:17 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,8 @@ int    ft_raycasting(t_game *game)
 		game->ray->v_pos_y = game->player->pos_y;
 		ft_vertical_intersections(game);
 		game->wall[ray].color = color_north;
+		game->wall[ray].tex_x = game->ray->x;
+		game->wall[ray].tex_y = game->ray->y;
 		if (game->ray->distance_h < game->ray->distance_v)
 		{
 			// printf("I'm horizontal\n");
@@ -210,7 +212,7 @@ int    ft_raycasting(t_game *game)
 		}
 		// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, ft_convert_rgb(0, 0, 0), game);
 		game->wall[ray].height = (TILE / game->ray->distance) * 277;;
-		// game->wall[ray].offset = (game->wall[ray].height * TILE) / (2 * game->ray->distance);
+		game->wall[ray].offset = (game->wall[ray].height / game->ray->distance) * TILE;
 		game->wall[ray].begin_draw = -game->wall[ray].height / 2 + HEIGHT / 2;
 		// game->wall[ray].tex_x = (int)((game->ray->distance * cos(game->ray->angle - game->player->angle) / TILE) + TILE);
 		// game->wall[ray].tex_y = (int)((game->ray->distance * sin(game->ray->angle - game->player->angle) / TILE) + game->wall[ray].offset + TILE / 2);
