@@ -2,6 +2,7 @@
     "files.associations": {
         "limits.h": "c",
         "game.h": "c",
-        "window.h": "c"
+        "window.h": "c",
+        "mlx.h": "c"
     }
 }

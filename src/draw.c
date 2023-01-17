@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/16 18:32:02 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/17 12:32:00 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,14 +153,52 @@ void	ft_draw_grid(t_game *game)
 	}
 }
 
+int	ft_get_color(void *image, int x, int y, int height, t_game *game)
+{
+	// char	*address;
+	// int line_len;
+	// int bits_per_pixel;
+	// int endian;
+
+	// if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT)
+	// 	return (0);
+	(void)x;
+	(void)y;
+	(void)height;
+	(void)image;
+	game->texture->address = mlx_get_data_addr(game->texture->image, &game->texture->bits_per_pixel, &game->texture->line_len, &game->texture->endian);
+	// printf("x = %d\n", x % TILE);
+	// printf("y = %d\n", y * (TILE / height));
+	// printf("(int)floor(y * (TILE / height)) = %d\n", (int)floor(y * (TILE / height)));
+	return (*(int *)(game->texture->address + ((int)floor(y * (TILE / height)) % TILE) * game->texture->line_len + (x % TILE) * (game->texture->bits_per_pixel / 8)));
+	// return (ft_convert_rgb(255, 255, 255));
+}
+
 void	ft_draw_walls(t_game *game)
 {
 	int	i;
+	int color;
 
 	i = 0;
 	while (i < WIDTH)
 	{
-		ft_draw_rectangle(i, game->wall[i].begin_draw, 1, game->wall[i].height, game->wall[i].color, game);
+		int start = (HEIGHT / 2) - game->wall[i].height / 2;
+		int begin = 0;
+    	// game->texture->color = *(int *)(game->texture->address + (int)(game->wall[i].tex_y) * game->texture->line_len + (int)(game->wall[i].tex_x) * (game->texture->bits_per_pixel / 8));
+		// ft_draw_rectangle(i, game->wall[i].begin_draw, 1, game->wall[i].height, game->texture->color, game);
+		while (begin < game->wall[i].height)
+		{
+			// if (game->wall[i].height)
+				// printf("game->wall[%d].height = %d\n", i, (int)floor(begin * (TILE / game->wall[i].height)));
+			// if (game->wall[i].is_horizontal)
+				// color = ft_get_color(game->texture->image, game->wall[i].tex_x, begin, game->wall[i].height, game);
+			// else
+				color = ft_get_color(game->texture->image, game->wall[i].tex_y, begin, game->wall[i].height, game);
+				
+			ft_draw_pixel(game, i, start + begin, color);
+			// printf("begin = %d\n", start + begin);
+			begin++;
+		}
 		// mlx_put_image_to_window()
 		// ft_draw_rectangle(i, game->wall[i].begin_draw, 1, game->wall[i].height, ft_convert_rgb(255,160,122), game);
 		//floors

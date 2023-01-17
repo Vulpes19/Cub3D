@@ -3,7 +3,7 @@
 TARGET = cub3D
 
 #* FILES *#
-FILES = main.c error_printing.c draw.c close.c raycast.c handle_input.c math.c
+FILES = main.c error_printing.c draw.c close.c raycast.c handle_input.c math.c texture_manager.c
 
 #* SOURCE FILES *#
 SRC = $(addprefix src/, $(FILES))

@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:25:47 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/16 16:13:43 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/17 11:39:23 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,14 @@ enum	t_bool
 typedef struct s_texture
 {
 	void	*image;
-	int		x;
-	int		y;
+	void	*ptr;
+	int		color;
+	char	*address;
 	int		width;
 	int		height;
+	int		bits_per_pixel;
+	int		line_len;
+	int		endian;
 }	t_texture;
 
 typedef struct s_pixel
@@ -86,6 +90,10 @@ typedef	struct s_wall
 	double	height;
 	double	begin_draw;
 	double	bottom;
+	int		tex_x;
+	int		tex_y;
+	int	is_horizontal;
+	int	is_vertical;
 	int		color;
 	int		offset;
 }	t_wall;
