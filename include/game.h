@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:25:47 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/17 11:39:23 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:23:41 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <mlx.h>
 # include <math.h>
+# include <stdlib.h>
 
 # define TILE 64
 # define PI 3.14159265359
@@ -28,8 +29,11 @@ enum	t_bool
 
 typedef struct s_texture
 {
-	void	*image;
-	void	*ptr;
+	void   *image;
+	void	*image_north;
+	void	*image_south;
+	void	*image_west;
+	void	*image_east;
 	int		color;
 	char	*address;
 	int		width;
@@ -107,5 +111,8 @@ typedef struct s_game
 	double		rot_speed;
 	t_mlx		*mlx;
 }	t_game;
+
+void    ft_allocate_game(t_game *game);
+void    ft_init_game(t_game *game);
 
 #endif

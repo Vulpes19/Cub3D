@@ -3,7 +3,7 @@
 TARGET = cub3D
 
 #* FILES *#
-FILES = main.c error_printing.c draw.c close.c raycast.c handle_input.c math.c texture_manager.c
+FILES = main.c error_printing.c draw.c close.c raycast.c handle_input.c math.c texture_manager.c game.c
 
 #* SOURCE FILES *#
 SRC = $(addprefix src/, $(FILES))
@@ -15,7 +15,7 @@ OBJ_DIR = obj
 OBJS = $(SRC:src/%.c=$(OBJ_DIR)/%.o)
 
 #* FLAGS *#
-FLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+FLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 MLX = -lmlx -framework OpenGL -framework AppKit
 
 #*  INCLUDE PATHS *#

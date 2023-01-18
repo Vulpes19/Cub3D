@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/17 17:38:17 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:30:51 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,23 +150,23 @@ int    ft_raycasting(t_game *game)
 	int color_east = 0x9C4D8C;
 	int color_west = 0x6C3B7B;
 	game->mlx->pixel->image = mlx_new_image(game->mlx->init, WIDTH, HEIGHT);
+	game->mlx->mini_map->image = mlx_new_image(game->mlx->init, 250, 250);
 	game->mlx->pixel->address = mlx_get_data_addr(game->mlx->pixel->image, &game->mlx->pixel->bits_per_pixel, &game->mlx->pixel->line_len, &game->mlx->pixel->endian);
-	// game->mlx->mini_map->image = mlx_new_image(game->mlx->init, 100, 100);
-	// game->mlx->mini_map->address = mlx_get_data_addr(game->mlx->mini_map->image, &game->mlx->mini_map->bits_per_pixel, &game->mlx->mini_map->line_len, &game->mlx->mini_map->endian);
+	game->mlx->mini_map->address = mlx_get_data_addr(game->mlx->mini_map->image, &game->mlx->mini_map->bits_per_pixel, &game->mlx->mini_map->line_len, &game->mlx->mini_map->endian);
 	ft_load_texture(game);
 	//grid drawing
-	// ft_draw_grid(game);
+	ft_draw_grid(game);
 
 	//player
-	// ft_draw_point(game);
+	ft_draw_point(game);
 	int ray = 0;
 
 	//intersection loop
 	while (ray < WIDTH)
 	{
-		game->ray->distance_h = 1000000;
-		game->ray->distance_v = 1000000;
-		game->ray->angle = game->player->angle - (game->player->half_fov) + (game->player->half_fov * 2) * ray / WIDTH;
+		game->ray->distance_h = 100000;
+		game->ray->distance_v = 100000;
+		game->ray->angle = game->player->angle - (game->player->half_fov) + (game->player->fov) * ray / WIDTH;
 		if (game->ray->angle < 0)
 			game->ray->angle += 2 * PI;
 		if (game->ray->angle > 2 * PI)
@@ -212,6 +212,8 @@ int    ft_raycasting(t_game *game)
 		}
 		// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, ft_convert_rgb(0, 0, 0), game);
 		game->wall[ray].height = (TILE / game->ray->distance) * 277;;
+		if ( game->wall[ray].height > HEIGHT)
+			game->wall[ray].height = HEIGHT;
 		game->wall[ray].offset = (game->wall[ray].height / game->ray->distance) * TILE;
 		game->wall[ray].begin_draw = -game->wall[ray].height / 2 + HEIGHT / 2;
 		// game->wall[ray].tex_x = (int)((game->ray->distance * cos(game->ray->angle - game->player->angle) / TILE) + TILE);
@@ -237,13 +239,8 @@ int    ft_raycasting(t_game *game)
 	// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y,game->player->pos_x +  cos(game->player->angle) * 50,game->player->pos_y +  sin(game->player->angle) * 50 , ft_convert_rgb(00, 0xff, 00), game);
 	
 	mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->pixel->image, 0, 0);
-	// mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->mini_map->image, 0, 0);
+	mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->mini_map->image, 10, 10);
 	mlx_destroy_image(game->mlx->init, game->mlx->pixel->image);
-	// game->mlx->pixel->image = mlx_new_image(game->mlx->init, 100, 100);
-	// game->mlx->pixel->address = mlx_get_data_addr(game->mlx->pixel->image, &game->mlx->pixel->bits_per_pixel, &game->mlx->pixel->line_len, &game->mlx->pixel->endian);
-	// ft_draw_grid(game);
-	// ft_draw_point(game);
-	// mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->pixel->image, 0, 0);
-	// mlx_destroy_image(game->mlx->init, game->mlx->mini_map->image);
+	mlx_destroy_image(game->mlx->init, game->mlx->mini_map->image);
 	return (0);
 }
