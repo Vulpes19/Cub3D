@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/18 18:41:10 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/19 12:10:01 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,17 +76,16 @@ void	ft_draw_line_ddb(int x, int y, int end_x, int end_y, int color, t_game *gam
     }
 }
 
-void	ft_draw_point(t_game *game)
+void	ft_draw_point(t_game *game, int mini_map_x, int mini_map_y)
 {
 	int i;
 	int	j;
 
-	i = (int)game->player->pos_y;
-	// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y,game->player->pos_x +  cos(game->player->angle) * 50,game->player->pos_y +  sin(game->player->angle) * 50 , ft_convert_rgb(00, 0xff, 00), game);
-	while (i < (int)(game->player->pos_y + 4))
+	i = (int)game->player->pos_y - mini_map_y;
+	while (i < (int)((game->player->pos_y - mini_map_y) + 4))
 	{
-		j = game->player->pos_x;
-		while (j < (int)(game->player->pos_x + 4))
+		j = game->player->pos_x - mini_map_x;
+		while (j < (int)((game->player->pos_x - mini_map_x) + 4))
 		{
 			ft_draw_pixel_mini_map(game, j++, i, ft_convert_rgb(228, 208, 10));
 		}
@@ -113,6 +112,8 @@ void	ft_draw_grid(t_game *game)
 {
 	int	x;
 	int	y;
+	int	x_end;
+	int	y_end;
 	int	map[8][8] =
 	{
 		{1,1,1,1,1,1,1,1},
@@ -125,21 +126,45 @@ void	ft_draw_grid(t_game *game)
 		{1,1,1,1,1,1,1,1}
 	};
 
-	x = 0;
-	y = 0;
-	while (y < 8)
+	int mx;
+	int my;
+	int mx_end, my_end;
+	x = game->player->pos_x - (250 / 2);	
+	y = game->player->pos_y - (250 / 2);
+	mx = x / TILE;
+	my = y / TILE;
+	int	x2 = x;	
+	int	y2 = y;
+	x_end = x + 250;
+	y_end = y + 250;
+	mx_end = x_end / TILE;
+	my_end = y_end / TILE;
+	// int color1 = ft_convert_rgb(255, 255, 255);
+	// int color2 = ft_convert_rgb(228, 208, 10);
+	while (y < y_end && my < my_end)
 	{
-		x = 0;
-		while (x < 8)
+		x = x2;
+		mx = x2 / TILE;
+		while (x < x_end && mx < mx_end)
 		{
-			if(map[y][x] == 1)
-				ft_draw_square(x * TILE, y * TILE, game, ft_convert_rgb(228, 208, 10));
+			// mx = x / TILE;
+			// my = y / TILE;
+			// mx = x >> 6;
+			// my = y >> 6;
+			// if (mx == -1)
+			// 	mx = 0;
+			printf("mx = %d x = % d || my = %d y = %d\n", mx, my, x / TILE, y / TILE);
+			if(map[my][mx] == 1)
+				ft_draw_square(x - x2, y - y2, game, 0x000000);
 			else
-				ft_draw_square(x * TILE, y * TILE, game, ft_convert_rgb(255, 255, 255));
+				ft_draw_square(x - x2, y - y2, game, 0xFFFFFF);
 			x++;
+			mx++;
 		}
+		my++;
 		y++;
 	}
+	ft_draw_point(game, game->player->pos_x - (250 / 2), game->player->pos_y - (250 / 2));
 }
 
 int	ft_get_color(int x, int y, int height, t_game *game)

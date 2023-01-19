@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:07 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/17 11:42:16 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/19 11:39:17 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int		ft_convert_rgb(uint8_t red, uint8_t green, uint8_t blue);
 int		ft_raycasting(t_game *game);
 void	ft_draw_line( int x, int draw_start, int draw_end, int color, t_game *game);
 void	ft_draw_line_ddb(int x, int y, int end_x, int end_y, int color, t_game *game);
-void	ft_draw_point(t_game *game);
+void	ft_draw_point(t_game *game, int mini_map_x, int mini_map_y);
 void	ft_draw_square(int x, int y, t_game *game, int color);
 char	*ft_itoa(int n);
 void    ft_draw_rectangle(int x, int y, int width, int height, int color, t_game *game);
-double ft_distance(double x1, double y1, double x2, double y2);
+double ft_distance(double x1, double y1, double x2, double y2, double angle);
 double ft_distance_abs(t_game *game);
 void	ft_draw_grid(t_game *game);
 void    ft_load_texture(t_game *game);

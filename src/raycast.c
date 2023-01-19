@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/18 18:39:48 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/19 11:40:11 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_horizontal_intersections(t_game *game)
 		{
 			game->ray->h_pos_x = game->ray->x;
 			game->ray->h_pos_y = game->ray->y;
-			game->ray->distance_h = ft_distance(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y);
+			game->ray->distance_h = ft_distance(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, game->player->angle);
 			dof = 8;
 		}
 		else
@@ -131,7 +131,7 @@ void	ft_vertical_intersections(t_game *game)
 		{
 			game->ray->v_pos_x = game->ray->x;
 			game->ray->v_pos_y = game->ray->y;
-			game->ray->distance_v = ft_distance(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y);
+			game->ray->distance_v = ft_distance(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, game->player->angle);
 			dof = 8;
 		}
 		else
@@ -158,7 +158,7 @@ int    ft_raycasting(t_game *game)
 	ft_draw_grid(game);
 
 	//player
-	ft_draw_point(game);
+	// ft_draw_point(game);
 	int ray = 0;
 
 	//intersection loop
@@ -210,7 +210,7 @@ int    ft_raycasting(t_game *game)
 			else if (game->player->angle < PI / 2 || game->player->angle > 3 * PI / 2)
 				game->wall[ray].color = color_west;
 		}
-		ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, ft_convert_rgb(0, 0, 0), game);
+		// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, ft_convert_rgb(0, 0, 0), game);
 		game->wall[ray].height = (TILE / game->ray->distance) * 277;;
 		if ( game->wall[ray].height > HEIGHT)
 			game->wall[ray].height = HEIGHT;
