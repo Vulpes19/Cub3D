@@ -6,19 +6,12 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:25:06 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/14 15:23:30 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:04:14 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/parser.h"
 #include "../include/libft.h"
-
-int	ft_is_space(char c)
-{
-	if (c <= 32)
-		return (1);
-	return (0);
-}
 
 t_status	ft_sn_border(char *map)
 {
@@ -64,4 +57,22 @@ int	ft_mapname_protection(char *name)
 	if (ft_strncmp(name + (ft_strlen(name) - 4), ".cub", 4) == 0)
 		return (1);
 	return (0);
+}
+
+t_status	ft_check_colors(char **rgb)
+{
+	int	i;
+	int	color;
+
+	i = 1;
+	while (rgb[i])
+	{
+		color = ft_atoi(rgb[i]);
+		if (color < 0 || color > 255)
+			return (ERROR);
+		i++;
+	}
+	if (i > 3)
+		return (ERROR);
+	return (GOOD);
 }

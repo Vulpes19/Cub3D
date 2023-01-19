@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:07:04 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/14 15:35:16 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:06:54 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_status	ft_parse(t_parse *data)
 		free(data->tmp);
 		return (GOOD);
 	}
-	free(data->tmp);
+	ft_free_parse_error(data);
 	return (ERROR);
 }
 
@@ -76,19 +76,6 @@ t_status	ft_examine_map(t_parse *data)
 	return (flag);
 }
 
-void	ft_free(t_parse *data)
-{
-	freethis1(data->map);
-	free(data->tmp);
-	freethis1(data->textures_colors);
-	free(data->no);
-	free(data->so);
-	free(data->we);
-	free(data->ea);
-	free(data->cieling);
-	free(data->floor);
-}
-
 void	ft_read_map(t_parse *data)
 {
 	if (ft_parse(data) == GOOD)
@@ -108,7 +95,7 @@ void	ft_read_map(t_parse *data)
 			printf("all good\n");
 		else
 			printf("error\n");
-		ft_free(data);
+		ft_free_map_error(data);
 	}
 	else
 		printf("parsing error\n");

@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:20:27 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/14 15:31:10 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:02:18 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,25 @@ void	ft_colors(t_parse *data, char *color)
 	if (ft_strncmp(color, "F", 1) == 0)
 	{
 		data->d_tmp = ft_split(color, ' ');
-		data->floor = ft_strdup(data->d_tmp[1]);
+		if (ft_check_colors(data->d_tmp) == GOOD)
+			data->floor = ft_split(data->d_tmp[1], ',');
+		else
+		{
+			data->floor = NULL;
+			ft_putstr("error: color parameters are wrong!\n");
+		}
 		freethis1(data->d_tmp);
 	}
 	else if (ft_strncmp(color, "C", 1) == 0)
 	{
 		data->d_tmp = ft_split(color, ' ');
-		data->cieling = ft_strdup(data->d_tmp[1]);
+		if (ft_check_colors(data->d_tmp) == GOOD)
+			data->cieling = ft_split(data->d_tmp[1], ',');
+		else
+		{
+			data->cieling = NULL;
+			ft_putstr("error: color parameters are wrong\n");
+		}
 		freethis1(data->d_tmp);
 	}
 }
@@ -65,7 +77,9 @@ t_status	ft_organize(t_parse *data)
 	while (data->textures_colors[i])
 	{
 		ft_paths(data, data->textures_colors[i]);
-		ft_colors(data, data->textures_colors[i]);
+		if ((ft_strncmp(data->textures_colors[i], "F", 1) == 0)
+			|| ft_strncmp(data->textures_colors[i], "C", 1) == 0)
+			ft_colors(data, data->textures_colors[i]);
 		i++;
 	}
 	if (!data->cieling || !data->floor)

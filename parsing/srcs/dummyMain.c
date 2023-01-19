@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:20:09 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/14 15:19:01 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/19 15:39:20 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ int	main(int argc, char **argv)
 	}
 	else
 		ft_arguments_error();
+	system("leaks test");
 	return (0);
 }

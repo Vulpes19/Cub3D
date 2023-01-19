@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:17:19 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/14 15:31:21 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:07:19 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@ typedef struct s_parse
 	char		*tmp;
 	char		*no;
 	char		**d_tmp;
+	char		**floor;
+	char		**cieling;
 	char		*so;
 	char		*we;
 	char		*ea;
-	char		*floor;
-	char		*cieling;
+	char		*f;
+	char		*c;
 	char		**map;
 	char		**textures_colors;
 	char		*leaks;
@@ -49,5 +51,10 @@ int			ft_mapname_protection(char *name);
 void		ft_paths(t_parse *data, char *path);
 void		ft_colors(t_parse *data, char *color);
 t_status	ft_organize(t_parse *data);
+t_status	ft_check_colors(char **rgb);
+void		ft_free_map_error(t_parse *data);
+void		ft_free_parse_error(t_parse *data);
+int			ft_is_space(char c);
+void		ft_free_map_error(t_parse *data);
 
 #endif
