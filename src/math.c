@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 16:09:28 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/19 11:51:14 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/19 15:01:50 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ double ft_distance(double x1, double y1, double x2, double y2, double angle)
 	// return (sqrt( (x2 - x1) * (y2 - y1) + (y2 - y1) * (y2 - y1) ));
 	// return (fabs(x2 - x1) + fabs(y2 - y1));
 	// (void)angle;
-	// return (sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2)));
-	return ((x2 - x1) * cos(angle) + (y2 - y1) * sin(angle));
+	return (sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2)));
+	// return ((x2 - x1) * cos(angle) + (y2 - y1) * sin(angle));
 }
