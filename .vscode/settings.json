@@ -3,6 +3,16 @@
         "limits.h": "c",
         "game.h": "c",
         "window.h": "c",
+<<<<<<< HEAD
         "mlx.h": "c"
+=======
+        "libft.h": "c",
+        "parser.h": "c",
+        "array": "c",
+        "iterator": "c",
+        "string": "c",
+        "string_view": "c",
+        "vector": "c"
+>>>>>>> parsingTest
     }
 }
