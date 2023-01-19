@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/19 16:40:34 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:22:54 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_draw_pixel_mini_map(t_game *game, int x, int y, int color)
 {
 	char	*dest;
 
-	if (x < 0 || y < 0 || x >= 100 || y >= 100)
+	if (x < 0 || y < 0 || x >= 250 || y >= 250)
 		return ;	
 	dest = game->mlx->mini_map->address + (y * game->mlx->mini_map->line_len + x * (game->mlx->mini_map->bits_per_pixel / 8));
 	*(unsigned int*)dest = color;
@@ -128,36 +128,54 @@ void	ft_draw_grid(t_game *game)
 
 	int mx;
 	int my;
-	x = game->player->pos_x - (250 / 2);	
-	y = game->player->pos_y - (250 / 2);
-	int	x2 = x;	
-	int	y2 = y;
-	x_end = x + 250;
-	y_end = y + 250;
-	while (y < y_end)
+	int test_x = game->player->pos_x - (250 / 2);
+	int test_y = game->player->pos_y - (250 / 2);
+	mx = (game->player->pos_x - (250 / 2)) / TILE;
+	my = (game->player->pos_y - (250 / 2)) / TILE;
+
+	while (my < 8)
 	{
-		// printf("a\n");
-		x = x2;
-		my = y / TILE;
-		while (x < x_end)
+		mx = (game->player->pos_x - (250 / 2)) / TILE;
+		while (mx < 8)
 		{
-			// printf("a\n");
-			mx = x / TILE;
-			// printf("mx = %d x = % d || my = %d y = %d\n", mx, my, x / TILE, y / TILE);
-			if(map[my][mx] == 1)
-			{
-				// ft_draw_square(x - x2, y - y2, game, 0x000000);
-				printf("wall\n");
-			}
+			if (map[my][mx] == 1)
+				ft_draw_square((mx * TILE) - test_x, (my * TILE) - test_y, game, ft_convert_rgb(228, 208, 10));
 			else
-			{
-				printf("empty\n");
-				// ft_draw_square(x - x2, y - y2, game, 0xFFFFFF);
-			}
-			x++;
+				ft_draw_square((mx * TILE) - test_x, (my * TILE) - test_y, game, ft_convert_rgb(255, 255, 255));
+			mx++;
 		}
-		y++;
+		my++;
 	}
+	// x = game->player->pos_x - (250 / 2);	
+	// y = game->player->pos_y - (250 / 2);
+	// int	x2 = x;	
+	// int	y2 = y;
+	// x_end = x + 250;
+	// y_end = y + 250;
+	// while (y < y_end)
+	// {
+	// 	// printf("a\n");
+	// 	x = x2;
+	// 	my = y / TILE;
+	// 	while (x < x_end)
+	// 	{
+	// 		// printf("a\n");
+	// 		mx = x / TILE;
+	// 		// printf("mx = %d x = % d || my = %d y = %d\n", mx, my, x / TILE, y / TILE);
+	// 		if(map[my][mx] == 1)
+	// 		{
+	// 			// ft_draw_square(x - x2, y - y2, game, 0x000000);
+	// 			printf("wall\n");
+	// 		}
+	// 		else
+	// 		{
+	// 			printf("empty\n");
+	// 			// ft_draw_square(x - x2, y - y2, game, 0xFFFFFF);
+	// 		}
+	// 		x++;
+	// 	}
+	// 	y++;
+	// }
 	// printf("finished\n");
 	ft_draw_point(game, game->player->pos_x - (250 / 2), game->player->pos_y - (250 / 2));
 }

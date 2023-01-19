@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:07 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/19 11:39:17 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:13:35 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ double ft_distance_abs(t_game *game);
 void	ft_draw_grid(t_game *game);
 void    ft_load_texture(t_game *game);
 void	ft_draw_walls(t_game *game);
+void ft_putstr_fd(char *s, int fd);
 
 #endif

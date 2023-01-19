@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:14:17 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/17 18:42:44 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:16:25 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "game.h"
 #include "draw.h"
 #include "close.h"
-#include "error.h"
+// #include "error.h"
 #include "input.h"
 
 int	main(void)
