@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/19 16:38:42 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:51:30 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,8 +210,8 @@ int    ft_raycasting(t_game *game)
 		}
 		// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, ft_convert_rgb(0, 0, 0), game);
 		game->wall[ray].height = (TILE / game->ray->distance) * 300;;
-		if ( game->wall[ray].height > HEIGHT)
-			game->wall[ray].height = HEIGHT;
+		// if ( game->wall[ray].height > HEIGHT)
+		// 	game->wall[ray].height = HEIGHT;
 		game->wall[ray].offset = (game->wall[ray].height / game->ray->distance) * TILE;
 		game->wall[ray].begin_draw = -game->wall[ray].height / 2 + HEIGHT / 2;
 		ray++;

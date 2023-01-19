@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/19 18:22:54 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/19 19:19:07 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,22 +191,32 @@ void	ft_draw_walls(t_game *game)
 	int	i;
 	int color;
 	int begin;
+	int start;
+	int end;
 
 	i = 0;
 	begin = 0;
 	while (i < WIDTH)
 	{
 		begin = 0;
-		while (begin < game->wall[i].height)
+		start = 0;
+		if (game->wall[i].height > HEIGHT)
 		{
-			// if (game->wall[i].height)
-				// printf("game->wall[%d].height = %d\n", i, (int)floor(begin * (TILE / game->wall[i].height)));
+			start = game->wall[i].height / 2 - HEIGHT / 2;
+			end = game->wall[i].height / 2 + HEIGHT / 2;
+		}
+		else
+			end = game->wall[i].height;
+		// start = game->wall[i].begin_draw;
+		// end = game->wall[i].height ;
+		while (start < end)
+		{
 			if (game->wall[i].is_horizontal)
-				color = ft_get_color(game->wall[i].tex_x, begin, game->wall[i].height, game);
+				color = ft_get_color(game->wall[i].tex_x, start, game->wall[i].height, game);
 			else
-				color = ft_get_color(game->wall[i].tex_y, begin, game->wall[i].height, game);	
-			ft_draw_pixel(game, i, begin + game->wall[i].begin_draw, color);
-			begin++;
+				color = ft_get_color(game->wall[i].tex_y, start, game->wall[i].height, game);	
+			ft_draw_pixel(game, i, start + game->wall[i].begin_draw, color);
+			start++;
 		}
 		//floors
 		ft_draw_rectangle(i, game->wall[i].begin_draw + game->wall[i].height - 1, 1, HEIGHT - (game->wall[i].begin_draw + game->wall[i].height), 0xB0E298, game);
