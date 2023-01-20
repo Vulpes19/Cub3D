@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/20 18:31:47 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/20 20:26:18 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ void	ft_draw_walls(t_game *game)
 			end = game->wall[i].height;
 		while (start < end)
 		{
+
 			if (game->wall[i].is_horizontal)
 				color = ft_get_color(game->wall[i].tex_x, start, game->wall[i].height, game);
 			else
@@ -171,7 +172,7 @@ void	ft_draw_walls(t_game *game)
 		}
 		//floors
 		ft_draw_rectangle(i, game->wall[i].begin_draw + game->wall[i].height - 1, 1, HEIGHT - (game->wall[i].begin_draw + game->wall[i].height), game->color_floor, game);
-		exit(1);
+		// exit(1);
 		//ceiling
 		ft_draw_rectangle(i, 0, 1, game->wall[i].begin_draw, game->color_ceiling, game);
 		i++;

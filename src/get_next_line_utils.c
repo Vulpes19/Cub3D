@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:18:01 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/12 21:32:36 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/20 19:48:57 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
-#include "../include/parser.h"
+#include "libft.h"
+#include "parser.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {

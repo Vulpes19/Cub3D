@@ -6,29 +6,19 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/20 18:30:35 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/20 20:31:42 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 #include "draw.h"
 #include "input.h"
+#include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 void	ft_horizontal_intersections(t_game *game)
 {
-	// int	map[8][8] =
-	// {
-	// 	{1,1,1,1,1,1,1,1},
-	// 	{1,0,0,0,1,0,0,1},
-	// 	{1,0,0,0,0,0,0,1},
-	// 	{1,0,0,0,0,0,0,1},
-	// 	{1,0,0,0,1,1,1,1},
-	// 	{1,0,0,0,1,0,0,1},
-	// 	{1,0,0,0,0,0,0,1},
-	// 	{1,1,1,1,1,1,1,1}
-	// };
 	int	dof = 0;
 	if (game->ray->angle > PI)
 	{
@@ -50,26 +40,18 @@ void	ft_horizontal_intersections(t_game *game)
 		game->ray->y = game->player->pos_y;
 		dof = game->data->longest_line;
 	}
-	while (dof < game->data->longest_line)
+	while (dof < 11)
 	{
-		// ft_draw_pixel(game, game->ray->x, game->ray->y, 0xff);
-		// ft_draw_pixel(game, game->ray->x + 1, game->ray->y, 0xff);
-		// ft_draw_pixel(game, game->ray->x, game->ray->y + 1, 0xff);
-		// ft_draw_pixel(game, game->ray->x + 1, game->ray->y + 1, 0xff);
-		// ft_draw_pixel(game, game->ray->x - 1, game->ray->y, 0xff);
-		// ft_draw_pixel(game, game->ray->x, game->ray->y - 1, 0xff);
-		// ft_draw_pixel(game, game->ray->x - 1, game->ray->y - 1, 0xff);
-
 		int mx = (int)(game->ray->x / TILE);
 		int my = (int)(game->ray->y / TILE);
 		if (my < 0 || mx < 0)
 			break ;
-		if (game->data->map[my][mx] == '1')
+		if (my < 11 && mx < ft_strlen(game->data->map[my]) && game->data->map[my][mx] == '1')
 		{
 			game->ray->h_pos_x = game->ray->x;
 			game->ray->h_pos_y = game->ray->y;
 			game->ray->distance_h = ft_distance(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, game->player->angle);
-			dof = game->data->longest_line;
+			break;
 		}
 		else
 		{
@@ -82,17 +64,6 @@ void	ft_horizontal_intersections(t_game *game)
 
 void	ft_vertical_intersections(t_game *game)
 {
-	// int	map[8][8] =
-	// {
-	// 	{1,1,1,1,1,1,1,1},
-	// 	{1,0,0,0,1,0,0,1},
-	// 	{1,0,0,0,0,0,0,1},
-	// 	{1,0,0,0,0,0,0,1},
-	// 	{1,0,0,0,1,1,1,1},
-	// 	{1,0,0,0,1,0,0,1},
-	// 	{1,0,0,0,0,0,0,1},
-	// 	{1,1,1,1,1,1,1,1}
-	// };
 	int	dof = 0;
 	if (game->ray->angle > PI / 2 && game->ray->angle < 3 * PI / 2)
 	{
@@ -112,27 +83,21 @@ void	ft_vertical_intersections(t_game *game)
 	{
 		game->ray->x = game->player->pos_x;
 		game->ray->y = game->player->pos_y;
-		dof = game->data->longest_line;
+		dof = 11;
 	}
-	while (dof < game->data->longest_line)
+	while (dof < 11)
 	{
-		// ft_draw_pixel(game, game->ray->x, game->ray->y, 0xff);
-		// ft_draw_pixel(game, game->ray->x + 1, game->ray->y, 0xff);
-		// ft_draw_pixel(game, game->ray->x, game->ray->y + 1, 0xff);
-		// ft_draw_pixel(game, game->ray->x + 1, game->ray->y + 1, 0xff);
-		// ft_draw_pixel(game, game->ray->x - 1, game->ray->y, 0xff);
-		// ft_draw_pixel(game, game->ray->x, game->ray->y - 1, 0xff);
-		// ft_draw_pixel(game, game->ray->x - 1, game->ray->y - 1, 0xff);
+		// printf("x = %f, y = %f\n", game->ray->x, game->ray->y);
 		int mx = (int)(game->ray->x / TILE);
 		int my = (int)(game->ray->y / TILE);
 		if (my < 0 || mx < 0)
 			break ;
-		if (game->data->map[my][mx] == '1')
+		if (my < 11 && mx < ft_strlen(game->data->map[my]) && game->data->map[my][mx] == '1')
 		{
 			game->ray->v_pos_x = game->ray->x;
 			game->ray->v_pos_y = game->ray->y;
 			game->ray->distance_v = ft_distance(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, game->player->angle);
-			dof = game->data->longest_line;
+			break;
 		}
 		else
 		{
@@ -208,8 +173,10 @@ int    ft_raycasting(t_game *game)
 			else if (game->player->angle < PI / 2 || game->player->angle > 3 * PI / 2)
 				game->wall[ray].color = color_west;
 		}
-		// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, ft_convert_rgb(0, 0, 0), game);
-		game->wall[ray].height = (TILE / game->ray->distance) * 300;;
+		// ft_draw_line_ddb(game->player->pos_x - (250 / 2), game->player->pos_y - (250 / 2), game->ray->x - (250 / 2), game->ray->y - (250 / 2), ft_convert_rgb(255, 0, 0), game);
+		// if (game->ray->distance == 0)
+		// 	game->ray->distance = 0.0001;
+		game->wall[ray].height = (TILE / game->ray->distance) * 300;
 		// if ( game->wall[ray].height > HEIGHT)
 		// 	game->wall[ray].height = HEIGHT;
 		game->wall[ray].begin_draw = -game->wall[ray].height / 2 + HEIGHT / 2;
@@ -222,7 +189,7 @@ int    ft_raycasting(t_game *game)
 	}
 	// //3D walls
 	ft_draw_walls(game);
-	exit(1);
+	// exit(1);
 
 	//direction line
 	// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y,game->player->pos_x +  cos(game->player->angle) * 50,game->player->pos_y +  sin(game->player->angle) * 50 , ft_convert_rgb(00, 0xff, 00), game);

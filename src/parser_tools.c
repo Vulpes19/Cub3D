@@ -6,12 +6,12 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:05:20 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/20 15:28:27 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/20 19:48:25 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
-#include "../include/parser.h"
+#include "libft.h"
+#include "parser.h"
 
 void	ft_free_map_error(t_parse *data)
 {

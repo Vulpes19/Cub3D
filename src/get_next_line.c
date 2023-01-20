@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:18:11 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/12 21:33:54 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/20 19:49:04 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
-#include "../include/parser.h"
+#include "libft.h"
+#include "parser.h"
 
 #define BUFFER_SIZE 1024
 

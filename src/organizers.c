@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   organizers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:20:27 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/20 18:06:11 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/20 19:48:17 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/parser.h"
-#include "../include/libft.h"
+#include "parser.h"
+#include "libft.h"
 
 void	ft_paths(t_parse *data, char *path)
 {

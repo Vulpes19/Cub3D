@@ -6,12 +6,12 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:29:07 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/19 18:12:34 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/20 19:49:13 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
-#include "../include/parser.h"
+#include "libft.h"
+#include "parser.h"
 
 int	ft_is_space(char c)
 {

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   protection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:25:06 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/19 16:04:14 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/20 19:48:35 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/parser.h"
-#include "../include/libft.h"
+#include "parser.h"
+#include "libft.h"
 
 t_status	ft_sn_border(char *map)
 {

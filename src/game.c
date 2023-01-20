@@ -17,7 +17,6 @@ enum t_bool	ft_allocate_game(int ac, char **av, t_game *game)
 {
 	if (ft_init_parsing(ac, av, game) == FALSE)
 	{
-		printf("hello\n");
 		free(game);
 		return(FALSE);
 	}
