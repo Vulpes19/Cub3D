@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:25:47 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/20 15:38:26 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/20 18:09:51 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef enum s_status
 	GOOD,
 	ERROR
 }	t_status;
+
 typedef struct s_parse
 {
 	int			file;
@@ -49,11 +50,14 @@ typedef struct s_parse
 	char		*c;
 	char		**map;
 	char		**textures_colors;
+	int			player_x;
+	int			player_y;
+	char		player_direction;
 	char		*leaks;
-	int			i;
-	int			j;
+	int			longest_line;
 	t_status	flag;
 }	t_parse;
+
 typedef struct s_texture
 {
 	void   *image;

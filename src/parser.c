@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:07:04 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/20 15:17:34 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/20 18:09:38 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,32 @@ t_status	ft_examine_map(t_parse *data)
 	return (flag);
 }
 
+t_status	ft_player_position(t_parse *data)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (data->map[y])
+	{
+		x = 0;
+		while (data->map[y][x])
+		{
+			if (data->map[y][x] == 'N' || data->map[y][x] == 'E'
+				|| data->map[y][x] == 'W' || data->map[y][x] == 'S')
+			{
+				data->player_x = x;
+				data->player_y = y;
+				data->player_direction = data->map[y][x];
+				return (GOOD);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (ERROR);
+}
+
 void	ft_read_map(t_parse *data)
 {
 	if (ft_parse(data) == GOOD)
@@ -91,11 +117,12 @@ void	ft_read_map(t_parse *data)
 			data->buff = get_next_line(data->file);
 		}
 		data->map = ft_split(data->tmp, '\n');
-		if (ft_examine_map(data) == GOOD)
+		if (ft_examine_map(data) == GOOD
+			&& ft_player_position(data) == GOOD)
 			printf("all good\n");
 		else
-			printf("error\n");
-		// ft_free_map_error(data);         
+			printf("error: map is incomplete or player not found\n");
+		// ft_free_map_error(data);
 	}
 	else
 		printf("parsing error\n");
