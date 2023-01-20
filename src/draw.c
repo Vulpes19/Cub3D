@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/20 15:43:42 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/20 18:31:47 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,17 +109,6 @@ void	ft_draw_grid(t_game *game)
 	int	y;
 	int	x_end;
 	int	y_end;
-	// int	map[8][8] =
-	// {
-	// 	{1,1,1,1,1,1,1,1},
-	// 	{1,0,0,0,1,0,0,1},
-	// 	{1,0,0,0,0,0,0,1},
-	// 	{1,0,0,0,0,0,0,1},
-	// 	{1,0,0,0,1,1,1,1},
-	// 	{1,0,0,0,1,0,0,1},
-	// 	{1,0,0,0,0,0,0,1},
-	// 	{1,1,1,1,1,1,1,1}
-	// };
 
 	int mx;
 	int my;
@@ -133,7 +122,7 @@ void	ft_draw_grid(t_game *game)
 		mx = (game->player->pos_x - (250 / 2)) / TILE;
 		while (game->data->map[my][mx])
 		{
-			if (game->data->map[my][mx] == 1)
+			if (game->data->map[my][mx] == '1')
 				ft_draw_square((mx * TILE) - test_x, (my * TILE) - test_y, game, ft_convert_rgb(228, 208, 10));
 			else
 				ft_draw_square((mx * TILE) - test_x, (my * TILE) - test_y, game, ft_convert_rgb(255, 255, 255));
@@ -182,6 +171,7 @@ void	ft_draw_walls(t_game *game)
 		}
 		//floors
 		ft_draw_rectangle(i, game->wall[i].begin_draw + game->wall[i].height - 1, 1, HEIGHT - (game->wall[i].begin_draw + game->wall[i].height), game->color_floor, game);
+		exit(1);
 		//ceiling
 		ft_draw_rectangle(i, 0, 1, game->wall[i].begin_draw, game->color_ceiling, game);
 		i++;

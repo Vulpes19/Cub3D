@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/20 16:01:14 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/20 18:30:35 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	ft_horizontal_intersections(t_game *game)
 	{
 		game->ray->x = game->player->pos_x;
 		game->ray->y = game->player->pos_y;
-		dof = 8;
+		dof = game->data->longest_line;
 	}
-	while (game->data->map[dof])
+	while (dof < game->data->longest_line)
 	{
 		// ft_draw_pixel(game, game->ray->x, game->ray->y, 0xff);
 		// ft_draw_pixel(game, game->ray->x + 1, game->ray->y, 0xff);
@@ -64,12 +64,12 @@ void	ft_horizontal_intersections(t_game *game)
 		int my = (int)(game->ray->y / TILE);
 		if (my < 0 || mx < 0)
 			break ;
-		if (game->data->map[my][mx] == 1)
+		if (game->data->map[my][mx] == '1')
 		{
 			game->ray->h_pos_x = game->ray->x;
 			game->ray->h_pos_y = game->ray->y;
 			game->ray->distance_h = ft_distance(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, game->player->angle);
-			dof = 8;
+			dof = game->data->longest_line;
 		}
 		else
 		{
@@ -112,9 +112,9 @@ void	ft_vertical_intersections(t_game *game)
 	{
 		game->ray->x = game->player->pos_x;
 		game->ray->y = game->player->pos_y;
-		dof = 8;
+		dof = game->data->longest_line;
 	}
-	while (game->data->map[dof])
+	while (dof < game->data->longest_line)
 	{
 		// ft_draw_pixel(game, game->ray->x, game->ray->y, 0xff);
 		// ft_draw_pixel(game, game->ray->x + 1, game->ray->y, 0xff);
@@ -127,12 +127,12 @@ void	ft_vertical_intersections(t_game *game)
 		int my = (int)(game->ray->y / TILE);
 		if (my < 0 || mx < 0)
 			break ;
-		if (game->data->map[my][mx] == 1)
+		if (game->data->map[my][mx] == '1')
 		{
 			game->ray->v_pos_x = game->ray->x;
 			game->ray->v_pos_y = game->ray->y;
 			game->ray->distance_v = ft_distance(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, game->player->angle);
-			dof = 8;
+			dof = game->data->longest_line;
 		}
 		else
 		{
@@ -220,13 +220,9 @@ int    ft_raycasting(t_game *game)
 		if (game->ray->angle > 2 * PI)
 			game->ray->angle -= 2 * PI;
 	}
-	
-	//3D walls
+	// //3D walls
 	ft_draw_walls(game);
-
-	//mini map
-	// ft_draw_grid(game);
-	// ft_draw_point(game);
+	exit(1);
 
 	//direction line
 	// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y,game->player->pos_x +  cos(game->player->angle) * 50,game->player->pos_y +  sin(game->player->angle) * 50 , ft_convert_rgb(00, 0xff, 00), game);
