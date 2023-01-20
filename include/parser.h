@@ -3,45 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:17:19 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/19 16:07:19 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:08:21 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 # include <stdlib.h>
+#include "game.h"
 
-typedef enum s_status
-{
-	GOOD,
-	ERROR
-}	t_status;
-
-typedef struct s_parse
-{
-	int			file;
-	char		*buff;
-	char		*tmp;
-	char		*no;
-	char		**d_tmp;
-	char		**floor;
-	char		**cieling;
-	char		*so;
-	char		*we;
-	char		*ea;
-	char		*f;
-	char		*c;
-	char		**map;
-	char		**textures_colors;
-	char		*leaks;
-	int			i;
-	int			j;
-	t_status	flag;
-}	t_parse;
-
+enum t_bool	ft_init_parsing(int argc, char **argv, t_game *game);
 void		ft_read_map(t_parse *data);
 t_status	ft_sn_border(char *map);
 t_status	ft_ew_border(char *map);

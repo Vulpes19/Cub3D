@@ -6,15 +6,21 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:43:13 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/18 18:27:54 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:35:05 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "parser.h"
 #include "draw.h"
 
-void    ft_allocate_game(t_game *game)
+enum t_bool	ft_allocate_game(int ac, char **av, t_game *game)
 {
+	if (ft_init_parsing(ac, av, game) == FALSE)
+	{
+		printf("hello\n");
+		free(game);
+		return(FALSE);
+	}
 	game->mlx = (t_mlx *)malloc(sizeof(t_mlx));
 	game->mlx->pixel = (t_pixel *)malloc(sizeof(t_pixel));
 	game->mlx->mini_map = (t_pixel *)malloc(sizeof(t_pixel));
@@ -22,6 +28,7 @@ void    ft_allocate_game(t_game *game)
 	game->ray = (t_ray *)malloc(sizeof(t_ray));
 	game->wall = (t_wall *)malloc(sizeof(t_wall) * WIDTH);
 	game->texture = (t_texture *)malloc(sizeof(t_texture));
+	return (TRUE);
 }
 
 void    ft_init_game(t_game *game)
@@ -37,6 +44,8 @@ void    ft_init_game(t_game *game)
 	game->player->height = 32;
 	game->player->speed = 16;
 	game->ray->angle = game->player->angle;
+	ft_get_ceiling_color(game);
+	ft_get_floor_color(game);
     // game->ray->distance_h = 1000000;
 	// game->ray->distance_v = 1000000;
 }

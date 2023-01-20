@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/19 19:19:07 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:39:53 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,6 @@ void	ft_draw_pixel_mini_map(t_game *game, int x, int y, int color)
 		return ;	
 	dest = game->mlx->mini_map->address + (y * game->mlx->mini_map->line_len + x * (game->mlx->mini_map->bits_per_pixel / 8));
 	*(unsigned int*)dest = color;
-}
-
-int	ft_convert_rgb(uint8_t red, uint8_t green, uint8_t blue)
-{
-	return (red << 16 | green << 8 | blue);
 }
 
 void ft_draw_rectangle(int x, int y, int width, int height, int color, t_game *game)
@@ -146,37 +141,6 @@ void	ft_draw_grid(t_game *game)
 		}
 		my++;
 	}
-	// x = game->player->pos_x - (250 / 2);	
-	// y = game->player->pos_y - (250 / 2);
-	// int	x2 = x;	
-	// int	y2 = y;
-	// x_end = x + 250;
-	// y_end = y + 250;
-	// while (y < y_end)
-	// {
-	// 	// printf("a\n");
-	// 	x = x2;
-	// 	my = y / TILE;
-	// 	while (x < x_end)
-	// 	{
-	// 		// printf("a\n");
-	// 		mx = x / TILE;
-	// 		// printf("mx = %d x = % d || my = %d y = %d\n", mx, my, x / TILE, y / TILE);
-	// 		if(map[my][mx] == 1)
-	// 		{
-	// 			// ft_draw_square(x - x2, y - y2, game, 0x000000);
-	// 			printf("wall\n");
-	// 		}
-	// 		else
-	// 		{
-	// 			printf("empty\n");
-	// 			// ft_draw_square(x - x2, y - y2, game, 0xFFFFFF);
-	// 		}
-	// 		x++;
-	// 	}
-	// 	y++;
-	// }
-	// printf("finished\n");
 	ft_draw_point(game, game->player->pos_x - (250 / 2), game->player->pos_y - (250 / 2));
 }
 
@@ -207,8 +171,6 @@ void	ft_draw_walls(t_game *game)
 		}
 		else
 			end = game->wall[i].height;
-		// start = game->wall[i].begin_draw;
-		// end = game->wall[i].height ;
 		while (start < end)
 		{
 			if (game->wall[i].is_horizontal)
@@ -219,9 +181,9 @@ void	ft_draw_walls(t_game *game)
 			start++;
 		}
 		//floors
-		ft_draw_rectangle(i, game->wall[i].begin_draw + game->wall[i].height - 1, 1, HEIGHT - (game->wall[i].begin_draw + game->wall[i].height), 0xB0E298, game);
+		ft_draw_rectangle(i, game->wall[i].begin_draw + game->wall[i].height - 1, 1, HEIGHT - (game->wall[i].begin_draw + game->wall[i].height), game->color_floor, game);
 		//ceiling
-		ft_draw_rectangle(i, 0, 1, game->wall[i].begin_draw, 0x6883BA, game);
+		ft_draw_rectangle(i, 0, 1, game->wall[i].begin_draw, game->color_ceiling, game);
 		i++;
 	}
 }

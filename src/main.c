@@ -6,25 +6,26 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:14:17 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/19 18:16:25 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:34:01 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include <limits.h>
 #include <stdio.h>
-#include "game.h"
+#include "parser.h"
+#include "libft.h"
 #include "draw.h"
 #include "close.h"
-// #include "error.h"
 #include "input.h"
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_game		*game;
 
    	game = (t_game *)malloc(sizeof(t_game));
-	ft_allocate_game(game);
+	if (ft_allocate_game(ac, av, game) == FALSE)
+		return (EXIT_FAILURE);
 	ft_init_game(game);
 	if (!game->mlx->init)
 	{

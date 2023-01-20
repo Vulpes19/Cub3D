@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:05:20 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/19 16:07:09 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:28:27 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_free_map_error(t_parse *data)
 	free(data->so);
 	free(data->we);
 	free(data->ea);
-	freethis1(data->cieling);
+	freethis1(data->ceiling);
 	freethis1(data->floor);
 }
 
@@ -36,6 +36,6 @@ void	ft_free_parse_error(t_parse *data)
 	free(data->no);
 	if (data->floor)
 		freethis1(data->floor);
-	if (data->cieling)
-		freethis1(data->cieling);
+	if (data->ceiling)
+		freethis1(data->ceiling);
 }

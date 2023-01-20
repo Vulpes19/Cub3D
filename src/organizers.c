@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   organizers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:20:27 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/19 16:02:18 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:28:44 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_colors(t_parse *data, char *color)
 		else
 		{
 			data->floor = NULL;
-			ft_putstr("error: color parameters are wrong!\n");
+			ft_putstr_fd("error: color parameters are wrong!\n", STDERR_FILENO);
 		}
 		freethis1(data->d_tmp);
 	}
@@ -59,11 +59,11 @@ void	ft_colors(t_parse *data, char *color)
 	{
 		data->d_tmp = ft_split(color, ' ');
 		if (ft_check_colors(data->d_tmp) == GOOD)
-			data->cieling = ft_split(data->d_tmp[1], ',');
+			data->ceiling = ft_split(data->d_tmp[1], ',');
 		else
 		{
-			data->cieling = NULL;
-			ft_putstr("error: color parameters are wrong\n");
+			data->ceiling = NULL;
+			ft_putstr_fd("error: color parameters are wrong\n", STDERR_FILENO);
 		}
 		freethis1(data->d_tmp);
 	}
@@ -82,7 +82,7 @@ t_status	ft_organize(t_parse *data)
 			ft_colors(data, data->textures_colors[i]);
 		i++;
 	}
-	if (!data->cieling || !data->floor)
+	if (!data->ceiling || !data->floor)
 		return (ERROR);
 	if (!data->ea || !data->no || !data->so || !data->we)
 		return (ERROR);

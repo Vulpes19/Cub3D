@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:25:47 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/19 18:16:15 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:38:26 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,32 @@ enum	t_bool
 	FALSE = 0
 };
 
+typedef enum s_status
+{
+	GOOD,
+	ERROR
+}	t_status;
+typedef struct s_parse
+{
+	int			file;
+	char		*buff;
+	char		*tmp;
+	char		**d_tmp;
+	char		**floor;
+	char		**ceiling;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
+	char		*f;
+	char		*c;
+	char		**map;
+	char		**textures_colors;
+	char		*leaks;
+	int			i;
+	int			j;
+	t_status	flag;
+}	t_parse;
 typedef struct s_texture
 {
 	void   *image;
@@ -97,23 +123,27 @@ typedef	struct s_wall
 	double	bottom;
 	int		tex_x;
 	int		tex_y;
-	int	is_horizontal;
-	int	is_vertical;
+	int		is_horizontal;
+	int		is_vertical;
 	int		color;
-	int		offset;
 }	t_wall;
 typedef struct s_game
 {
+	t_parse		*data;
 	t_player	*player;
 	t_ray		*ray;
 	t_wall		*wall;
 	t_texture	*texture;
 	double		move_speed;
 	double		rot_speed;
+	int			*floor;
+	int			*ceiling;
+	int			color_floor;
+	int			color_ceiling;
 	t_mlx		*mlx;
 }	t_game;
 
-void    ft_allocate_game(t_game *game);
+enum t_bool	ft_allocate_game(int ac, char **av, t_game *game);
 void    ft_init_game(t_game *game);
 
 #endif
