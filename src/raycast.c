@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/20 15:26:19 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/20 16:01:14 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@
 
 void	ft_horizontal_intersections(t_game *game)
 {
-	int	map[8][8] =
-	{
-		{1,1,1,1,1,1,1,1},
-		{1,0,0,0,1,0,0,1},
-		{1,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,1},
-		{1,0,0,0,1,1,1,1},
-		{1,0,0,0,1,0,0,1},
-		{1,0,0,0,0,0,0,1},
-		{1,1,1,1,1,1,1,1}
-	};
+	// int	map[8][8] =
+	// {
+	// 	{1,1,1,1,1,1,1,1},
+	// 	{1,0,0,0,1,0,0,1},
+	// 	{1,0,0,0,0,0,0,1},
+	// 	{1,0,0,0,0,0,0,1},
+	// 	{1,0,0,0,1,1,1,1},
+	// 	{1,0,0,0,1,0,0,1},
+	// 	{1,0,0,0,0,0,0,1},
+	// 	{1,1,1,1,1,1,1,1}
+	// };
 	int	dof = 0;
 	if (game->ray->angle > PI)
 	{
@@ -50,7 +50,7 @@ void	ft_horizontal_intersections(t_game *game)
 		game->ray->y = game->player->pos_y;
 		dof = 8;
 	}
-	while (dof < 8)
+	while (game->data->map[dof])
 	{
 		// ft_draw_pixel(game, game->ray->x, game->ray->y, 0xff);
 		// ft_draw_pixel(game, game->ray->x + 1, game->ray->y, 0xff);
@@ -64,7 +64,7 @@ void	ft_horizontal_intersections(t_game *game)
 		int my = (int)(game->ray->y / TILE);
 		if (my < 0 || mx < 0)
 			break ;
-		if (my < 8 && mx < 8 && map[my][mx] == 1)
+		if (game->data->map[my][mx] == 1)
 		{
 			game->ray->h_pos_x = game->ray->x;
 			game->ray->h_pos_y = game->ray->y;
@@ -82,17 +82,17 @@ void	ft_horizontal_intersections(t_game *game)
 
 void	ft_vertical_intersections(t_game *game)
 {
-	int	map[8][8] =
-	{
-		{1,1,1,1,1,1,1,1},
-		{1,0,0,0,1,0,0,1},
-		{1,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,1},
-		{1,0,0,0,1,1,1,1},
-		{1,0,0,0,1,0,0,1},
-		{1,0,0,0,0,0,0,1},
-		{1,1,1,1,1,1,1,1}
-	};
+	// int	map[8][8] =
+	// {
+	// 	{1,1,1,1,1,1,1,1},
+	// 	{1,0,0,0,1,0,0,1},
+	// 	{1,0,0,0,0,0,0,1},
+	// 	{1,0,0,0,0,0,0,1},
+	// 	{1,0,0,0,1,1,1,1},
+	// 	{1,0,0,0,1,0,0,1},
+	// 	{1,0,0,0,0,0,0,1},
+	// 	{1,1,1,1,1,1,1,1}
+	// };
 	int	dof = 0;
 	if (game->ray->angle > PI / 2 && game->ray->angle < 3 * PI / 2)
 	{
@@ -114,7 +114,7 @@ void	ft_vertical_intersections(t_game *game)
 		game->ray->y = game->player->pos_y;
 		dof = 8;
 	}
-	while (dof < 8)
+	while (game->data->map[dof])
 	{
 		// ft_draw_pixel(game, game->ray->x, game->ray->y, 0xff);
 		// ft_draw_pixel(game, game->ray->x + 1, game->ray->y, 0xff);
@@ -127,7 +127,7 @@ void	ft_vertical_intersections(t_game *game)
 		int my = (int)(game->ray->y / TILE);
 		if (my < 0 || mx < 0)
 			break ;
-		if (mx < 8 && my < 8 && map[my][mx] == 1)
+		if (game->data->map[my][mx] == 1)
 		{
 			game->ray->v_pos_x = game->ray->x;
 			game->ray->v_pos_y = game->ray->y;

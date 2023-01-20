@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/20 15:39:53 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:43:42 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,17 +109,17 @@ void	ft_draw_grid(t_game *game)
 	int	y;
 	int	x_end;
 	int	y_end;
-	int	map[8][8] =
-	{
-		{1,1,1,1,1,1,1,1},
-		{1,0,0,0,1,0,0,1},
-		{1,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,1},
-		{1,0,0,0,1,1,1,1},
-		{1,0,0,0,1,0,0,1},
-		{1,0,0,0,0,0,0,1},
-		{1,1,1,1,1,1,1,1}
-	};
+	// int	map[8][8] =
+	// {
+	// 	{1,1,1,1,1,1,1,1},
+	// 	{1,0,0,0,1,0,0,1},
+	// 	{1,0,0,0,0,0,0,1},
+	// 	{1,0,0,0,0,0,0,1},
+	// 	{1,0,0,0,1,1,1,1},
+	// 	{1,0,0,0,1,0,0,1},
+	// 	{1,0,0,0,0,0,0,1},
+	// 	{1,1,1,1,1,1,1,1}
+	// };
 
 	int mx;
 	int my;
@@ -128,12 +128,12 @@ void	ft_draw_grid(t_game *game)
 	mx = (game->player->pos_x - (250 / 2)) / TILE;
 	my = (game->player->pos_y - (250 / 2)) / TILE;
 
-	while (my < 8)
+	while (game->data->map[my])
 	{
 		mx = (game->player->pos_x - (250 / 2)) / TILE;
-		while (mx < 8)
+		while (game->data->map[my][mx])
 		{
-			if (map[my][mx] == 1)
+			if (game->data->map[my][mx] == 1)
 				ft_draw_square((mx * TILE) - test_x, (my * TILE) - test_y, game, ft_convert_rgb(228, 208, 10));
 			else
 				ft_draw_square((mx * TILE) - test_x, (my * TILE) - test_y, game, ft_convert_rgb(255, 255, 255));
