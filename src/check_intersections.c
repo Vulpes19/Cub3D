@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 13:45:00 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/21 13:51:01 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/21 15:11:12 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	ft_horizontal_intersections(t_game *game)
 {
-	int	dof = 0;
+    int dof = 0;
 	if (game->ray->angle > PI)
 	{
 		game->ray->y = floor(game->player->pos_y / TILE) * TILE - 0.0001;
@@ -35,9 +35,9 @@ void	ft_horizontal_intersections(t_game *game)
 	{
 		game->ray->x = game->player->pos_x;
 		game->ray->y = game->player->pos_y;
-		dof = game->data->longest_line;
+		return ;
 	}
-	while (dof < HEIGHT)
+	while (dof < WIDTH)
 	{
 		int mx = (int)(game->ray->x / TILE);
 		int my = (int)(game->ray->y / TILE);
@@ -54,7 +54,7 @@ void	ft_horizontal_intersections(t_game *game)
 		{
 			game->ray->x += game->ray->x_a;
 			game->ray->y += game->ray->y_a;
-			dof += 1;
+            dof++;
 		}
 	}
 }
@@ -80,9 +80,9 @@ void	ft_vertical_intersections(t_game *game)
 	{
 		game->ray->x = game->player->pos_x;
 		game->ray->y = game->player->pos_y;
-		dof = 11;
+		return ;
 	}
-	while (dof < HEIGHT)
+	while (dof < WIDTH)
 	{
 		int mx = (int)(game->ray->x / TILE);
 		int my = (int)(game->ray->y / TILE);

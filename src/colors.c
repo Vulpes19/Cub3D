@@ -6,12 +6,20 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:21:15 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/21 14:22:48 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/21 14:49:00 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "libft.h"
+
+int	ft_get_color(int x, int y, int height, t_game *game)
+{
+	game->texture->address = mlx_get_data_addr(game->texture->image, &game->texture->bits_per_pixel, &game->texture->line_len, &game->texture->endian);
+	if (y * TILE / height >= TILE)
+		y = TILE - 1;
+	return (*(int *)(game->texture->address + (int)((y * TILE) / height) % TILE * game->texture->line_len + x % TILE * (game->texture->bits_per_pixel / 8)));
+}
 
 int	ft_convert_rgb(uint8_t red, uint8_t green, uint8_t blue)
 {
