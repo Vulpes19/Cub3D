@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:07:04 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/20 18:09:38 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:43:57 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void	ft_read_map(t_parse *data)
 {
 	if (ft_parse(data) == GOOD)
 	{	
+		data->map_length = 0;
 		data->tmp = ft_strdup("");
 		data->buff = get_next_line(data->file);
 		while (data->buff)
@@ -115,6 +116,7 @@ void	ft_read_map(t_parse *data)
 			free(data->leaks);
 			free(data->buff);
 			data->buff = get_next_line(data->file);
+			data->map_length++;
 		}
 		data->map = ft_split(data->tmp, '\n');
 		if (ft_examine_map(data) == GOOD

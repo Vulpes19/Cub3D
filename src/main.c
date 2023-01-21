@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:14:17 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/21 13:51:25 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:43:17 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int ac, char **av)
 	if (ft_allocate_game(ac, av, game) == FALSE)
 		return (EXIT_FAILURE);
 	ft_init_game(game);
+	printf("size %d\n", game->data->map_length);
 	if (!game->mlx->init)
 	{
 		ft_putstr_fd("failed to init mlx\n", STDERR_FILENO);
