@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 13:45:00 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/21 15:11:12 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:22:55 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	ft_horizontal_intersections(t_game *game)
 {
-    int dof = 0;
+	int	dof = 0;
 	if (game->ray->angle > PI)
 	{
 		game->ray->y = floor(game->player->pos_y / TILE) * TILE - 0.0001;
@@ -37,13 +37,13 @@ void	ft_horizontal_intersections(t_game *game)
 		game->ray->y = game->player->pos_y;
 		return ;
 	}
-	while (dof < WIDTH)
+	while (dof < HEIGHT)
 	{
 		int mx = (int)(game->ray->x / TILE);
 		int my = (int)(game->ray->y / TILE);
 		if (my < 0 || mx < 0)
 			break ;
-		if (my < 11 && mx < ft_strlen(game->data->map[my]) && game->data->map[my][mx] == '1')
+		if (my < 9 && mx < ft_strlen(game->data->map[my]) && game->data->map[my][mx] == '1')
 		{
 			game->ray->h_pos_x = game->ray->x;
 			game->ray->h_pos_y = game->ray->y;
@@ -54,7 +54,7 @@ void	ft_horizontal_intersections(t_game *game)
 		{
 			game->ray->x += game->ray->x_a;
 			game->ray->y += game->ray->y_a;
-            dof++;
+			dof += 1;
 		}
 	}
 }
@@ -82,13 +82,13 @@ void	ft_vertical_intersections(t_game *game)
 		game->ray->y = game->player->pos_y;
 		return ;
 	}
-	while (dof < WIDTH)
+	while (dof < HEIGHT)
 	{
 		int mx = (int)(game->ray->x / TILE);
 		int my = (int)(game->ray->y / TILE);
 		if (my < 0 || mx < 0)
 			break ;
-		if (my < 11 && mx < ft_strlen(game->data->map[my]) && game->data->map[my][mx] == '1')
+		if (my < 9 && mx < ft_strlen(game->data->map[my]) && game->data->map[my][mx] == '1')
 		{
 			game->ray->v_pos_x = game->ray->x;
 			game->ray->v_pos_y = game->ray->y;

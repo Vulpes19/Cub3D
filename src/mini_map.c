@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 14:26:59 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/21 14:42:04 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:35:31 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,11 @@ void	ft_draw_grid(t_game *game)
 	ft_init_mini_map(&mini_map_x, &mini_map_y, game);
 	map_x = game->player->pos_x - (250 / 2);
 	map_y = game->player->pos_y - (250 / 2);
-	while (game->data->map[mini_map_y])
+	while (mini_map_y < 9 && game->data->map[mini_map_y])
 	{
 		mini_map_x = (game->player->pos_x - (250 / 2)) / TILE;
+		if (mini_map_x > ft_strlen(game->data->map[mini_map_y]))
+			mini_map_x = ft_strlen(game->data->map[mini_map_y]);
 		while (game->data->map[mini_map_y][mini_map_x])
 		{
 			if (game->data->map[mini_map_y][mini_map_x] == '1')
