@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 13:45:00 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/21 17:22:55 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/21 18:39:33 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,65 @@
 #include "libft.h"
 #include "draw.h"
 
+void	ft_intersection_loop_h(t_game *game, int mx, int my)
+{
+	int	dof;
+
+	dof = 0;
+	while (dof < HEIGHT)
+	{
+		mx = (int)(game->ray->x / TILE);
+		my = (int)(game->ray->y / TILE);
+		if (my < 0 || mx < 0)
+			break ;
+		if (my < game->data->map_length && mx < ft_strlen(game->data->map[my]) && game->data->map[my][mx] == '1')
+		{
+			game->ray->h_pos_x = game->ray->x;
+			game->ray->h_pos_y = game->ray->y;
+			game->ray->distance_h = ft_distance(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, game->player->angle);
+			break;
+		}
+		else
+		{
+			game->ray->x += game->ray->x_a;
+			game->ray->y += game->ray->y_a;
+			dof += 1;
+		}
+	}
+}
+
+void    ft_intersection_loop_v(t_game *game, int mx, int my)
+{
+	int	dof;
+
+	dof = 0;
+	while (dof < HEIGHT)
+	{
+		mx = (int)(game->ray->x / TILE);
+		my = (int)(game->ray->y / TILE);
+		if (my < 0 || mx < 0)
+			break ;
+		if (my < game->data->map_length && mx < ft_strlen(game->data->map[my]) && game->data->map[my][mx] == '1')
+		{
+			game->ray->v_pos_x = game->ray->x;
+			game->ray->v_pos_y = game->ray->y;
+			game->ray->distance_v = ft_distance(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, game->player->angle);
+			break;
+		}
+		else
+		{
+			game->ray->x += game->ray->x_a;
+			game->ray->y += game->ray->y_a;
+			dof += 1;
+		}
+	}
+}
+
 void	ft_horizontal_intersections(t_game *game)
 {
-	int	dof = 0;
+	int mx;
+	int my;
+
 	if (game->ray->angle > PI)
 	{
 		game->ray->y = floor(game->player->pos_y / TILE) * TILE - 0.0001;
@@ -37,31 +93,14 @@ void	ft_horizontal_intersections(t_game *game)
 		game->ray->y = game->player->pos_y;
 		return ;
 	}
-	while (dof < HEIGHT)
-	{
-		int mx = (int)(game->ray->x / TILE);
-		int my = (int)(game->ray->y / TILE);
-		if (my < 0 || mx < 0)
-			break ;
-		if (my < 9 && mx < ft_strlen(game->data->map[my]) && game->data->map[my][mx] == '1')
-		{
-			game->ray->h_pos_x = game->ray->x;
-			game->ray->h_pos_y = game->ray->y;
-			game->ray->distance_h = ft_distance(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, game->player->angle);
-			break;
-		}
-		else
-		{
-			game->ray->x += game->ray->x_a;
-			game->ray->y += game->ray->y_a;
-			dof += 1;
-		}
-	}
+	ft_intersection_loop_h(game, mx, my);
 }
 
 void	ft_vertical_intersections(t_game *game)
 {
-	int	dof = 0;
+	int mx;
+	int my;
+
 	if (game->ray->angle > PI / 2 && game->ray->angle < 3 * PI / 2)
 	{
 		game->ray->x = floor(game->player->pos_x / TILE) * TILE - 0.0001;
@@ -82,24 +121,5 @@ void	ft_vertical_intersections(t_game *game)
 		game->ray->y = game->player->pos_y;
 		return ;
 	}
-	while (dof < HEIGHT)
-	{
-		int mx = (int)(game->ray->x / TILE);
-		int my = (int)(game->ray->y / TILE);
-		if (my < 0 || mx < 0)
-			break ;
-		if (my < 9 && mx < ft_strlen(game->data->map[my]) && game->data->map[my][mx] == '1')
-		{
-			game->ray->v_pos_x = game->ray->x;
-			game->ray->v_pos_y = game->ray->y;
-			game->ray->distance_v = ft_distance(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, game->player->angle);
-			break;
-		}
-		else
-		{
-			game->ray->x += game->ray->x_a;
-			game->ray->y += game->ray->y_a;
-			dof += 1;
-		}
-	}
+	ft_intersection_loop_v(game, mx, my);
 }

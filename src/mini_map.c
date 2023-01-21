@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 14:26:59 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/21 17:35:31 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:56:56 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ void	ft_draw_point(t_game *game, int mini_map_x, int mini_map_y)
 	{
 		j = game->player->pos_x - mini_map_x;
 		while (j < (int)((game->player->pos_x - mini_map_x) + 4))
-		{
 			ft_draw_pixel_mini_map(game, j++, i, ft_convert_rgb(228, 208, 10));
-		}
 		++i;
 	}
 }
@@ -56,15 +54,17 @@ void	ft_draw_grid(t_game *game)
 	int	mini_map_y;
 	int	map_x;
 	int	map_y;
+	int	len;
 
 	ft_init_mini_map(&mini_map_x, &mini_map_y, game);
 	map_x = game->player->pos_x - (250 / 2);
 	map_y = game->player->pos_y - (250 / 2);
-	while (mini_map_y < 9 && game->data->map[mini_map_y])
+	while (mini_map_y < game->data->map_length)
 	{
+		len = ft_strlen(game->data->map[mini_map_y]);
 		mini_map_x = (game->player->pos_x - (250 / 2)) / TILE;
-		if (mini_map_x > ft_strlen(game->data->map[mini_map_y]))
-			mini_map_x = ft_strlen(game->data->map[mini_map_y]);
+		if (mini_map_x > len)
+			mini_map_x = len;
 		while (game->data->map[mini_map_y][mini_map_x])
 		{
 			if (game->data->map[mini_map_y][mini_map_x] == '1')
