@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:20:27 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/20 19:48:17 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/21 13:32:06 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ void	ft_colors(t_parse *data, char *color)
 			data->floor = NULL;
 			ft_putstr_fd("error: color parameters are wrong!\n", STDERR_FILENO);
 		}
-		for (int i = 0; data->floor[i]; i++)
-			printf("%s\n", data->floor[i]);
 		freethis1(data->d_tmp);
 	}
 	else if (ft_strncmp(color, "C", 1) == 0)
@@ -67,8 +65,6 @@ void	ft_colors(t_parse *data, char *color)
 			data->ceiling = NULL;
 			ft_putstr_fd("error: color parameters are wrong\n", STDERR_FILENO);
 		}
-		for (int i = 0; data->ceiling[i]; i++)
-			printf("%s\n", data->ceiling[i]);
 		freethis1(data->d_tmp);
 	}
 }

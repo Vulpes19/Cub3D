@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:25:50 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/20 18:26:11 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/21 13:47:32 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,5 @@ int	ft_input_handler(int keycode, t_game *game)
 	ft_movement(keycode, game);
 	ft_raycasting(game);
 	ft_close_esc(keycode, game);
-	// mlx_hook(game->mlx->window, 2, 1L << 0, ft_close_esc, game);
 	return (0);
 }

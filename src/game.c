@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:43:13 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/20 18:17:19 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/21 13:31:08 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,14 @@ void    ft_init_game(t_game *game)
     game->mlx->init = mlx_init();
 	game->player->pos_x = game->data->player_x * TILE;
 	game->player->pos_y = game->data->player_y * TILE;
-	game->player->angle = 0;
+	if (game->data->player_direction == 'N')
+		game->player->angle = PI / 2;
+	else if (game->data->player_direction == 'S')
+		game->player->angle = 3 * PI / 2;
+	else if (game->data->player_direction == 'W')
+		game->player->angle = PI;
+	else if (game->data->player_direction == 'E')
+		game->player->angle = 0;
 	game->player->rot_x = cos(game->player->angle) * 5;
 	game->player->rot_y = sin(game->player->angle) * 5;
 	game->player->fov = 60 * (PI / 180);

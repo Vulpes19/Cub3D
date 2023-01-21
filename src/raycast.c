@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/20 20:31:42 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/21 13:53:25 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,114 +17,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void	ft_horizontal_intersections(t_game *game)
+void	ft_render(t_game *game)
 {
-	int	dof = 0;
-	if (game->ray->angle > PI)
-	{
-		game->ray->y = floor(game->player->pos_y / TILE) * TILE - 0.0001;
-		game->ray->x = game->player->pos_x - (game->player->pos_y - game->ray->y) / tan(game->ray->angle);
-		game->ray->y_a = -TILE;
-		game->ray->x_a = game->ray->y_a / tan(game->ray->angle);
-	}
-	if (game->ray->angle < PI)
-	{
-		game->ray->y = floor(game->player->pos_y / TILE) * TILE + TILE;
-		game->ray->x = game->player->pos_x - (game->player->pos_y - game->ray->y) / tan(game->ray->angle);
-		game->ray->y_a = TILE;
-		game->ray->x_a = game->ray->y_a / tan(game->ray->angle);
-	}
-	if (game->ray->angle == 0 || game->ray->angle == PI)
-	{
-		game->ray->x = game->player->pos_x;
-		game->ray->y = game->player->pos_y;
-		dof = game->data->longest_line;
-	}
-	while (dof < 11)
-	{
-		int mx = (int)(game->ray->x / TILE);
-		int my = (int)(game->ray->y / TILE);
-		if (my < 0 || mx < 0)
-			break ;
-		if (my < 11 && mx < ft_strlen(game->data->map[my]) && game->data->map[my][mx] == '1')
-		{
-			game->ray->h_pos_x = game->ray->x;
-			game->ray->h_pos_y = game->ray->y;
-			game->ray->distance_h = ft_distance(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, game->player->angle);
-			break;
-		}
-		else
-		{
-			game->ray->x += game->ray->x_a;
-			game->ray->y += game->ray->y_a;
-			dof += 1;
-		}
-	}
+	mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->pixel->image, 0, 0);
+	mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->mini_map->image, 10, 10);
+	mlx_destroy_image(game->mlx->init, game->mlx->pixel->image);
+	mlx_destroy_image(game->mlx->init, game->mlx->mini_map->image);
 }
 
-void	ft_vertical_intersections(t_game *game)
+void	ft_load_images(t_game *game)
 {
-	int	dof = 0;
-	if (game->ray->angle > PI / 2 && game->ray->angle < 3 * PI / 2)
-	{
-		game->ray->x = floor(game->player->pos_x / TILE) * TILE - 0.0001;
-		game->ray->y = game->player->pos_y + (game->ray->x - game->player->pos_x) * tan(game->ray->angle);
-		game->ray->x_a = -64;
-		game->ray->y_a = game->ray->x_a * tan(game->ray->angle);
-	}
-	if (game->ray->angle < PI / 2 || game->ray->angle > 3 * PI / 2)
-	{
-		game->ray->x = floor(game->player->pos_x / TILE) * TILE + TILE;
-		game->ray->y = game->player->pos_y - (game->player->pos_x - game->ray->x) * tan(game->ray->angle);
-		game->ray->x_a = TILE;
-		game->ray->y_a = game->ray->x_a * tan(game->ray->angle);
-	}
-	if (game->ray->angle == 0 || game->ray->angle == PI)
-	{
-		game->ray->x = game->player->pos_x;
-		game->ray->y = game->player->pos_y;
-		dof = 11;
-	}
-	while (dof < 11)
-	{
-		// printf("x = %f, y = %f\n", game->ray->x, game->ray->y);
-		int mx = (int)(game->ray->x / TILE);
-		int my = (int)(game->ray->y / TILE);
-		if (my < 0 || mx < 0)
-			break ;
-		if (my < 11 && mx < ft_strlen(game->data->map[my]) && game->data->map[my][mx] == '1')
-		{
-			game->ray->v_pos_x = game->ray->x;
-			game->ray->v_pos_y = game->ray->y;
-			game->ray->distance_v = ft_distance(game->player->pos_x, game->player->pos_y, game->ray->x, game->ray->y, game->player->angle);
-			break;
-		}
-		else
-		{
-			game->ray->x += game->ray->x_a;
-			game->ray->y += game->ray->y_a;
-			dof += 1;
-		}
-	}
-}
-
-int    ft_raycasting(t_game *game)
-{
-	int	color_north = 0xE072A4;
-	int color_south = 0xDE689D;
-	int color_east = 0x9C4D8C;
-	int color_west = 0x6C3B7B;
 	game->mlx->pixel->image = mlx_new_image(game->mlx->init, WIDTH, HEIGHT);
 	game->mlx->mini_map->image = mlx_new_image(game->mlx->init, 250, 250);
 	game->mlx->pixel->address = mlx_get_data_addr(game->mlx->pixel->image, &game->mlx->pixel->bits_per_pixel, &game->mlx->pixel->line_len, &game->mlx->pixel->endian);
 	game->mlx->mini_map->address = mlx_get_data_addr(game->mlx->mini_map->image, &game->mlx->mini_map->bits_per_pixel, &game->mlx->mini_map->line_len, &game->mlx->mini_map->endian);
+}
+
+int    ft_raycasting(t_game *game)
+{
+	int	ray;
+	int	color_north = 0xE072A4;
+	int color_south = 0xDE689D;
+	int color_east = 0x9C4D8C;
+	int color_west = 0x6C3B7B;
+	
+	ray = 0;
+	ft_load_images(game);
 	ft_load_texture(game);
-	//grid drawing
 	ft_draw_grid(game);
-
-	int ray = 0;
-
-	//intersection loop
 	while (ray < WIDTH)
 	{
 		game->ray->distance_h = 100000;
@@ -174,12 +94,8 @@ int    ft_raycasting(t_game *game)
 				game->wall[ray].color = color_west;
 		}
 		// ft_draw_line_ddb(game->player->pos_x - (250 / 2), game->player->pos_y - (250 / 2), game->ray->x - (250 / 2), game->ray->y - (250 / 2), ft_convert_rgb(255, 0, 0), game);
-		// if (game->ray->distance == 0)
-		// 	game->ray->distance = 0.0001;
-		game->wall[ray].height = (TILE / game->ray->distance) * 300;
-		// if ( game->wall[ray].height > HEIGHT)
-		// 	game->wall[ray].height = HEIGHT;
-		game->wall[ray].begin_draw = -game->wall[ray].height / 2 + HEIGHT / 2;
+		game->wall[ray].height = (TILE / game->ray->distance) * 277;
+		game->wall[ray].begin_draw = HEIGHT / 2 - game->wall[ray].height / 2;
 		ray++;
 		game->ray->angle += game->player->fov / WIDTH;
 		if (game->ray->angle < 0)
@@ -187,16 +103,8 @@ int    ft_raycasting(t_game *game)
 		if (game->ray->angle > 2 * PI)
 			game->ray->angle -= 2 * PI;
 	}
-	// //3D walls
 	ft_draw_walls(game);
-	// exit(1);
-
-	//direction line
-	// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y,game->player->pos_x +  cos(game->player->angle) * 50,game->player->pos_y +  sin(game->player->angle) * 50 , ft_convert_rgb(00, 0xff, 00), game);
-	
-	mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->pixel->image, 0, 0);
-	mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->mini_map->image, 10, 10);
-	mlx_destroy_image(game->mlx->init, game->mlx->pixel->image);
-	mlx_destroy_image(game->mlx->init, game->mlx->mini_map->image);
+	ft_draw_line_ddb(game->player->pos_x, game->player->pos_y,game->player->pos_x +  cos(game->player->angle) * 50,game->player->pos_y +  sin(game->player->angle) * 50 , ft_convert_rgb(00, 0xff, 00), game);
+	ft_render(game);
 	return (0);
 }

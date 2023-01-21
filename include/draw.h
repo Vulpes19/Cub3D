@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:07 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/20 15:24:51 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/21 13:50:45 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 
 void	ft_draw_pixel(t_game *game, int x, int y, int color);
 int		ft_convert_rgb(uint8_t red, uint8_t green, uint8_t blue);
+void	ft_vertical_intersections(t_game *game);
+void	ft_horizontal_intersections(t_game *game);
 int		ft_raycasting(t_game *game);
 void	ft_draw_line( int x, int draw_start, int draw_end, int color, t_game *game);
 void	ft_draw_line_ddb(int x, int y, int end_x, int end_y, int color, t_game *game);
