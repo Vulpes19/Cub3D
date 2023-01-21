@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/21 13:53:25 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/21 13:56:00 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void	ft_PI_angle(t_game *game)
+{
+	if (game->player->angle < 0)
+		game->player->angle += 2 * PI;
+	if (game->player->angle > 2 * PI)
+		game->player->angle -= 2 * PI;
+}
+
 void	ft_render(t_game *game)
 {
+	ft_draw_walls(game);
 	mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->pixel->image, 0, 0);
 	mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->mini_map->image, 10, 10);
 	mlx_destroy_image(game->mlx->init, game->mlx->pixel->image);
@@ -50,10 +59,7 @@ int    ft_raycasting(t_game *game)
 		game->ray->distance_h = 100000;
 		game->ray->distance_v = 100000;
 		game->ray->angle = game->player->angle - (game->player->half_fov) + (game->player->fov) * ray / WIDTH;
-		if (game->ray->angle < 0)
-			game->ray->angle += 2 * PI;
-		if (game->ray->angle > 2 * PI)
-			game->ray->angle -= 2 * PI;
+		ft_PI_angle(game);
 		game->ray->h_pos_x = game->player->pos_x;
 		game->ray->h_pos_y = game->player->pos_y;
 		ft_horizontal_intersections(game);
@@ -98,12 +104,8 @@ int    ft_raycasting(t_game *game)
 		game->wall[ray].begin_draw = HEIGHT / 2 - game->wall[ray].height / 2;
 		ray++;
 		game->ray->angle += game->player->fov / WIDTH;
-		if (game->ray->angle < 0)
-			game->ray->angle += 2 * PI;
-		if (game->ray->angle > 2 * PI)
-			game->ray->angle -= 2 * PI;
+		ft_PI_angle(game);
 	}
-	ft_draw_walls(game);
 	ft_draw_line_ddb(game->player->pos_x, game->player->pos_y,game->player->pos_x +  cos(game->player->angle) * 50,game->player->pos_y +  sin(game->player->angle) * 50 , ft_convert_rgb(00, 0xff, 00), game);
 	ft_render(game);
 	return (0);

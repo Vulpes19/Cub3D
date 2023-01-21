@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:25:50 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/21 13:47:32 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/21 14:19:24 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,37 @@
 #include <stdio.h>
 #include "close.h"
 
+void	ft_init_pos(int *arr, t_game *game)
+{
+	arr[0] = floor(game->player->pos_x + cos(game->player->angle) * 5) / TILE;
+	arr[1] = floor(game->player->pos_y + sin(game->player->angle) * 5) / TILE;
+	arr[2] = floor(game->player->pos_x - cos(game->player->angle) * 5) / TILE;
+	arr[3] = floor(game->player->pos_y - sin(game->player->angle) * 5) / TILE;
+	arr[4] = floor(game->player->pos_x + cos(game->player->angle
+				+ PI / 2) * 5) / TILE;
+	arr[5] = floor(game->player->pos_y + sin(game->player->angle
+				+ PI / 2) * 5) / TILE;
+	arr[6] = floor(game->player->pos_x - cos(game->player->angle
+				+ PI / 2) * 5) / TILE;
+	arr[7] = floor(game->player->pos_y - sin(game->player->angle
+				+ PI / 2) * 5) / TILE;
+}
+
 void	ft_movement(int keycode, t_game *game)
 {
-	int mx_w = floor(game->player->pos_x + cos(game->player->angle) * 5) / TILE;
-	int my_w = floor(game->player->pos_y + sin(game->player->angle) * 5) / TILE;
-	int mx_s = floor(game->player->pos_x - cos(game->player->angle) * 5) / TILE;
-	int my_s = floor(game->player->pos_y - sin(game->player->angle) * 5) / TILE;
-	int mx_d = floor(game->player->pos_x + cos(game->player->angle + PI / 2) * 5) / TILE;
-	int my_d = floor(game->player->pos_y + sin(game->player->angle + PI / 2) * 5) / TILE;
-	int mx_a = floor(game->player->pos_x - cos(game->player->angle + PI / 2) * 5) / TILE;
-	int my_a = floor(game->player->pos_y - sin(game->player->angle + PI / 2) * 5) / TILE;
-	if (keycode == W_KEY && game->data->map[my_w][mx_w] == '0')
-	{
-		game->player->pos_x += cos(game->player->angle) * 5;
-		game->player->pos_y += sin(game->player->angle) * 5;
-	}
-	if (keycode == S_KEY && game->data->map[my_s][mx_s] == '0')
-	{
-		game->player->pos_x -= cos(game->player->angle) * 5;
-		game->player->pos_y -= sin(game->player->angle) * 5;
-	}
-	if (keycode == A_KEY && game->data->map[my_a][mx_a] == '0')
-	{
-		game->player->pos_x -= cos(game->player->angle + PI / 2) * 5;
-		game->player->pos_y -= sin(game->player->angle + PI / 2) * 5;
-	}
-	if (keycode == D_KEY && game->data->map[my_d][mx_d] == '0')
-	{
-		game->player->pos_x += cos(game->player->angle + PI / 2) * 5;
-		game->player->pos_y += sin(game->player->angle + PI / 2) * 5;
-	}
+	int	*arr;
+
+	arr = (int *)malloc(sizeof(int) * 8);
+	ft_init_pos(arr, game);
+	if (keycode == W_KEY)
+		ft_check_w_collision(game, arr[0], arr[1]);
+	if (keycode == S_KEY)
+		ft_check_s_collision(game, arr[2], arr[3]);
+	if (keycode == D_KEY)
+		ft_check_d_collision(game, arr[4], arr[5]);
+	if (keycode == A_KEY)
+		ft_check_a_collision(game, arr[6], arr[7]);
+	free(arr);
 }
 
 void	ft_rotation(int keycode, t_game *game)
@@ -70,9 +71,13 @@ void	ft_rotation(int keycode, t_game *game)
 
 int	ft_input_handler(int keycode, t_game *game)
 {
-	ft_rotation(keycode, game);
-	ft_movement(keycode, game);
+	if (keycode == ESC)
+		ft_close_esc(game);
+	if (keycode == W_KEY || keycode == S_KEY
+		|| keycode == A_KEY || keycode == D_KEY)
+		ft_movement(keycode, game);
+	if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW)
+		ft_rotation(keycode, game);
 	ft_raycasting(game);
-	ft_close_esc(keycode, game);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:47:39 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/16 11:48:56 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/21 14:19:15 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include "draw.h"
 
-int	ft_close_esc(int keycode, t_game *mlx);
+void	ft_close_esc(t_game *game);
 int	ft_close_x(t_mlx *mlx);
 
 #endif

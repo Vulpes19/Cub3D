@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:25:56 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/11 16:58:18 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/21 14:18:24 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,9 @@
 #include "game.h"
 
 int    ft_input_handler(int keycode, t_game *game);
+void	ft_check_w_collision(t_game *game, int mx, int my);
+void	ft_check_s_collision(t_game *game, int mx, int my);
+void	ft_check_a_collision(t_game *game, int mx, int my);
+void	ft_check_d_collision(t_game *game, int mx, int my);
 
 #endif
