@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/21 18:41:52 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/21 18:43:13 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ int    ft_raycasting(t_game *game)
 		if (game->ray->angle > 2 * PI)
 			game->ray->angle -= 2 * PI;
 	}
-	ft_draw_walls(game);
 	// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y,game->player->pos_x +  cos(game->player->angle) * 50,game->player->pos_y +  sin(game->player->angle) * 50 , ft_convert_rgb(00, 0xff, 00), game);
 	ft_render(game);
 	return (0);
