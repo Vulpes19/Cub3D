@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:25:47 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/21 17:41:07 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/22 20:19:27 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define PI 3.14159265359
 # define RADIAN 0.01745329251
 
-enum	t_bool
+enum	e_bool
 {
 	TRUE = 1,
 	FALSE = 0
@@ -61,7 +61,7 @@ typedef struct s_parse
 
 typedef struct s_texture
 {
-	void   *image;
+	void	*image;
 	void	*image_north;
 	void	*image_south;
 	void	*image_west;
@@ -86,11 +86,11 @@ typedef struct s_pixel
 
 typedef struct s_mlx
 {
-    void	*init;
+	void	*init;
 	void	*window;
-    t_pixel *pixel;
-	t_pixel *mini_map;
-}   t_mlx;
+	t_pixel	*pixel;
+	t_pixel	*mini_map;
+}	t_mlx;
 
 typedef struct s_player
 {
@@ -121,7 +121,7 @@ typedef struct s_ray
 	double	distance_h;
 }	t_ray;
 
-typedef	struct s_wall
+typedef struct s_wall
 {
 	double	height;
 	double	begin_draw;
@@ -148,7 +148,7 @@ typedef struct s_game
 	t_mlx		*mlx;
 }	t_game;
 
-enum t_bool	ft_allocate_game(int ac, char **av, t_game *game);
-void    ft_init_game(t_game *game);
+enum e_bool	ft_allocate_game(int ac, char **av, t_game *game);
+void		ft_init_game(t_game *game);
 
 #endif

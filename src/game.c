@@ -6,14 +6,14 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:43:13 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/22 20:08:35 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/22 20:20:43 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "draw.h"
 
-enum t_bool	ft_allocate_game(int ac, char **av, t_game *game)
+enum e_bool	ft_allocate_game(int ac, char **av, t_game *game)
 {
 	if (ft_init_parsing(ac, av, game) == FALSE)
 	{

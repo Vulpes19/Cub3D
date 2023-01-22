@@ -6,14 +6,14 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:20:09 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/20 15:17:55 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/22 20:20:47 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parser.h"
 
-enum t_bool	ft_init_parsing(int argc, char **argv, t_game *game)
+enum e_bool	ft_init_parsing(int argc, char **argv, t_game *game)
 {
 	if (argc == 2)
 	{
