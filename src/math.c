@@ -6,30 +6,33 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 16:09:28 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/21 15:14:06 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/22 19:03:57 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 
-// double	ft_better_sqrt(double nbr)
-// {
-// 	long	i;
-// 	double	x2;
-// 	double	y;
-// 	const double threehalfs = 1.5;
-
-// 	x2 = nbr * 0.5;
-// 	y = nbr;
-// 	i = *(long *)&y;
-// 	i = 0x5f3759df - (i >> 1);
-// 	y = *(double *)&i;
-// 	y = y * (threehalfs - (x2 * y * y));
-// 	return (1 / y);
-// }
-
 double ft_distance(double x1, double y1, double x2, double y2, double angle)
 {
 	return (sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2)));
-	// return ((x2 - x1) * cos(angle) + (y2 - y1) * sin(angle));
+}
+
+void	ft_calculate_distance(t_game *game, char direction)
+{
+	if (direction == 'h')
+	{
+		game->ray->h_pos_x = game->ray->x;
+		game->ray->h_pos_y = game->ray->y;
+		game->ray->distance_h
+			= ft_distance(game->player->pos_x, game->player->pos_y,
+				game->ray->x, game->ray->y, game->player->angle);
+	}
+	else
+	{
+		game->ray->v_pos_x = game->ray->x;
+		game->ray->v_pos_y = game->ray->y;
+		game->ray->distance_v
+			= ft_distance(game->player->pos_x, game->player->pos_y,
+				game->ray->x, game->ray->y, game->player->angle);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/21 18:43:13 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/22 19:21:56 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	ft_load_images(t_game *game)
 
 void	ft_render(t_game *game)
 {
-	ft_draw_walls(game);
 	mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->pixel->image, 0, 0);
 	mlx_put_image_to_window(game->mlx->init, game->mlx->window, game->mlx->mini_map->image, 10, 10);
 	mlx_destroy_image(game->mlx->init, game->mlx->pixel->image);
@@ -95,9 +94,9 @@ int    ft_raycasting(t_game *game)
 			else if (game->player->angle < PI / 2 || game->player->angle > 3 * PI / 2)
 				game->wall[ray].color = color_west;
 		}
-		// ft_draw_line_ddb(game->player->pos_x - (250 / 2), game->player->pos_y - (250 / 2), game->ray->x - (250 / 2), game->ray->y - (250 / 2), ft_convert_rgb(255, 0, 0), game);
 		game->wall[ray].height = (TILE / game->ray->distance) * 300;
 		game->wall[ray].begin_draw = -game->wall[ray].height / 2 + HEIGHT / 2;
+		ft_draw_walls(game, ray);
 		ray++;
 		game->ray->angle += game->player->fov / WIDTH;
 		if (game->ray->angle < 0)
@@ -105,7 +104,6 @@ int    ft_raycasting(t_game *game)
 		if (game->ray->angle > 2 * PI)
 			game->ray->angle -= 2 * PI;
 	}
-	// ft_draw_line_ddb(game->player->pos_x, game->player->pos_y,game->player->pos_x +  cos(game->player->angle) * 50,game->player->pos_y +  sin(game->player->angle) * 50 , ft_convert_rgb(00, 0xff, 00), game);
 	ft_render(game);
 	return (0);
 }

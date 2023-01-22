@@ -6,84 +6,72 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/21 17:33:03 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/22 19:22:54 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 #include <stdio.h>
 
-void ft_draw_rectangle(int x, int y, int width, int height, int color, t_game *game)
+void	ft_draw_rectangle(t_rectangle rect, t_game *game)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
-	i = y;
-	while (i < y + height)
+	i = rect.y;
+	while (i < rect.y + rect.height)
 	{
-		j = x;
-		while (j < x + width)
+		j = rect.x;
+		while (j < rect.x + rect.width)
 		{
-			ft_draw_pixel(game, j++, i, color);
+			ft_draw_pixel(game, j++, i, rect.color);
 		}
 		++i;
 	}
 }
 
-void	ft_draw_line_ddb(int x, int y, int end_x, int end_y, int color, t_game *game)
+void	ft_draw_floor_and_ceiling(t_game *game, int i)
 {
-	double    middle_x;
-	double    middle_y;
-    double    d_middle_x;
-    double    d_middle_y;
-    double    distance;
+	t_rectangle	rect;
 
-    middle_x = 0;
-    middle_y = 0;
-    distance = sqrt(pow(end_x - x, 2) + pow(end_y - y, 2));
-    d_middle_x = (end_x - x) / distance;
-    d_middle_y = (end_y - y) / distance;
-    while (distance-- > 0)
-    {
-        ft_draw_pixel_mini_map(game, x + middle_x, y + middle_y, color);
-        middle_x += d_middle_x;
-        middle_y += d_middle_y;
-    }
+	rect.x = i;
+	rect.y = game->wall[i].begin_draw + game->wall[i].height - 1;
+	rect.width = 1;
+	rect.height = HEIGHT - (game->wall[i].begin_draw + game->wall[i].height);
+	rect.color = game->color_floor;
+	ft_draw_rectangle(rect, game);
+	rect.x = i;
+	rect.y = 0;
+	rect.width = 1;
+	rect.height = game->wall[i].begin_draw;
+	rect.color = game->color_ceiling;
+	ft_draw_rectangle(rect, game);
 }
 
-void	ft_draw_walls(t_game *game)
+void	ft_draw_walls(t_game *game, int i)
 {
-	int	i;
-	int color;
-	int begin;
-	int start;
-	int end;
+	int	color;
+	int	start;
+	int	end;
 
-	i = 0;
-	begin = 0;
-	while (i < WIDTH)
+	start = 0;
+	if (game->wall[i].height > HEIGHT)
 	{
-		begin = 0;
-		start = 0;
-		if (game->wall[i].height > HEIGHT)
-		{
-			start = game->wall[i].height / 2 - HEIGHT / 2;
-			end = game->wall[i].height / 2 + HEIGHT / 2;
-		}
-		else
-			end = game->wall[i].height;
-		// printf("game->wall[%d].height = %f\n", i, game->wall[i].height);
-		while (start < end)
-		{
-			if (game->wall[i].is_horizontal)
-				color = ft_get_color(game->wall[i].tex_x, start, game->wall[i].height, game);
-			else
-				color = ft_get_color(game->wall[i].tex_y, start, game->wall[i].height, game);	
-			ft_draw_pixel(game, i, start + game->wall[i].begin_draw, color);
-			start++;
-		}
-		ft_draw_rectangle(i, game->wall[i].begin_draw + game->wall[i].height - 1, 1, HEIGHT - (game->wall[i].begin_draw + game->wall[i].height), game->color_floor, game);
-		ft_draw_rectangle(i, 0, 1, game->wall[i].begin_draw, game->color_ceiling, game);
-		i++;
+		start = game->wall[i].height / 2 - HEIGHT / 2;
+		end = game->wall[i].height / 2 + HEIGHT / 2;
 	}
+	else
+		end = game->wall[i].height;
+	while (start < end)
+	{
+		if (game->wall[i].is_horizontal)
+			color = ft_get_color(game->wall[i].tex_x,
+					start, game->wall[i].height, game);
+		else
+			color = ft_get_color(game->wall[i].tex_y,
+					start, game->wall[i].height, game);
+		ft_draw_pixel(game, i, start + game->wall[i].begin_draw, color);
+		start++;
+	}
+	ft_draw_floor_and_ceiling(game, i);
 }

@@ -6,11 +6,12 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 14:26:59 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/21 17:56:56 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/22 18:58:35 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
+#include "libft.h"
 
 void	ft_draw_point(t_game *game, int mini_map_x, int mini_map_y)
 {
