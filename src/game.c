@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:43:13 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/21 14:15:25 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/22 20:08:35 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ enum t_bool	ft_allocate_game(int ac, char **av, t_game *game)
 	if (ft_init_parsing(ac, av, game) == FALSE)
 	{
 		free(game);
-		return(FALSE);
+		return (FALSE);
 	}
 	game->mlx = (t_mlx *)malloc(sizeof(t_mlx));
 	game->mlx->pixel = (t_pixel *)malloc(sizeof(t_pixel));
@@ -30,9 +30,9 @@ enum t_bool	ft_allocate_game(int ac, char **av, t_game *game)
 	return (TRUE);
 }
 
-void    ft_init_game(t_game *game)
+void	ft_init_game(t_game *game)
 {
-    game->mlx->init = mlx_init();
+	game->mlx->init = mlx_init();
 	game->player->pos_x = game->data->player_x * TILE;
 	game->player->pos_y = game->data->player_y * TILE;
 	if (game->data->player_direction == 'N')
