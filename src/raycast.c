@@ -6,13 +6,14 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 12:01:22 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/23 12:28:55 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 #include "draw.h"
 #include "input.h"
+#include "close.h"
 #include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -24,6 +25,7 @@ void	ft_load_images(t_game *game)
 	if (!game->mlx->pixel->image || !game->mlx->mini_map->image)
 	{
 		ft_putstr_fd("failed to load images\n", STDERR_FILENO);
+		ft_close(game);
 	}
 	game->mlx->pixel->address = mlx_get_data_addr(game->mlx->pixel->image,
 			&game->mlx->pixel->bits_per_pixel,

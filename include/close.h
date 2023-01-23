@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:47:39 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 12:05:46 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/23 12:24:26 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ void	ft_close_esc(t_game *game);
 int		ft_close_x(t_game *mlx);
 void	ft_free_textures(t_game *game);
 void	ft_free_game(t_game *game);
+void	ft_close(t_game *game);
 
 #endif
