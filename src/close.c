@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:47:14 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 15:23:21 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/23 18:20:53 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_free_game(t_game *game)
 	free(game->texture_west);
 	ft_free_map_error(game->data);
 	free(game);
+	system("leaks cub3D");
 	exit(EXIT_SUCCESS);
 }
 
