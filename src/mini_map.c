@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 14:26:59 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/22 18:58:35 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/23 11:49:03 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,40 +43,45 @@ void	ft_draw_square(int x, int y, t_game *game, int color)
 	}
 }
 
-void	ft_init_mini_map(int *mini_map_x, int *mini_map_y, t_game *game)
+void	ft_init_mini_map(t_mini_map *mini_map, t_game *game)
 {
-	*mini_map_x = (game->player->pos_x - (250 / 2)) / TILE;
-	*mini_map_y = (game->player->pos_y - (250 / 2)) / TILE;
+	mini_map->mini_map_x = (game->player->pos_x - (250 / 2)) / TILE;
+	mini_map->mini_map_y = (game->player->pos_y - (250 / 2)) / TILE;
+	mini_map->map_x = game->player->pos_x - (250 / 2);
+	mini_map->map_y = game->player->pos_y - (250 / 2);
+}
+
+void	ft_draw_grid_loop(t_game *game, t_mini_map mini_map)
+{
+	while (game->data->map[mini_map.mini_map_y][mini_map.mini_map_x])
+	{
+		if (game->data->map
+			[mini_map.mini_map_y][mini_map.mini_map_x] == '1')
+			ft_draw_square((mini_map.mini_map_x * TILE)
+				- mini_map.map_x, (mini_map.mini_map_y * TILE)
+				- mini_map.map_y, game, ft_convert_rgb(228, 208, 10));
+		else
+			ft_draw_square((mini_map.mini_map_x * TILE)
+				- mini_map.map_x, (mini_map.mini_map_y * TILE)
+				- mini_map.map_y, game, ft_convert_rgb(255, 255, 255));
+		mini_map.mini_map_x++;
+	}
 }
 
 void	ft_draw_grid(t_game *game)
 {
-	int	mini_map_x;
-	int	mini_map_y;
-	int	map_x;
-	int	map_y;
-	int	len;
+	t_mini_map	mini_map;
+	int			len;
 
-	ft_init_mini_map(&mini_map_x, &mini_map_y, game);
-	map_x = game->player->pos_x - (250 / 2);
-	map_y = game->player->pos_y - (250 / 2);
-	while (mini_map_y < game->data->map_length)
+	ft_init_mini_map(&mini_map, game);
+	while (mini_map.mini_map_y < game->data->map_length)
 	{
-		len = ft_strlen(game->data->map[mini_map_y]);
-		mini_map_x = (game->player->pos_x - (250 / 2)) / TILE;
-		if (mini_map_x > len)
-			mini_map_x = len;
-		while (game->data->map[mini_map_y][mini_map_x])
-		{
-			if (game->data->map[mini_map_y][mini_map_x] == '1')
-				ft_draw_square((mini_map_x * TILE) - map_x, (mini_map_y * TILE)
-					- map_y, game, ft_convert_rgb(228, 208, 10));
-			else
-				ft_draw_square((mini_map_x * TILE) - map_x, (mini_map_y * TILE)
-					- map_y, game, ft_convert_rgb(255, 255, 255));
-			mini_map_x++;
-		}
-		mini_map_y++;
+		len = ft_strlen(game->data->map[mini_map.mini_map_y]);
+		mini_map.mini_map_x = (game->player->pos_x - (250 / 2)) / TILE;
+		if (mini_map.mini_map_x > len)
+			mini_map.mini_map_x = len;
+		ft_draw_grid_loop(game, mini_map);
+		mini_map.mini_map_y++;
 	}
 	ft_draw_point(game, game->player->pos_x - (250 / 2),
 		game->player->pos_y - (250 / 2));

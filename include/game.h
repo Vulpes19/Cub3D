@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:25:47 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/22 20:19:27 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/23 11:36:35 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,6 @@ typedef struct s_parse
 typedef struct s_texture
 {
 	void	*image;
-	void	*image_north;
-	void	*image_south;
-	void	*image_west;
-	void	*image_east;
 	int		color;
 	char	*address;
 	int		width;
@@ -131,6 +127,7 @@ typedef struct s_wall
 	int		is_horizontal;
 	int		is_vertical;
 	int		color;
+	t_texture	*texture;
 }	t_wall;
 typedef struct s_game
 {
@@ -138,7 +135,10 @@ typedef struct s_game
 	t_player	*player;
 	t_ray		*ray;
 	t_wall		*wall;
-	t_texture	*texture;
+	t_texture	*texture_north;
+	t_texture	*texture_south;
+	t_texture	*texture_east;
+	t_texture	*texture_west;
 	double		move_speed;
 	double		rot_speed;
 	int			*floor;
@@ -150,5 +150,6 @@ typedef struct s_game
 
 enum e_bool	ft_allocate_game(int ac, char **av, t_game *game);
 void		ft_init_game(t_game *game);
+void	ft_compare_distances(t_game *game, int ray);
 
 #endif

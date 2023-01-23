@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:22 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/22 19:22:54 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/23 10:15:28 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ void	ft_draw_walls(t_game *game, int i)
 	{
 		if (game->wall[i].is_horizontal)
 			color = ft_get_color(game->wall[i].tex_x,
-					start, game->wall[i].height, game);
+					start, game->wall[i].height, game->wall[i].texture);
 		else
 			color = ft_get_color(game->wall[i].tex_y,
-					start, game->wall[i].height, game);
+					start, game->wall[i].height, game->wall[i].texture);
 		ft_draw_pixel(game, i, start + game->wall[i].begin_draw, color);
 		start++;
 	}

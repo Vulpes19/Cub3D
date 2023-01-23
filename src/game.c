@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:43:13 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/22 20:20:43 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/23 10:14:23 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 enum e_bool	ft_allocate_game(int ac, char **av, t_game *game)
 {
+	int		i;
+
+	i = 0;
 	if (ft_init_parsing(ac, av, game) == FALSE)
 	{
 		free(game);
@@ -26,7 +29,12 @@ enum e_bool	ft_allocate_game(int ac, char **av, t_game *game)
 	game->player = (t_player *)malloc(sizeof(t_player));
 	game->ray = (t_ray *)malloc(sizeof(t_ray));
 	game->wall = (t_wall *)malloc(sizeof(t_wall) * WIDTH);
-	game->texture = (t_texture *)malloc(sizeof(t_texture));
+	while (i < WIDTH)
+		game->wall[i++].texture = (t_texture *)malloc(sizeof(t_texture));
+	game->texture_north = (t_texture *)malloc(sizeof(t_texture));
+	game->texture_south = (t_texture *)malloc(sizeof(t_texture));
+	game->texture_east = (t_texture *)malloc(sizeof(t_texture));
+	game->texture_west = (t_texture *)malloc(sizeof(t_texture));
 	return (TRUE);
 }
 
