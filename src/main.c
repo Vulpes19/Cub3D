@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:14:17 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/22 20:09:36 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/23 11:58:45 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	main(int ac, char **av)
 	t_game		*game;
 
 	game = (t_game *)malloc(sizeof(t_game));
+	if (!game)
+		exit(EXIT_FAILURE);
 	if (ft_allocate_game(ac, av, game) == FALSE)
 		return (EXIT_FAILURE);
 	ft_init_game(game);

@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 13:45:00 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/22 19:03:42 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/23 12:14:02 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_norme(t_game *game)
 	game->ray->y = game->player->pos_y;
 }
 
-void	ft_intersection_loop_h(t_game *game, int mx, int my)
+void	ft_intersection_loop_h(t_game *game, size_t mx, size_t my)
 {
 	int	dof;
 
@@ -46,7 +46,7 @@ void	ft_intersection_loop_h(t_game *game, int mx, int my)
 	}
 }
 
-void	ft_intersection_loop_v(t_game *game, int mx, int my)
+void	ft_intersection_loop_v(t_game *game, size_t mx, size_t my)
 {
 	int	dof;
 
@@ -74,9 +74,11 @@ void	ft_intersection_loop_v(t_game *game, int mx, int my)
 
 void	ft_horizontal_intersections(t_game *game)
 {
-	int	mx;
-	int	my;
+	size_t	mx;
+	size_t	my;
 
+	mx = 0;
+	my = 0;
 	if (game->ray->angle > PI)
 	{
 		game->ray->y = floor(game->player->pos_y / TILE) * TILE - 0.0001;
@@ -103,9 +105,11 @@ void	ft_horizontal_intersections(t_game *game)
 
 void	ft_vertical_intersections(t_game *game)
 {
-	int	mx;
-	int	my;
+	size_t	mx;
+	size_t	my;
 
+	mx = 0;
+	my = 0;
 	if (game->ray->angle > PI / 2 && game->ray->angle < 3 * PI / 2)
 	{
 		game->ray->x = floor(game->player->pos_x / TILE) * TILE - 0.0001;

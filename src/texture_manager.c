@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:29:57 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 11:37:33 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/23 11:50:28 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ void	ft_load_texture(t_game *game)
 {
 	game->texture_north->width = TILE;
 	game->texture_north->height = TILE;
-	// game->texture->image = mlx_xpm_file_to_image(game->mlx->init,
-	// 		"assets/spongebob-64x64.xpm", &game->texture->width,
-	// 		&game->texture->height);
 	game->texture_north->image = mlx_xpm_file_to_image(game->mlx->init,
 			game->data->no, &game->texture_north->width,
 			&game->texture_north->height);

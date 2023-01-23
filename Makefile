@@ -17,7 +17,7 @@ OBJ_DIR = obj
 OBJS = $(SRC:src/%.c=$(OBJ_DIR)/%.o)
 
 #* FLAGS *#
-FLAGS = -fsanitize=address -g3
+FLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 MLX = -lmlx -framework OpenGL -framework AppKit
 
 #*  INCLUDE PATHS *#

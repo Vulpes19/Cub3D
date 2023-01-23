@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:07 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 11:40:32 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/23 12:14:34 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ typedef struct s_rectangle
 
 typedef struct s_mini_map
 {
-	int	mini_map_x;
-	int	mini_map_y;
-	int	map_x;
-	int	map_y;
+	size_t	mini_map_x;
+	size_t	mini_map_y;
+	size_t	map_x;
+	size_t	map_y;
 }	t_mini_map;
 
 void	ft_draw_pixel(t_game *game, int x, int y, int color);

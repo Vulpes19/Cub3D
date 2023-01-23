@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:25:47 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 11:36:35 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/23 12:13:03 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_parse
 	char		**d_tmp;
 	char		**floor;
 	char		**ceiling;
-	int			map_length;
+	size_t		map_length;
 	char		*no;
 	char		*so;
 	char		*we;

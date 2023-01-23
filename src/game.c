@@ -6,18 +6,41 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:43:13 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 10:14:23 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/23 12:06:57 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "draw.h"
 
-enum e_bool	ft_allocate_game(int ac, char **av, t_game *game)
+enum e_bool	ft_protect_game(t_game *game)
+{
+	if (!game->mlx || !game->mlx->pixel || !game->mlx->mini_map
+		|| !game->player || !game->ray || !game->wall)
+		return (FALSE);
+	if (!game->texture_north || !game->texture_south
+		|| !game->texture_west || !game->texture_east)
+		return (FALSE);
+	return (TRUE);
+}
+
+enum e_bool	ft_allocate_textures(t_game *game)
 {
 	int		i;
 
 	i = 0;
+	while (i < WIDTH)
+	{
+		game->wall[i].texture = (t_texture *)malloc(sizeof(t_texture));
+		if (!game->wall[i].texture)
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
+}
+
+enum e_bool	ft_allocate_game(int ac, char **av, t_game *game)
+{
 	if (ft_init_parsing(ac, av, game) == FALSE)
 	{
 		free(game);
@@ -29,12 +52,14 @@ enum e_bool	ft_allocate_game(int ac, char **av, t_game *game)
 	game->player = (t_player *)malloc(sizeof(t_player));
 	game->ray = (t_ray *)malloc(sizeof(t_ray));
 	game->wall = (t_wall *)malloc(sizeof(t_wall) * WIDTH);
-	while (i < WIDTH)
-		game->wall[i++].texture = (t_texture *)malloc(sizeof(t_texture));
+	if (ft_allocate_textures(game) == FALSE)
+		return (FALSE);
 	game->texture_north = (t_texture *)malloc(sizeof(t_texture));
 	game->texture_south = (t_texture *)malloc(sizeof(t_texture));
 	game->texture_east = (t_texture *)malloc(sizeof(t_texture));
 	game->texture_west = (t_texture *)malloc(sizeof(t_texture));
+	if (ft_protect_game(game) == FALSE)
+		return (FALSE);
 	return (TRUE);
 }
 

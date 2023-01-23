@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 14:26:59 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 11:49:03 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/23 12:15:00 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_draw_grid_loop(t_game *game, t_mini_map mini_map)
 void	ft_draw_grid(t_game *game)
 {
 	t_mini_map	mini_map;
-	int			len;
+	size_t			len;
 
 	ft_init_mini_map(&mini_map, game);
 	while (mini_map.mini_map_y < game->data->map_length)
