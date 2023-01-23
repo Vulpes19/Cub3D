@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:14:17 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 12:25:01 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/23 14:17:53 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	main(int ac, char **av)
 		ft_putstr_fd("failed to create window\n", STDERR_FILENO);
 		ft_close(game);
 	}
+	ft_load_texture(game);
 	mlx_hook(game->mlx->window, 17, 1L << 0, ft_close_x, game);
 	mlx_hook(game->mlx->window, 2, 1L << 0, ft_input_handler, game);
 	ft_raycasting(game);

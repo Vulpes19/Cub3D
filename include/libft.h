@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:18:48 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 12:11:20 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/23 14:45:31 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <mlx.h>
+# include "game.h"
 
 char			*ft_strdup(char *src);
 int				checknl(char *str);
@@ -34,8 +35,8 @@ int				ft_strncmp(char *s1, char *s2, unsigned int n);
 char			*ft_substr(char *s, unsigned int start, size_t len);
 char			*ft_strjoin(char *s1, char *s2);
 char			**ft_split(char const *s, char c);
-void			ft_file_error(void);
+void			ft_file_error(t_parse *data);
 void			ft_putstr_fd(char *str, int fd);
-void			ft_arguments_error(void);
+void			ft_arguments_error(t_parse *data);
 
 #endif

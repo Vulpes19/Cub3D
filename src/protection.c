@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:25:06 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/20 19:48:35 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/23 15:09:15 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +59,52 @@ int	ft_mapname_protection(char *name)
 	return (0);
 }
 
-t_status	ft_check_colors(char **rgb)
-{
-	int	i;
-	int	color;
+// t_status	ft_check_colors(char **rgb)
+// {
+// 	int	i;
+// 	int	color;
 
-	i = 1;
-	while (rgb[i])
-	{
-		color = ft_atoi(rgb[i]);
-		if (color < 0 || color > 255)
-			return (ERROR);
-		i++;
-	}
-	if (i > 3)
-		return (ERROR);
-	return (GOOD);
+// 	i = 1;
+// 	while (rgb[i])
+// 	{
+// 		color = ft_atoi(rgb[i]);
+// 		if (color < 0 || color > 255)
+// 			return (ERROR);
+// 		i++;
+// 	}
+// 	if (i > 3)
+// 		return (ERROR);
+// 	return (GOOD);
+// }
+
+t_status    ft_check_colors(char **rgb)
+{
+    int     i;
+    int     color;
+    char    **tmp;
+    int     j;
+
+    i = 1;
+    color = -1;
+    while (rgb[i])
+    {
+        tmp = ft_split(rgb[i], ',');
+        j = 0;
+        while (tmp[j])
+        {
+            color = ft_atoi(tmp[j]);
+            if (color < 0 || color > 255)
+            {
+                freethis1(tmp);
+                return (ERROR);
+            }
+            j++;
+        }
+        i++;
+    }
+    if (i > 3 || j <= 2)
+    {
+        return (ERROR);
+    }
+    return (GOOD);
 }

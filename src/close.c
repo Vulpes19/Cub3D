@@ -6,11 +6,12 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:47:14 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 12:24:20 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/23 15:23:21 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "close.h"
+#include "parser.h"
 
 void	ft_free_textures(t_game *game)
 {
@@ -26,8 +27,8 @@ void	ft_free_textures(t_game *game)
 
 void	ft_free_game(t_game *game)
 {
-	free(game->mlx->window);
-	free(game->mlx->init);
+	free(game->mlx->pixel);
+	free(game->mlx->mini_map);
 	free(game->mlx);
 	free(game->player);
 	free(game->ray);
@@ -37,7 +38,9 @@ void	ft_free_game(t_game *game)
 	free(game->texture_south);
 	free(game->texture_east);
 	free(game->texture_west);
+	ft_free_map_error(game->data);
 	free(game);
+	exit(EXIT_SUCCESS);
 }
 
 void	ft_close_esc(t_game *game)

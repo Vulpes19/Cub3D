@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:07:04 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 12:11:14 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/23 15:13:01 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,25 @@ t_status	ft_parse(t_parse *data)
 
 	i = 1;
 	data->buff = get_next_line(data->file);
+	if (data->buff == NULL)
+		return (ERROR);
 	data->tmp = ft_strdup("");
-	while (i < 8)
+	while (ft_strncmp(data->buff, "1", 1) != 0)
 	{
 		data->leaks = data->tmp;
 		data->tmp = ft_strjoin(data->tmp, data->buff);
 		free(data->leaks);
 		free(data->buff);
 		data->buff = get_next_line(data->file);
+		if (data->buff == NULL)
+			return (ERROR);
 		i++;
 	}
-	free(data->buff);
+	// free(data->buff);
 	data->textures_colors = ft_split(data->tmp, '\n');
 	if (ft_organize(data) == GOOD)
-	{	
+	{
+		printf("hmar\n");
 		free(data->tmp);
 		return (GOOD);
 	}
@@ -108,7 +113,7 @@ void	ft_read_map(t_parse *data)
 	{	
 		data->map_length = 0;
 		data->tmp = ft_strdup("");
-		data->buff = get_next_line(data->file);
+		// data->buff = get_next_line(data->file);
 		while (data->buff)
 		{
 			data->leaks = data->tmp;
@@ -118,14 +123,20 @@ void	ft_read_map(t_parse *data)
 			data->buff = get_next_line(data->file);
 			data->map_length++;
 		}
+		free(data->buff);
 		data->map = ft_split(data->tmp, '\n');
 		if (ft_examine_map(data) == GOOD
 			&& ft_player_position(data) == GOOD)
-			printf("all good\n");
+			return ;
 		else
-			printf("error: map is incomplete or player not found\n");
-		// ft_free_map_error(data);
+		{
+			ft_map_error(data);
+			exit(EXIT_FAILURE);
+		}
 	}
 	else
-		printf("parsing error\n");
+	{
+		ft_putstr_fd("parsing error\n", STDERR_FILENO);
+		exit(EXIT_FAILURE);
+	}
 }

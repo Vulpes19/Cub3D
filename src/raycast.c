@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 12:28:55 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/23 14:29:39 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	ft_raycasting(t_game *game)
 
 	ray = 0;
 	ft_load_images(game);
-	ft_load_texture(game);
 	ft_draw_grid(game);
 	while (ray < WIDTH)
 	{

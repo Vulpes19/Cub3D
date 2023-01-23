@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:20:09 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/22 20:20:47 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/23 14:46:44 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,22 @@ enum e_bool	ft_init_parsing(int argc, char **argv, t_game *game)
 			game->data = malloc(sizeof(t_parse));
 			game->data->file = open(argv[1], O_RDONLY);
 			if (game->data->file > 0)
+			{
 				ft_read_map(game->data);
+				return (TRUE);
+			}
 			else
-				ft_file_error();
-			// free(game->data);
+				ft_file_error(game->data);
 		}
 		else
 		{
-			ft_mapname_error();
+			ft_mapname_error(game->data);
 			return (FALSE);
 		}
 	}
 	else
 	{
-		ft_arguments_error();
+		ft_arguments_error(game->data);
 		return (FALSE);
 	}
 	return (TRUE);
