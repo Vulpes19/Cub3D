@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   protection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:25:06 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/24 14:54:13 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/24 16:02:31 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,24 +58,6 @@ int	ft_mapname_protection(char *name)
 		return (1);
 	return (0);
 }
-
-// t_status	ft_check_colors(char **rgb)
-// {
-// 	int	i;
-// 	int	color;
-
-// 	i = 1;
-// 	while (rgb[i])
-// 	{
-// 		color = ft_atoi(rgb[i]);
-// 		if (color < 0 || color > 255)
-// 			return (ERROR);
-// 		i++;
-// 	}
-// 	if (i > 3)
-// 		return (ERROR);
-// 	return (GOOD);
-// }
 
 t_status    ft_check_colors(char **rgb)
 {

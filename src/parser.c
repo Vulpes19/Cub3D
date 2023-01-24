@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:07:04 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/24 14:57:45 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/24 16:02:41 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_status	ft_parse(t_parse *data)
 			return (ERROR);
 		i++;
 	}
-	// free(data->buff);
 	data->textures_colors = ft_split(data->tmp, '\n');
 	if (ft_organize(data) == GOOD)
 	{
@@ -112,23 +111,28 @@ void	ft_read_map(t_parse *data)
 	{	
 		data->map_length = 0;
 		data->tmp = ft_strdup("");
-		// data->buff = get_next_line(data->file);
 		while (data->buff)
 		{
 			data->leaks = data->tmp;
 			data->tmp = ft_strjoin(data->tmp, data->buff);
-			printf("tmp = %s\n", data->tmp);
 			free(data->leaks);
 			free(data->buff);
 			data->buff = get_next_line(data->file);
-
+			if (data->buff && ft_strncmp(data->buff, "\n", 1) == 0)
+			{
+				free(data->buff);
+				data->buff = get_next_line(data->file);
+				data->map_length--;
+			}
 			data->map_length++;
 		}
 		free(data->buff);
 		data->map = ft_split(data->tmp, '\n');
 		if (ft_examine_map(data) == GOOD
 			&& ft_player_position(data) == GOOD)
+		{
 			return ;
+		}
 		else
 		{
 			ft_map_error(data);

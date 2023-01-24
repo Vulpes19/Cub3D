@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errorMessages.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:18:42 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 14:56:58 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/24 18:52:55 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	ft_file_error(t_parse *data)
 	ft_putstr_fd("Error: File could not be opened or doesn't exist.\n",
 		STDERR_FILENO);
 	free(data);
-	// system("leaks cub3D");
 	exit(EXIT_FAILURE);
 }
 
@@ -26,7 +25,6 @@ void	ft_arguments_error(t_parse *data)
 {
 	ft_putstr_fd("Error: Not enough arguments.\n", STDERR_FILENO);
 	free(data);
-	// system("leaks cub3D");
 	exit(EXIT_FAILURE);
 }
 
