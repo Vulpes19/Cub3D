@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:43:13 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 14:17:26 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/24 10:34:37 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,9 @@ void	ft_init_game(t_game *game)
 		game->player->angle = PI;
 	else if (game->data->player_direction == 'E')
 		game->player->angle = 0;
-	game->player->rot_x = cos(game->player->angle) * 5;
-	game->player->rot_y = sin(game->player->angle) * 5;
 	game->player->fov = 60 * (PI / 180);
 	game->player->half_fov = game->player->fov / 2;
 	game->player->height = 32;
-	game->player->speed = 16;
 	game->ray->angle = game->player->angle;
 	ft_get_ceiling_color(game);
 	ft_get_floor_color(game);

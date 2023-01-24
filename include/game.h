@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:25:47 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 12:13:03 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/24 10:30:07 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ typedef struct s_player
 	double	fov;
 	double	half_fov;
 	int		height;
-	int		speed;
 }	t_player;
 
 typedef struct s_ray

@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:07:04 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 15:13:01 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/24 09:59:20 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ t_status	ft_parse(t_parse *data)
 	data->textures_colors = ft_split(data->tmp, '\n');
 	if (ft_organize(data) == GOOD)
 	{
-		printf("hmar\n");
 		free(data->tmp);
 		return (GOOD);
 	}

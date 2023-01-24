@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 14:29:39 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/24 12:21:52 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,13 @@ void	ft_render(t_game *game)
 
 void	ft_raycasting_loop(t_game *game, int ray)
 {
-	game->ray->h_pos_x = game->player->pos_x;
-	game->ray->h_pos_y = game->player->pos_y;
 	ft_horizontal_intersections(game);
-	game->ray->v_pos_x = game->player->pos_x;
-	game->ray->v_pos_y = game->player->pos_y;
 	ft_vertical_intersections(game);
 	game->wall[ray].texture->image = game->texture_north->image;
 	game->wall[ray].tex_x = game->ray->x;
 	game->wall[ray].tex_y = game->ray->y;
 	ft_compare_distances(game, ray);
-	game->wall[ray].height = (TILE / game->ray->distance) * 300;
+	game->wall[ray].height = (TILE / game->ray->distance) * 500;
 	game->wall[ray].begin_draw = -game->wall[ray].height / 2 + HEIGHT / 2;
 	ft_draw_walls(game, ray);
 	game->ray->angle += game->player->fov / WIDTH;

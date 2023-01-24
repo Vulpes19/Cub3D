@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:05:20 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 14:59:44 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/24 10:27:13 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_free_map_error(t_parse *data)
 	free(data->ea);
 	freethis1(data->ceiling);
 	freethis1(data->floor);
-	// free(data);
+	free(data);
 }
 
 void	ft_free_parse_error(t_parse *data)

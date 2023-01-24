@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:18:48 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 14:45:31 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/24 10:24:58 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int				checknl(char *str);
 char			*get_next_line(int fd);
 void			freethis(void *ptr);
 void			freethis1(char **str);
+void			freethis_int(int **str);
 void			*ft_calloc(size_t count, size_t size);
 int				ft_atoi(const char *str);
 void			ft_bzero(void *s, size_t n);
