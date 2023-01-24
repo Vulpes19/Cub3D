@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:25:06 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/24 09:59:53 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:54:13 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ t_status    ft_check_colors(char **rgb)
             }
             j++;
         }
+        freethis1(tmp);
         i++;
     }
     if (i > 3 || j <= 2)

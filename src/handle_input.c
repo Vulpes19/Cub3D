@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:25:50 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/21 14:19:24 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:12:44 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_rotation(int keycode, t_game *game)
 {
 	if (keycode == RIGHT_ARROW)
 	{
-		game->player->angle += 0.1;
+		game->player->angle += 0.08;
 		if (game->player->angle > 2 * PI)
 		{
 			game->player->angle -= 2 * PI;
@@ -60,7 +60,7 @@ void	ft_rotation(int keycode, t_game *game)
 	}
 	if (keycode == LEFT_ARROW)
 	{
-		game->player->angle -= 0.1;
+		game->player->angle -= 0.08;
 		if (game->player->angle < 0)
 		{
 			game->player->angle += 2 * PI;

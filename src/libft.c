@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:29:07 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 12:11:28 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:58:53 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ size_t	ft_strlen(char *str)
 	size_t	len;
 
 	len = 0;
+	if (!str)
+		return (0);
 	while (str[len] != '\0')
 		len++;
 	return (len);

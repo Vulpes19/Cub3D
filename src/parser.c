@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:07:04 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/24 09:59:20 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:57:45 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,11 @@ void	ft_read_map(t_parse *data)
 		{
 			data->leaks = data->tmp;
 			data->tmp = ft_strjoin(data->tmp, data->buff);
+			printf("tmp = %s\n", data->tmp);
 			free(data->leaks);
 			free(data->buff);
 			data->buff = get_next_line(data->file);
+
 			data->map_length++;
 		}
 		free(data->buff);

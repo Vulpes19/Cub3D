@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/24 12:21:52 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/24 12:24:39 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_raycasting_loop(t_game *game, int ray)
 	game->wall[ray].tex_y = game->ray->y;
 	ft_compare_distances(game, ray);
 	game->wall[ray].height = (TILE / game->ray->distance) * 500;
-	game->wall[ray].begin_draw = -game->wall[ray].height / 2 + HEIGHT / 2;
+	game->wall[ray].begin_draw = HEIGHT / 2 - game->wall[ray].height / 2;
 	ft_draw_walls(game, ray);
 	game->ray->angle += game->player->fov / WIDTH;
 }
