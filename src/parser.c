@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:07:04 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/24 16:02:41 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/24 19:14:55 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 t_status	ft_parse(t_parse *data)
 {
-	int	i;
-
-	i = 1;
 	data->buff = get_next_line(data->file);
 	if (data->buff == NULL)
 		return (ERROR);
@@ -31,7 +28,6 @@ t_status	ft_parse(t_parse *data)
 		data->buff = get_next_line(data->file);
 		if (data->buff == NULL)
 			return (ERROR);
-		i++;
 	}
 	data->textures_colors = ft_split(data->tmp, '\n');
 	if (ft_organize(data) == GOOD)
@@ -41,18 +37,6 @@ t_status	ft_parse(t_parse *data)
 	}
 	ft_free_parse_error(data);
 	return (ERROR);
-}
-
-t_status	ft_examine_line(char	*map, size_t index)
-{
-	t_status	flag;
-
-	flag = GOOD;
-	if (index == 0 || index == (ft_strlen(map) - 1))
-		flag = ft_sn_border(map);
-	else
-		flag = ft_ew_border(map);
-	return (flag);
 }
 
 t_status	ft_examine_map(t_parse *data)
@@ -105,29 +89,34 @@ t_status	ft_player_position(t_parse *data)
 	return (ERROR);
 }
 
+void	ft_parse_map(t_parse *data)
+{
+	data->map_length = 0;
+	data->tmp = ft_strdup("");
+	while (data->buff)
+	{
+		data->leaks = data->tmp;
+		data->tmp = ft_strjoin(data->tmp, data->buff);
+		free(data->leaks);
+		free(data->buff);
+		data->buff = get_next_line(data->file);
+		if (data->buff && ft_strncmp(data->buff, "\n", 1) == 0)
+		{
+			free(data->buff);
+			data->buff = get_next_line(data->file);
+			data->map_length--;
+		}
+		data->map_length++;
+	}
+	free(data->buff);
+	data->map = ft_split(data->tmp, '\n');
+}
+
 void	ft_read_map(t_parse *data)
 {
 	if (ft_parse(data) == GOOD)
 	{	
-		data->map_length = 0;
-		data->tmp = ft_strdup("");
-		while (data->buff)
-		{
-			data->leaks = data->tmp;
-			data->tmp = ft_strjoin(data->tmp, data->buff);
-			free(data->leaks);
-			free(data->buff);
-			data->buff = get_next_line(data->file);
-			if (data->buff && ft_strncmp(data->buff, "\n", 1) == 0)
-			{
-				free(data->buff);
-				data->buff = get_next_line(data->file);
-				data->map_length--;
-			}
-			data->map_length++;
-		}
-		free(data->buff);
-		data->map = ft_split(data->tmp, '\n');
+		ft_parse_map(data);
 		if (ft_examine_map(data) == GOOD
 			&& ft_player_position(data) == GOOD)
 		{

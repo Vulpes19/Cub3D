@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:17:19 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 14:43:23 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/24 20:20:22 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <stdlib.h>
 # include "game.h"
 
-enum	e_bool	ft_init_parsing(int argc, char **argv, t_game *game);
+enum		e_bool	ft_init_parsing(int argc, char **argv, t_game *game);
 void		ft_read_map(t_parse *data);
 t_status	ft_sn_border(char *map);
 t_status	ft_ew_border(char *map);
@@ -30,6 +30,8 @@ void		ft_free_map_error(t_parse *data);
 void		ft_free_parse_error(t_parse *data);
 int			ft_is_space(char c);
 void		ft_free_map_error(t_parse *data);
-void        ft_map_error(t_parse *data);
+void		ft_map_error(t_parse *data);
+void		freethis_int(int **str);
+t_status	ft_examine_line(char *map, size_t index);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:39:46 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/24 10:24:05 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/24 18:56:07 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,6 @@ void	freethis1(char **str)
 
 	i = 0;
 	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-}
-
-void	freethis_int(int **str)
-{
-	int	i;
-
-	i = 0;
-	while (i < 3)
 	{
 		free(str[i]);
 		i++;

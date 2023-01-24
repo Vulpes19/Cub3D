@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   organizers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:20:27 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 15:19:33 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/24 20:15:19 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,13 @@ void	ft_colors(t_parse *data, char *color)
 t_status	ft_organize(t_parse *data)
 {
 	int	i;
+
 	data->floor = NULL;
 	data->ceiling = NULL;
 	data->no = NULL;
 	data->so = NULL;
 	data->we = NULL;
 	data->ea = NULL;
-
 	i = 0;
 	while (data->textures_colors[i])
 	{
