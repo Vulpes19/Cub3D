@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:25:47 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/24 19:06:40 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/25 11:42:31 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,8 +139,7 @@ typedef struct s_game
 	t_texture	*texture_south;
 	t_texture	*texture_east;
 	t_texture	*texture_west;
-	double		move_speed;
-	double		rot_speed;
+	void		*mini_map;
 	int			*floor;
 	int			*ceiling;
 	int			color_floor;

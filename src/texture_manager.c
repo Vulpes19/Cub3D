@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:29:57 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 15:23:09 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/25 11:43:53 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,14 @@ void	ft_load_texture(t_game *game)
 	if (!game->texture_west->image)
 	{
 		ft_putstr_fd("failed to load west texture\n", STDERR_FILENO);
+		ft_free_game(game);
+	}
+	game->mini_map = mlx_xpm_file_to_image(game->mlx->init,
+			"./assets/mini-map.xpm", &game->texture_north->width,
+			&game->texture_north->height);
+	if (!game->mini_map)
+	{
+		ft_putstr_fd("failed to load mini-map texture\n", STDERR_FILENO);
 		ft_free_game(game);
 	}
 }

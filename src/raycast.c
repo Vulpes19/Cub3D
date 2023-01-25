@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/24 12:24:39 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/25 11:44:37 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	ft_render(t_game *game)
 		game->mlx->pixel->image, 0, 0);
 	mlx_put_image_to_window(game->mlx->init, game->mlx->window,
 		game->mlx->mini_map->image, 10, 10);
+	mlx_put_image_to_window(game->mlx->init, game->mlx->window,
+		game->mini_map, 0, 0);
 	mlx_destroy_image(game->mlx->init, game->mlx->pixel->image);
 	mlx_destroy_image(game->mlx->init, game->mlx->mini_map->image);
 }
