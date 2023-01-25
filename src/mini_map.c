@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 14:26:59 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/24 16:00:27 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/25 11:18:08 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	ft_draw_grid(t_game *game)
 		mini_map.mini_map_x = (game->player->pos_x - (250 / 2)) / TILE;
 		if (mini_map.mini_map_x > len)
 			mini_map.mini_map_x = len;
-		printf("%zu\n", len);
 		ft_draw_grid_loop(game, mini_map);
 		mini_map.mini_map_y++;
 	}

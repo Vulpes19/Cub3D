@@ -1,7 +1,7 @@
-NO ./assets/north.xpm
-SO ./assets/south.xpm
-WE ./assets/west.xpm
-EA ./assets/east.xpm
+NO ./assets/zellij_north.xpm
+SO ./assets/zellij_south.xpm
+WE ./assets/zellij_west.xpm
+EA ./assets/zellij_east.xpm
 
 
 
@@ -10,8 +10,8 @@ EA ./assets/east.xpm
 
 
 
-F 223,33,2
-C 203,10,200
+F 189,178,70
+C 27,154,170
 
 
 
