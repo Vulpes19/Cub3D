@@ -6,13 +6,42 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:29:57 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/25 11:43:53 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:03:52 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 #include "libft.h"
 #include "close.h"
+
+void	ft_protect_texture(t_game *game)
+{
+	if (!game->texture_north->image)
+	{
+		ft_putstr_fd("failed to load north texture\n", STDERR_FILENO);
+		ft_free_game(game);
+	}
+	if (!game->texture_south->image)
+	{
+		ft_putstr_fd("failed to load south texture\n", STDERR_FILENO);
+		ft_free_game(game);
+	}
+	if (!game->texture_east->image)
+	{
+		ft_putstr_fd("failed to load east texture\n", STDERR_FILENO);
+		ft_free_game(game);
+	}
+	if (!game->texture_west->image)
+	{
+		ft_putstr_fd("failed to load west texture\n", STDERR_FILENO);
+		ft_free_game(game);
+	}
+	if (!game->mini_map)
+	{
+		ft_putstr_fd("failed to load mini-map texture\n", STDERR_FILENO);
+		ft_free_game(game);
+	}
+}
 
 void	ft_load_texture(t_game *game)
 {
@@ -58,6 +87,7 @@ void	ft_load_texture(t_game *game)
 		ft_putstr_fd("failed to load mini-map texture\n", STDERR_FILENO);
 		ft_free_game(game);
 	}
+	// ft_protect_texture(game);
 }
 
 void	ft_assign_texture(t_game *game, int ray, char direction)

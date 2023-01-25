@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:43:13 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/24 10:34:37 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/25 18:31:47 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,5 @@ void	ft_init_game(t_game *game)
 	game->ray->angle = game->player->angle;
 	ft_get_ceiling_color(game);
 	ft_get_floor_color(game);
+	ft_load_texture(game);
 }

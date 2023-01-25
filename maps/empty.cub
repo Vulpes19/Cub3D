@@ -1,5 +1,5 @@
 NO ./assets/zellij_north.xpm
-SO ./assets/zellij_south.xpm
+SO ./assets/.xpm
 WE ./assets/zellij_west.xpm
 EA ./assets/zellij_east.xpm
 

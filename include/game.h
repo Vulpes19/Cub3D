@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:25:47 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/25 11:42:31 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/25 18:31:11 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,14 +119,14 @@ typedef struct s_ray
 
 typedef struct s_wall
 {
-	double	height;
-	double	begin_draw;
-	double	bottom;
-	int		tex_x;
-	int		tex_y;
-	int		is_horizontal;
-	int		is_vertical;
-	int		color;
+	double		height;
+	double		begin_draw;
+	double		bottom;
+	int			tex_x;
+	int			tex_y;
+	int			is_horizontal;
+	int			is_vertical;
+	int			color;
 	t_texture	*texture;
 }	t_wall;
 typedef struct s_game
@@ -149,6 +149,6 @@ typedef struct s_game
 
 enum e_bool	ft_allocate_game(int ac, char **av, t_game *game);
 void		ft_init_game(t_game *game);
-void	ft_compare_distances(t_game *game, int ray);
+void		ft_compare_distances(t_game *game, int ray);
 
 #endif
