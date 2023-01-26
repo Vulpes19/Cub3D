@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:07:04 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/24 19:14:55 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/26 16:29:12 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ t_status	ft_player_position(t_parse *data)
 	int	y;
 
 	y = 0;
+	data->player_count = 0;
 	while (data->map[y])
 	{
 		x = 0;
@@ -80,12 +81,14 @@ t_status	ft_player_position(t_parse *data)
 				data->player_x = x;
 				data->player_y = y;
 				data->player_direction = data->map[y][x];
-				return (GOOD);
+				data->player_count++;
 			}
 			x++;
 		}
 		y++;
 	}
+	if (data->player_count == 1)
+		return (GOOD);
 	return (ERROR);
 }
 

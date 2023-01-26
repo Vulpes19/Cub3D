@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/25 11:44:37 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/26 10:33:51 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	ft_render(t_game *game)
 		game->mini_map, 0, 0);
 	mlx_destroy_image(game->mlx->init, game->mlx->pixel->image);
 	mlx_destroy_image(game->mlx->init, game->mlx->mini_map->image);
+	// mlx_destroy_image(game->mlx->init, game->mini_map);
 }
 
 void	ft_raycasting_loop(t_game *game, int ray)

@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:07 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 12:14:34 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/26 10:29:22 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ int		ft_get_color(int x, int y, int height, t_texture *texture);
 void	ft_get_floor_color(t_game *game);
 void	ft_get_ceiling_color(t_game *game);
 void	ft_assign_texture(t_game *game, int ray, char direction);
+void	ft_load_images(t_game *game);
 
 #endif

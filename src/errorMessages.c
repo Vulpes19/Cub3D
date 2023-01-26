@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errorMessages.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:18:42 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/24 18:52:55 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/26 16:23:30 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	ft_arguments_error(t_parse *data)
 void	ft_mapname_error(t_parse *data)
 {
 	ft_putstr_fd("Error: File name is invalid!\n", STDERR_FILENO);
-	ft_free_map_error(data);
+	(void)data;
+	// ft_free_map_error(data);
 	exit(EXIT_FAILURE);
 }
 

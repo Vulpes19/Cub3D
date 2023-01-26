@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:43:13 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/25 18:31:47 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/26 16:20:34 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ enum e_bool	ft_allocate_game(int ac, char **av, t_game *game)
 void	ft_init_game(t_game *game)
 {
 	game->mlx->init = mlx_init();
+	ft_load_texture(game);
 	game->player->pos_x = game->data->player_x * TILE;
 	game->player->pos_y = game->data->player_y * TILE;
 	if (game->data->player_direction == 'N')
@@ -82,5 +83,4 @@ void	ft_init_game(t_game *game)
 	game->ray->angle = game->player->angle;
 	ft_get_ceiling_color(game);
 	ft_get_floor_color(game);
-	ft_load_texture(game);
 }

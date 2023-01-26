@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:25:47 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/25 18:31:11 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/26 16:29:25 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ typedef struct s_parse
 	char		**floor;
 	char		**ceiling;
 	size_t		map_length;
-	int			player_count;
 	char		*no;
 	char		*so;
 	char		*we;
 	char		*ea;
 	char		*f;
 	char		*c;
+	int			player_count;
 	char		**map;
 	char		**textures_colors;
 	int			player_x;
