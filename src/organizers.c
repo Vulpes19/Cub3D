@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   organizers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:20:27 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/27 13:36:40 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/27 14:54:50 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_paths(t_parse *data, char **path)
 
 void	ft_colors(t_parse *data, char **color)
 {
-	if (ft_strcmp(color[0], "F") == 0)
+	if (ft_strcmp(color[0], "F") == 0 && data->floor == NULL)
 	{
 		if (ft_check_colors(color) == GOOD)
 			data->floor = ft_split(color[1], ',');
@@ -37,7 +37,7 @@ void	ft_colors(t_parse *data, char **color)
 			ft_putstr_fd("error: color parameters are wrong!\n", STDERR_FILENO);
 		}
 	}
-	else if (ft_strcmp(color[0], "C") == 0)
+	else if (ft_strcmp(color[0], "C") == 0 && data->ceiling == NULL)
 	{
 		if (ft_check_colors(color) == GOOD)
 			data->ceiling = ft_split(color[1], ',');
@@ -47,8 +47,13 @@ void	ft_colors(t_parse *data, char **color)
 			ft_putstr_fd("error: color parameters are wrong\n", STDERR_FILENO);
 		}
 	}
+	else
+	{
+		ft_putstr_fd("error: color parameters are wrong\n", STDERR_FILENO);
+		system("leaks cub3D");
+		exit(EXIT_FAILURE);
+	}
 }
-
 void	ft_init_data(t_parse *data)
 {
 	data->no = NULL;
