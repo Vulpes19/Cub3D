@@ -6,12 +6,27 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:05:20 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/25 11:18:12 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/27 13:32:57 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parser.h"
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (s1[i] && s2[i])
+	{
+		if (s1[i] == s2[i])
+			i++;
+		else
+			break ;
+	}
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
 
 t_status	ft_examine_line(char	*map, size_t index)
 {

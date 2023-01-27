@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:25:47 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/26 16:29:25 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/27 14:02:19 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ typedef struct s_game
 	t_texture	*texture_south;
 	t_texture	*texture_east;
 	t_texture	*texture_west;
-	void		*mini_map;
+	void		*gun;
 	int			*floor;
 	int			*ceiling;
 	int			color_floor;

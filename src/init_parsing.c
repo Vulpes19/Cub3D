@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:20:09 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/26 16:22:09 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/27 13:33:59 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ enum e_bool	ft_start(t_game *game, char **argv)
 		else
 			ft_file_error(game->data);
 	}
-	ft_mapname_error(game->data);
+	ft_mapname_error();
 	return (FALSE);
 }
 

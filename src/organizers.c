@@ -3,89 +3,79 @@
 /*                                                        :::      ::::::::   */
 /*   organizers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:20:27 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/24 20:15:19 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/27 13:36:40 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "libft.h"
 
-void	ft_paths(t_parse *data, char *path)
+void	ft_paths(t_parse *data, char **path)
 {
-	if (ft_strncmp(path, "NO", 2) == 0)
-	{	
-		data->d_tmp = ft_split(path, ' ');
-		data->no = ft_strdup(data->d_tmp[1]);
-		freethis1(data->d_tmp);
-	}
-	else if (ft_strncmp(path, "WE", 2) == 0)
-	{
-		data->d_tmp = ft_split(path, ' ');
-		data->we = ft_strdup(data->d_tmp[1]);
-		freethis1(data->d_tmp);
-	}
-	else if (ft_strncmp(path, "SO", 2) == 0)
-	{
-		data->d_tmp = ft_split(path, ' ');
-		data->so = ft_strdup(data->d_tmp[1]);
-		freethis1(data->d_tmp);
-	}
-	else if (ft_strncmp(path, "EA", 2) == 0)
-	{
-		data->d_tmp = ft_split(path, ' ');
-		data->ea = ft_strdup(data->d_tmp[1]);
-		freethis1(data->d_tmp);
-	}
+	if (ft_strcmp(path[0], "NO") == 0)
+		data->no = ft_strdup(path[1]);
+	else if (ft_strcmp(path[0], "WE") == 0)
+		data->we = ft_strdup(path[1]);
+	else if (ft_strcmp(path[0], "SO") == 0)
+		data->so = ft_strdup(path[1]);
+	else if (ft_strcmp(path[0], "EA") == 0)
+		data->ea = ft_strdup(path[1]);
 }
 
-void	ft_colors(t_parse *data, char *color)
+void	ft_colors(t_parse *data, char **color)
 {
-	if (ft_strncmp(color, "F", 1) == 0)
+	if (ft_strcmp(color[0], "F") == 0)
 	{
-		data->d_tmp = ft_split(color, ' ');
-		if (ft_check_colors(data->d_tmp) == GOOD)
-			data->floor = ft_split(data->d_tmp[1], ',');
+		if (ft_check_colors(color) == GOOD)
+			data->floor = ft_split(color[1], ',');
 		else
 		{
 			data->floor = NULL;
 			ft_putstr_fd("error: color parameters are wrong!\n", STDERR_FILENO);
 		}
-		freethis1(data->d_tmp);
 	}
-	else if (ft_strncmp(color, "C", 1) == 0)
+	else if (ft_strcmp(color[0], "C") == 0)
 	{
-		data->d_tmp = ft_split(color, ' ');
-		if (ft_check_colors(data->d_tmp) == GOOD)
-			data->ceiling = ft_split(data->d_tmp[1], ',');
+		if (ft_check_colors(color) == GOOD)
+			data->ceiling = ft_split(color[1], ',');
 		else
 		{
 			data->ceiling = NULL;
 			ft_putstr_fd("error: color parameters are wrong\n", STDERR_FILENO);
 		}
-		freethis1(data->d_tmp);
 	}
+}
+
+void	ft_init_data(t_parse *data)
+{
+	data->no = NULL;
+	data->so = NULL;
+	data->we = NULL;
+	data->ea = NULL;
+	data->floor = NULL;
+	data->ceiling = NULL;
+	data->d_tmp = NULL;
 }
 
 t_status	ft_organize(t_parse *data)
 {
 	int	i;
 
-	data->floor = NULL;
-	data->ceiling = NULL;
-	data->no = NULL;
-	data->so = NULL;
-	data->we = NULL;
-	data->ea = NULL;
+	ft_init_data(data);
 	i = 0;
 	while (data->textures_colors[i])
 	{
-		ft_paths(data, data->textures_colors[i]);
-		if ((ft_strncmp(data->textures_colors[i], "F", 1) == 0)
-			|| ft_strncmp(data->textures_colors[i], "C", 1) == 0)
-			ft_colors(data, data->textures_colors[i]);
+		data->d_tmp = ft_split(data->textures_colors[i], ' ');
+		if (data->d_tmp[2])
+			return (ERROR);
+		ft_paths(data, data->d_tmp);
+		if ((ft_strcmp(data->d_tmp[0], "F") == 0)
+			|| ft_strcmp(data->d_tmp[0], "C") == 0)
+			ft_colors(data, data->d_tmp);
+		freethis1(data->d_tmp);
 		i++;
 	}
 	if (!data->ceiling || !data->floor)

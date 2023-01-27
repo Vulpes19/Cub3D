@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 14:26:59 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/25 18:30:31 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/27 13:39:36 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_draw_point(t_game *game, int mini_map_x, int mini_map_y)
 	{
 		j = game->player->pos_x - mini_map_x;
 		while (j < (int)((game->player->pos_x - mini_map_x) + 4))
-			ft_draw_pixel_mini_map(game, j++, i, ft_convert_rgb(228, 208, 10));
+			ft_draw_pixel_mini_map(game, j++, i, 0xAEC5EB);
 		++i;
 	}
 }
@@ -59,11 +59,11 @@ void	ft_draw_grid_loop(t_game *game, t_mini_map mini_map)
 			[mini_map.mini_map_y][mini_map.mini_map_x] == '1')
 			ft_draw_square((mini_map.mini_map_x * TILE)
 				- mini_map.map_x, (mini_map.mini_map_y * TILE)
-				- mini_map.map_y, game, ft_convert_rgb(228, 208, 10));
+				- mini_map.map_y, game, 0xAEC5EB);
 		else
 			ft_draw_square((mini_map.mini_map_x * TILE)
 				- mini_map.map_x, (mini_map.mini_map_y * TILE)
-				- mini_map.map_y, game, ft_convert_rgb(255, 255, 255));
+				- mini_map.map_y, game, 0xF9DEC9);
 		mini_map.mini_map_x++;
 	}
 }

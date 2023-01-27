@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:43:13 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/26 16:20:34 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/26 16:36:50 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ void	ft_init_game(t_game *game)
 	ft_load_texture(game);
 	game->player->pos_x = game->data->player_x * TILE;
 	game->player->pos_y = game->data->player_y * TILE;
-	if (game->data->player_direction == 'N')
+	if (game->data->player_direction == 'S')
 		game->player->angle = PI / 2;
-	else if (game->data->player_direction == 'S')
+	else if (game->data->player_direction == 'N')
 		game->player->angle = 3 * PI / 2;
 	else if (game->data->player_direction == 'W')
 		game->player->angle = PI;

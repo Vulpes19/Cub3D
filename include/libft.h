@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:18:48 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/24 10:24:58 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/27 13:32:20 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void			*ft_calloc(size_t count, size_t size);
 char			*ft_strdup(char *src);
 size_t			ft_strlen(char *str);
 int				ft_strncmp(char *s1, char *s2, unsigned int n);
+int				ft_strcmp(char *s1, char *s2);
 char			*ft_substr(char *s, unsigned int start, size_t len);
 char			*ft_strjoin(char *s1, char *s2);
 char			**ft_split(char const *s, char c);
