@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:29:57 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/27 14:02:58 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/27 14:17:50 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ void	ft_assign_texture(t_game *game, int ray, char direction)
 	if (direction == 'h')
 	{
 		if (game->ray->angle > 0 && game->ray->angle < PI)
-			game->wall[ray].texture->image = game->texture_south->image;
-		else if (game->ray->angle > PI && game->ray->angle < 2 * PI)
 			game->wall[ray].texture->image = game->texture_north->image;
+		else if (game->ray->angle > PI && game->ray->angle < 2 * PI)
+			game->wall[ray].texture->image = game->texture_south->image;
 	}
 	else
 	{

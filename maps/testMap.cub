@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./assets/zelij.xpm
+SO ./assets/purple_tiles.xpm
+WE ./assets/dirt_wall.xpm
+EA ./assets/blue_wall.xpm
 
 F 189,178,70
 C 27,154,170
