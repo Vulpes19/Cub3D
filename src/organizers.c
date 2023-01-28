@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:20:27 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/27 14:54:50 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/28 18:01:10 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,19 @@
 
 void	ft_paths(t_parse *data, char **path)
 {
-	if (ft_strcmp(path[0], "NO") == 0)
+	if (ft_strcmp(path[0], "NO") == 0 && data->no == NULL)
 		data->no = ft_strdup(path[1]);
-	else if (ft_strcmp(path[0], "WE") == 0)
+	else if (ft_strcmp(path[0], "WE") == 0 && data->we == NULL)
 		data->we = ft_strdup(path[1]);
-	else if (ft_strcmp(path[0], "SO") == 0)
+	else if (ft_strcmp(path[0], "SO") == 0 && data->so == NULL)
 		data->so = ft_strdup(path[1]);
-	else if (ft_strcmp(path[0], "EA") == 0)
+	else if (ft_strcmp(path[0], "EA") == 0 && data->ea == NULL)
 		data->ea = ft_strdup(path[1]);
+	else
+	{
+		ft_putstr_fd("error: textures parameters are wrong!\n", STDERR_FILENO);
+		exit(EXIT_FAILURE);
+	}
 }
 
 void	ft_colors(t_parse *data, char **color)

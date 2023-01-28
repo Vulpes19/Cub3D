@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:25:06 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/27 14:50:08 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/28 17:57:20 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ t_status	ft_check_colors(char **rgb)
 	while (rgb[i])
 	{
 		tmp = ft_split(rgb[i++], ',');
+		if (tmp[3])
+			return (ERROR);
 		j = 0;
 		while (tmp[j])
 		{
