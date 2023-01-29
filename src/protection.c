@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   protection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:25:06 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/28 17:57:20 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/29 18:08:39 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_status	ft_examine_box_sn(t_parse *data, int i, int j)
 {
 	if ((data->map[i + 1] && data->map[i + 1][j] <= 32) || !data->map[i + 1])
 		return (ERROR);
-	if ((data->map[i - 1] && data->map[i - 1][j] <= 32 )|| !data->map[i - 1])
+	if ((data->map[i - 1] && data->map[i - 1][j] <= 32) || !data->map[i - 1])
 		return (ERROR);
 	return (GOOD);
 }

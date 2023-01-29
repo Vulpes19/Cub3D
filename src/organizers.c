@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   organizers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:20:27 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/28 18:01:10 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/29 18:19:48 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ void	ft_colors(t_parse *data, char **color)
 	else
 	{
 		ft_putstr_fd("error: color parameters are wrong\n", STDERR_FILENO);
-		system("leaks cub3D");
 		exit(EXIT_FAILURE);
 	}
 }
+
 void	ft_init_data(t_parse *data)
 {
 	data->no = NULL;
@@ -81,10 +81,11 @@ t_status	ft_organize(t_parse *data)
 		data->d_tmp = ft_split(data->textures_colors[i], ' ');
 		if (data->d_tmp[2])
 			return (ERROR);
-		ft_paths(data, data->d_tmp);
 		if ((ft_strcmp(data->d_tmp[0], "F") == 0)
 			|| ft_strcmp(data->d_tmp[0], "C") == 0)
 			ft_colors(data, data->d_tmp);
+		else
+			ft_paths(data, data->d_tmp);
 		freethis1(data->d_tmp);
 		i++;
 	}

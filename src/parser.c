@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:07:04 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/27 14:49:57 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/29 18:22:54 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,8 @@ void	ft_parse_map(t_parse *data)
 		if (data->buff && ft_strncmp(data->buff, "\n", 1) == 0)
 		{
 			free(data->buff);
-			data->buff = get_next_line(data->file);
-			data->map_length--;
+			printf("Error\nMap is not closed\n");
+			exit(EXIT_FAILURE);
 		}
 		data->map_length++;
 	}

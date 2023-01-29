@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 11:29:57 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/27 14:17:50 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/29 18:08:16 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,26 @@ void	ft_protect_texture(t_game *game)
 	if (!game->texture_north->image)
 	{
 		ft_putstr_fd("failed to load north texture\n", STDERR_FILENO);
-		system("leaks cub3D");
 		exit(EXIT_SUCCESS);
 	}
 	if (!game->texture_south->image)
 	{
 		ft_putstr_fd("failed to load south texture\n", STDERR_FILENO);
-		system("leaks cub3D");
 		exit(EXIT_SUCCESS);
 	}
 	if (!game->texture_east->image)
 	{
 		ft_putstr_fd("failed to load east texture\n", STDERR_FILENO);
-		system("leaks cub3D");
 		exit(EXIT_SUCCESS);
 	}
 	if (!game->texture_west->image)
 	{
 		ft_putstr_fd("failed to load west texture\n", STDERR_FILENO);
-		system("leaks cub3D");
 		exit(EXIT_SUCCESS);
 	}
 	if (!game->gun)
 	{
 		ft_putstr_fd("failed to load mini-map texture\n", STDERR_FILENO);
-		system("leaks cub3D");
 		exit(EXIT_SUCCESS);
 	}
 }
