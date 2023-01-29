@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:39:33 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/29 20:43:07 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/27 14:07:36 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,19 @@
 void	ft_load_images(t_game *game)
 {
 	game->mlx->pixel->image = mlx_new_image(game->mlx->init, WIDTH, HEIGHT);
-	if (!game->mlx->pixel->image)
+	game->mlx->mini_map->image = mlx_new_image(game->mlx->init, 250, 250);
+	if (!game->mlx->pixel->image || !game->mlx->mini_map->image)
 	{
-		ft_putstr_fd("failed to load image\n", STDERR_FILENO);
+		ft_putstr_fd("failed to load images\n", STDERR_FILENO);
 		ft_close(game);
 	}
 	game->mlx->pixel->address = mlx_get_data_addr(game->mlx->pixel->image,
 			&game->mlx->pixel->bits_per_pixel,
 			&game->mlx->pixel->line_len, &game->mlx->pixel->endian);
+	game->mlx->mini_map->address = mlx_get_data_addr(game->mlx->mini_map->image,
+			&game->mlx->mini_map->bits_per_pixel,
+			&game->mlx->mini_map->line_len,
+			&game->mlx->mini_map->endian);
 }
 
 void	ft_render(t_game *game)
@@ -36,8 +41,11 @@ void	ft_render(t_game *game)
 	mlx_put_image_to_window(game->mlx->init, game->mlx->window,
 		game->mlx->pixel->image, 0, 0);
 	mlx_put_image_to_window(game->mlx->init, game->mlx->window,
+		game->mlx->mini_map->image, 10, 10);
+	mlx_put_image_to_window(game->mlx->init, game->mlx->window,
 		game->gun, WIDTH / 2 + 59, 210);
 	mlx_destroy_image(game->mlx->init, game->mlx->pixel->image);
+	mlx_destroy_image(game->mlx->init, game->mlx->mini_map->image);
 }
 
 void	ft_raycasting_loop(t_game *game, int ray)
@@ -60,6 +68,7 @@ int	ft_raycasting(t_game *game)
 
 	ray = 0;
 	ft_load_images(game);
+	ft_draw_grid(game);
 	while (ray < WIDTH)
 	{
 		game->ray->distance_h = 100000;

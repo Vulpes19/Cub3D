@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:07:04 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/29 20:39:54 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/29 18:22:54 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,12 +114,12 @@ void	ft_parse_map(t_parse *data)
 		free(data->leaks);
 		free(data->buff);
 		data->buff = get_next_line(data->file);
-		// if (data->buff && ft_strncmp(data->buff, "\n", 1) == 0)
-		// {
-		// 	free(data->buff);
-		// 	printf("Error\nMap is not closed\n");
-		// 	exit(EXIT_FAILURE);
-		// }
+		if (data->buff && ft_strncmp(data->buff, "\n", 1) == 0)
+		{
+			free(data->buff);
+			printf("Error\nMap is not closed\n");
+			exit(EXIT_FAILURE);
+		}
 		data->map_length++;
 	}
 	free(data->buff);

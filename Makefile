@@ -5,7 +5,7 @@ TARGET = cub3D
 #* FILES *#
 FILES = main.c draw.c close.c raycast.c handle_input.c math.c texture_manager.c game.c libft.c init_parsing.c \
 	errorMessages.c parser.c parser_tools.c protection.c organizers.c get_next_line.c get_next_line_utils.c \
-	ft_split.c colors.c check_intersections.c collision.c pixel.c mini_map.c
+	ft_split.c colors.c check_intersections.c collision.c pixel.c
 
 #* SOURCE FILES *#
 SRC = $(addprefix src/, $(FILES))
@@ -17,7 +17,7 @@ OBJ_DIR = obj
 OBJS = $(SRC:src/%.c=$(OBJ_DIR)/%.o)
 
 #* FLAGS *#
-FLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
+FLAGS = #-Wall -Wextra -Werror #-fsanitize=address -g3
 MLX = -lmlx -framework OpenGL -framework AppKit
 
 #*  INCLUDE PATHS *#

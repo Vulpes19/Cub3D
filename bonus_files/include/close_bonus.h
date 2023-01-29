@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixel.c                                            :+:      :+:    :+:   */
+/*   close.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/21 14:23:52 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/29 20:28:11 by abaioumy         ###   ########.fr       */
+/*   Created: 2023/01/03 10:47:39 by abaioumy          #+#    #+#             */
+/*   Updated: 2023/01/23 12:24:26 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "draw.h"
-#include <stdio.h>
+#ifndef CLOSE_H
+# define CLOSE_H
 
-void	ft_draw_pixel(t_game *game, int x, int y, int color)
-{
-	char	*dest;
+# define ESC 53
+# include <stdlib.h>
+# include "draw.h"
 
-	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT)
-		return ;
-	dest = game->mlx->pixel->address + (y * game->mlx->pixel->line_len
-			+ x * (game->mlx->pixel->bits_per_pixel / 8));
-	*(unsigned int *)dest = color;
-}
+void	ft_close_esc(t_game *game);
+int		ft_close_x(t_game *mlx);
+void	ft_free_textures(t_game *game);
+void	ft_free_game(t_game *game);
+void	ft_close(t_game *game);
+
+#endif
