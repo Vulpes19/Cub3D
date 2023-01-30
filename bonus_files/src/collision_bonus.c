@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   collision.c                                        :+:      :+:    :+:   */
+/*   collision_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 14:04:30 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/30 15:28:34 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:03:45 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
-#include "input.h"
+#include "game_bonus.h"
+#include "input_bonus.h"
 
 void	ft_check_w_collision(t_game *game, int mx, int my)
 {

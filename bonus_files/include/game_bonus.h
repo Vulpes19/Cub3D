@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game.h                                             :+:      :+:    :+:   */
+/*   game_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:25:47 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/27 14:02:19 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:34:34 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_H
-# define GAME_H
+#ifndef GAME_BONUS_H
+# define GAME_BONUS_H
 
 # include <mlx.h>
 # include <math.h>

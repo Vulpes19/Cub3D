@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.h                                             :+:      :+:    :+:   */
+/*   draw_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:31:07 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/26 10:29:22 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:34:40 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAW_H
-# define DRAW_H
+#ifndef DRAW_BONUS_H
+# define DRAW_BONUS_H
 
 # define WIDTH 1080
 # define HEIGHT 720
 # include <mlx.h>
 # include <stdint.h>
-# include "game.h"
+# include "game_bonus.h"
 
 typedef struct s_rectangle
 {

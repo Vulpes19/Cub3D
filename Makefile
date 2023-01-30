@@ -16,6 +16,9 @@ OBJ_DIR = obj
 #* OBJECT FILES *#
 OBJS = $(SRC:src/%.c=$(OBJ_DIR)/%.o)
 
+#* BONUS FILES *#
+BONUS = bonus_files
+
 #* FLAGS *#
 FLAGS = #-Wall -Wextra -Werror #-fsanitize=address -g3
 MLX = -lmlx -framework OpenGL -framework AppKit
@@ -32,6 +35,8 @@ DEL = rm -rf
 
 all: $(TARGET)
 	
+bonus:
+	$(MAKE) -C $(BONUS)
 
 $(OBJ_DIR)/%.o: src/%.c
 	cc $(FLAGS) -c -I $(INCLUDE) $< -o $@
@@ -43,8 +48,10 @@ re: fclean all
 
 clean:
 	$(DEL) $(OBJS)
+	$(MAKE) -C $(BONUS) clean
 
 fclean:	clean
 	$(DEL) $(TARGET)
+	$(MAKE) -C $(BONUS) fclean
 
 .PHONY: clean fclean re all

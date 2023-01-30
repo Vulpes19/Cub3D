@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   parser_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:17:19 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/27 14:48:02 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:34:12 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#ifndef PARSER_BONUS_H
+# define PARSER_BONUS_H
 # include <stdlib.h>
-# include "game.h"
+# include "game_bonus.h"
 
 enum		e_bool	ft_init_parsing(int argc, char **argv, t_game *game);
 void		ft_read_map(t_parse *data);
@@ -32,5 +32,8 @@ void		ft_free_map_error(t_parse *data);
 void		ft_map_error(t_parse *data);
 void		freethis_int(int **str);
 t_status	ft_examine_line(char *map, size_t index);
+void		ft_test_map(char *previous_line, t_parse *data);
+void		ft_check_player(t_parse *data, int x, int y);
+t_status	ft_check_colors_norm(char **tmp);
 
 #endif

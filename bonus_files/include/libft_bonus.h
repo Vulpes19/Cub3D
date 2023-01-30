@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   libft_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:18:48 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/27 13:32:20 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:34:21 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef LIBFT_BONUS_H
+# define LIBFT_BONUS_H
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
 # include <limits.h>
 # include <mlx.h>
-# include "game.h"
+# include "game_bonus.h"
 
 char			*ft_strdup(char *src);
 int				checknl(char *str);

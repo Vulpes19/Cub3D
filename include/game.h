@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:25:47 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/30 14:10:45 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:29:37 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_parse
 	char		*leaks;
 	int			longest_line;
 	t_status	flag;
-	char*		previous_line;
+	char		*previous_line;
 }	t_parse;
 
 typedef struct s_texture

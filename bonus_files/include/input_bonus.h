@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.h                                            :+:      :+:    :+:   */
+/*   input_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:25:56 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/22 20:19:54 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:34:28 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INPUT_H
-# define INPUT_H
+#ifndef INPUT_BONUS_H
+# define INPUT_BONUS_H
 
 # define W_KEY 13
 # define S_KEY 1
@@ -23,7 +23,7 @@
 # define LEFT_ARROW 123
 
 # include <mlx.h>
-# include "game.h"
+# include "game_bonus.h"
 
 int		ft_input_handler(int keycode, t_game *game);
 void	ft_check_w_collision(t_game *game, int mx, int my);

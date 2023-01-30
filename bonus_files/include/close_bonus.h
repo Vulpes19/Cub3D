@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close.h                                            :+:      :+:    :+:   */
+/*   close_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:47:39 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/23 12:24:26 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/30 15:34:48 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLOSE_H
-# define CLOSE_H
+#ifndef CLOSE_BONUS_H
+# define CLOSE_BONUS_H
 
 # define ESC 53
 # include <stdlib.h>
-# include "draw.h"
+# include "draw_bonus.h"
 
 void	ft_close_esc(t_game *game);
 int		ft_close_x(t_game *mlx);
