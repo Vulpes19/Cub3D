@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:07:04 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/29 18:22:54 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/30 14:19:53 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,24 +62,14 @@ t_status	ft_examine_map(t_parse *data)
 	return (flag);
 }
 
-t_status	ft_check_player(t_parse *data, int x, int y)
-{
-	if (data->map[y - 1] && data->map[y - 1][x] == '0'
-		&& data->map[y + 1] && data->map[y + 1][x] == '0'
-		&& data->map[y][x + 1] && data->map[y][x + 1] == '0'
-		&& data->map[y][x - 1] && data->map[y][x - 1] == '0')
-		return (GOOD);
-	return (ERROR);
-}
-
 t_status	ft_player_position(t_parse *data)
 {
 	int	x;
 	int	y;
 
-	y = 0;
+	y = -1;
 	data->player_count = 0;
-	while (data->map[y])
+	while (data->map[++y])
 	{
 		x = 0;
 		while (data->map[y][x])
@@ -87,8 +77,7 @@ t_status	ft_player_position(t_parse *data)
 			if (data->map[y][x] == 'N' || data->map[y][x] == 'E'
 				|| data->map[y][x] == 'W' || data->map[y][x] == 'S')
 			{
-				if (ft_check_player(data, x, y) == ERROR)
-					return (ERROR);
+				ft_check_player(data, x, y);
 				data->player_x = x;
 				data->player_y = y;
 				data->player_direction = data->map[y][x];
@@ -96,7 +85,6 @@ t_status	ft_player_position(t_parse *data)
 			}
 			x++;
 		}
-		y++;
 	}
 	if (data->player_count == 1)
 		return (GOOD);
@@ -105,21 +93,20 @@ t_status	ft_player_position(t_parse *data)
 
 void	ft_parse_map(t_parse *data)
 {
+	char	*previous_line;
+
 	data->map_length = 0;
 	data->tmp = ft_strdup("");
 	while (data->buff)
 	{
+		previous_line = ft_strdup(data->buff);
 		data->leaks = data->tmp;
 		data->tmp = ft_strjoin(data->tmp, data->buff);
-		free(data->leaks);
 		free(data->buff);
 		data->buff = get_next_line(data->file);
-		if (data->buff && ft_strncmp(data->buff, "\n", 1) == 0)
-		{
-			free(data->buff);
-			printf("Error\nMap is not closed\n");
-			exit(EXIT_FAILURE);
-		}
+		ft_test_map(previous_line, data->buff);
+		free(previous_line);
+		free(data->leaks);
 		data->map_length++;
 	}
 	free(data->buff);

@@ -5,7 +5,7 @@ TARGET = cub3D
 #* FILES *#
 FILES = main.c draw.c close.c raycast.c handle_input.c math.c texture_manager.c game.c libft.c init_parsing.c \
 	errorMessages.c parser.c parser_tools.c protection.c organizers.c get_next_line.c get_next_line_utils.c \
-	ft_split.c colors.c check_intersections.c collision.c pixel.c
+	ft_split.c colors.c check_intersections.c collision.c pixel.c norme.c
 
 #* SOURCE FILES *#
 SRC = $(addprefix src/, $(FILES))

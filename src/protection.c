@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   protection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:25:06 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/29 18:08:39 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/30 14:30:48 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,17 +75,8 @@ t_status	ft_check_colors(char **rgb)
 		tmp = ft_split(rgb[i++], ',');
 		if (tmp[3])
 			return (ERROR);
-		j = 0;
-		while (tmp[j])
-		{
-			color = ft_atoi(tmp[j++]);
-			if (color < 0 || color > 255)
-			{
-				freethis1(tmp);
-				return (ERROR);
-			}
-		}
-		freethis1(tmp);
+		if (ft_check_colors_norm(tmp) == ERROR)
+			return (ERROR);
 	}
 	if (i > 3 || j <= 2)
 		return (ERROR);

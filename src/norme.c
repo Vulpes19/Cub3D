@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   norme.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 15:06:10 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/27 15:07:20 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/30 14:30:20 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,53 @@ void	ft_parse_norme(t_parse *data, int x, int y)
 	data->player_count++;
 }
 
-t_status	ft_examine_map(t_parse *data)
+void	ft_test_map(char *previous_line, char *next_line)
 {
-	size_t		i;
-	t_status	flag;	
-	size_t		j;
-
-	i = 0;
-	flag = GOOD;
-	while (flag == GOOD && data->map[i])
+	if (next_line && ft_strcmp(next_line, "\n") == 0)
 	{
-		flag = ft_examine_line(data->map[i], i);
-		j = 0;
-		while (flag == GOOD && data->map[i][j])
+		if (ft_sn_border(previous_line) == ERROR)
 		{
-			if (data->map[i][j] == '0')
-				flag = ft_examine_box_sn(data, i, j);
-			j++;
+			ft_putstr_fd("Error: map is not closed\n", STDERR_FILENO);
+			exit(1);
 		}
-		i++;
 	}
-	return (flag);
+	else if (previous_line && ft_strcmp(previous_line, "\n") == 0)
+	{
+		if (ft_sn_border(next_line) == ERROR)
+		{
+			ft_putstr_fd("Error: map is not closed\n", STDERR_FILENO);
+			exit(1);
+		}
+	}
+}
+
+void	ft_check_player(t_parse *data, int x, int y)
+{
+	if (data->map[y - 1] && data->map[y - 1][x] == '0'
+		&& data->map[y + 1] && data->map[y + 1][x] == '0'
+		&& data->map[y][x + 1] && data->map[y][x + 1] == '0'
+		&& data->map[y][x - 1] && data->map[y][x - 1] == '0')
+		return ;
+	ft_putstr_fd("Error: player is trapped!\n", STDERR_FILENO);
+	exit(1);
+}
+
+t_status	ft_check_colors_norm(char **tmp)
+{
+	int	j;
+	int	color;
+
+	j = 0;
+	color = -1;
+	while (tmp[j])
+	{
+		color = ft_atoi(tmp[j++]);
+		if (color < 0 || color > 255)
+		{
+			freethis1(tmp);
+			return (ERROR);
+		}
+	}
+	freethis1(tmp);
+	return (GOOD);
 }
