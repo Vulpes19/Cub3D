@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   organizers_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:20:27 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/30 15:05:29 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/31 21:20:17 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_paths(t_parse *data, char **path)
 		data->ea = ft_strdup(path[1]);
 	else
 	{
-		ft_putstr_fd("error: textures parameters are wrong!\n", STDERR_FILENO);
+		ft_putstr_fd("Parsing error!\n", STDERR_FILENO);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -39,7 +39,7 @@ void	ft_colors(t_parse *data, char **color)
 		else
 		{
 			data->floor = NULL;
-			ft_putstr_fd("error: color parameters are wrong!\n", STDERR_FILENO);
+			ft_putstr_fd("Parsing Error!\n", STDERR_FILENO);
 		}
 	}
 	else if (ft_strcmp(color[0], "C") == 0 && data->ceiling == NULL)
@@ -49,12 +49,12 @@ void	ft_colors(t_parse *data, char **color)
 		else
 		{
 			data->ceiling = NULL;
-			ft_putstr_fd("error: color parameters are wrong\n", STDERR_FILENO);
+			ft_putstr_fd("Parsing Error\n", STDERR_FILENO);
 		}
 	}
 	else
 	{
-		ft_putstr_fd("error: color parameters are wrong\n", STDERR_FILENO);
+		ft_putstr_fd("Parsing Error\n", STDERR_FILENO);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -78,9 +78,7 @@ t_status	ft_organize(t_parse *data)
 	i = 0;
 	while (data->textures_colors[i])
 	{
-		data->d_tmp = ft_split(data->textures_colors[i], ' ');
-		if (data->d_tmp[2])
-			return (ERROR);
+		data->d_tmp = ft_split_textures_colors(data->textures_colors[i]);
 		if ((ft_strcmp(data->d_tmp[0], "F") == 0)
 			|| ft_strcmp(data->d_tmp[0], "C") == 0)
 			ft_colors(data, data->d_tmp);

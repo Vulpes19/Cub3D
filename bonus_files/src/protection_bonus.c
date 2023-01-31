@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:25:06 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/31 16:09:01 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/31 21:29:09 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ t_status	ft_ew_border(char *map)
 
 	i = 0;
 	end = ft_strlen(map) - 1;
-	printf("%s\n", map);
 	while (map[i] && map[i] <= 32)
 		i++;
 	if ((map[i] == '1' && map[end] == '1') || map[i] == '\0')
@@ -70,15 +69,18 @@ t_status	ft_check_colors(char **rgb)
 	char	**tmp;
 
 	i = 1;
-	while (rgb[i])
+	if (ft_check_commas(rgb[1]) == GOOD)
 	{
-		tmp = ft_split(rgb[i++], ',');
-		if (tmp[3])
-			return (ERROR);
-		if (ft_check_colors_norm(tmp) == ERROR)
+		while (rgb[i])
+		{
+			tmp = ft_split(rgb[i++], ',');
+			if (ft_check_colors_norm(tmp) == ERROR)
+				return (ERROR);
+		}
+		if (i > 3)
 			return (ERROR);
 	}
-	if (i > 3)
+	else
 		return (ERROR);
 	return (GOOD);
 }

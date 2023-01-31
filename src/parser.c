@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:07:04 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/30 14:19:53 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/31 21:24:50 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ t_status	ft_examine_map(t_parse *data)
 		{
 			if (data->map[i][j] == '0')
 				flag = ft_examine_box_sn(data, i, j);
+			if (!ft_strchr(data->map[i][j], " \t10WSNE"))
+				return (ERROR);
 			j++;
 		}
 		i++;
@@ -104,7 +106,7 @@ void	ft_parse_map(t_parse *data)
 		data->tmp = ft_strjoin(data->tmp, data->buff);
 		free(data->buff);
 		data->buff = get_next_line(data->file);
-		ft_test_map(previous_line, data->buff);
+		ft_test_map(previous_line, data);
 		free(previous_line);
 		free(data->leaks);
 		data->map_length++;

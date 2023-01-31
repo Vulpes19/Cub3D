@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   organizers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 15:20:27 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/29 18:19:48 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/31 20:29:21 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,7 @@ t_status	ft_organize(t_parse *data)
 	i = 0;
 	while (data->textures_colors[i])
 	{
-		data->d_tmp = ft_split(data->textures_colors[i], ' ');
-		if (data->d_tmp[2])
-			return (ERROR);
+		data->d_tmp = ft_split_textures_colors(data->textures_colors[i]);
 		if ((ft_strcmp(data->d_tmp[0], "F") == 0)
 			|| ft_strcmp(data->d_tmp[0], "C") == 0)
 			ft_colors(data, data->d_tmp);

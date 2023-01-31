@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:07:04 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/31 16:08:46 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/31 21:31:18 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ t_status	ft_examine_map(t_parse *data)
 		{
 			if (data->map[i][j] == '0')
 				flag = ft_examine_box_sn(data, i, j);
+			if (!ft_strchr(data->map[i][j], " \t10WSNE"))
+				return (ERROR);
 			j++;
 		}
 		i++;
@@ -131,7 +133,7 @@ void	ft_read_map(t_parse *data)
 	}
 	else
 	{
-		ft_putstr_fd("parsing error\n", STDERR_FILENO);
+		ft_putstr_fd("Error\n", STDERR_FILENO);
 		exit(EXIT_FAILURE);
 	}
 }

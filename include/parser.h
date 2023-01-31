@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:17:19 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/30 14:31:18 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/31 21:23:52 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,13 @@ void		ft_free_map_error(t_parse *data);
 void		ft_map_error(t_parse *data);
 void		freethis_int(int **str);
 t_status	ft_examine_line(char *map, size_t index);
-void		ft_test_map(char *previous_line, char *next_line);
+void		ft_test_map(char *previous_line, t_parse *data);
 void		ft_check_player(t_parse *data, int x, int y);
 t_status	ft_check_colors_norm(char **tmp);
+int			ft_isallspaces(char *line);
+char		**ft_split_textures_colors(char *line);
+t_status	ft_check_digit(char *digit);
+t_status	ft_check_commas(char *line);
+int	        ft_strchr(char s, char *buf);
 
 #endif

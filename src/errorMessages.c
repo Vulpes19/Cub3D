@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errorMessages.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:18:42 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/27 13:33:32 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/31 21:26:20 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,18 @@ void	ft_map_error(t_parse *data)
 	ft_putstr_fd("Error: Map is invalid!\n", STDERR_FILENO);
 	ft_free_parse_error(data);
 	exit(EXIT_FAILURE);
+}
+
+int	ft_strchr(char s, char *buf)
+{
+	int	i;
+
+	i = 0;
+	while (buf[i])
+	{
+		if (buf[i] == s)
+			return (1);
+		i++;
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:25:06 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/30 14:30:48 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/31 21:21:31 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@ t_status	ft_ew_border(char *map)
 
 	i = 0;
 	end = ft_strlen(map) - 1;
-	while (map[i] <= 32)
+	while (map[i] && map[i] <= 32)
 		i++;
-	if (map[i] == '1' && map[end] == '1')
+	if ((map[i] == '1' && map[end] == '1') || map[i] == '\0')
 		return (GOOD);
+	else if (map[i] == '0')
+		return (ERROR);
 	return (ERROR);
 }
 
@@ -64,21 +66,21 @@ int	ft_mapname_protection(char *name)
 t_status	ft_check_colors(char **rgb)
 {
 	int		i;
-	int		color;
 	char	**tmp;
-	int		j;
 
 	i = 1;
-	color = -1;
-	while (rgb[i])
+	if (ft_check_commas(rgb[1]) == GOOD)
 	{
-		tmp = ft_split(rgb[i++], ',');
-		if (tmp[3])
-			return (ERROR);
-		if (ft_check_colors_norm(tmp) == ERROR)
+		while (rgb[i])
+		{
+			tmp = ft_split(rgb[i++], ',');
+			if (ft_check_colors_norm(tmp) == ERROR)
+				return (ERROR);
+		}
+		if (i > 3)
 			return (ERROR);
 	}
-	if (i > 3 || j <= 2)
+	else
 		return (ERROR);
 	return (GOOD);
 }
