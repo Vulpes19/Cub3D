@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   protection_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:25:06 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/31 15:17:26 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/31 16:09:01 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,13 @@ t_status	ft_ew_border(char *map)
 
 	i = 0;
 	end = ft_strlen(map) - 1;
+	printf("%s\n", map);
 	while (map[i] && map[i] <= 32)
 		i++;
-	if (map[i] == '1' && map[end] == '1')
+	if ((map[i] == '1' && map[end] == '1') || map[i] == '\0')
 		return (GOOD);
+	else if (map[i] == '0')
+		return (ERROR);
 	return (ERROR);
 }
 

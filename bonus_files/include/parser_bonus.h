@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:17:19 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/30 15:34:12 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/01/31 16:04:54 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ t_status	ft_examine_line(char *map, size_t index);
 void		ft_test_map(char *previous_line, t_parse *data);
 void		ft_check_player(t_parse *data, int x, int y);
 t_status	ft_check_colors_norm(char **tmp);
+int	ft_isallspaces(char *line);
+
 
 #endif
