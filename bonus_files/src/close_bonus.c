@@ -6,7 +6,7 @@
 /*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:47:14 by abaioumy          #+#    #+#             */
-/*   Updated: 2023/01/30 15:03:39 by abaioumy         ###   ########.fr       */
+/*   Updated: 2023/02/01 19:23:13 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,18 @@ void	ft_free_game(t_game *game)
 	free(game->texture_west);
 	ft_free_map_error(game->data);
 	free(game);
-	system("leaks cub3D");
 	exit(EXIT_SUCCESS);
 }
 
 void	ft_close_esc(t_game *game)
 {
 	ft_free_game(game);
-	system("leaks cub3D");
 	exit(EXIT_SUCCESS);
 }
 
 int	ft_close_x(t_game *game)
 {
 	ft_free_game(game);
-	system("leaks cub3D");
 	exit(EXIT_SUCCESS);
 	return (0);
 }
@@ -62,6 +59,5 @@ int	ft_close_x(t_game *game)
 void	ft_close(t_game *game)
 {
 	ft_free_game(game);
-	system("leaks cub3D");
 	exit(EXIT_SUCCESS);
 }

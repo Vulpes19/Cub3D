@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaioumy <abaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:17:19 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/02/01 18:50:16 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/02/01 19:11:46 by abaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int			ft_isallspaces(char *line);
 char		**ft_split_textures_colors(char *line);
 t_status	ft_check_digit(char *digit);
 t_status	ft_check_commas(char *line);
-int         ft_strchr(char s, char *buf);
+int			ft_strchr(char s, char *buf);
 t_status	ft_check_zero(char **map, int i, int j);
 
 #endif
