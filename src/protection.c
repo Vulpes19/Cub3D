@@ -6,7 +6,7 @@
 /*   By: mbaioumy <mbaioumy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:25:06 by mbaioumy          #+#    #+#             */
-/*   Updated: 2023/01/31 21:21:31 by mbaioumy         ###   ########.fr       */
+/*   Updated: 2023/02/01 19:07:39 by mbaioumy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ t_status	ft_ew_border(char *map)
 	end = ft_strlen(map) - 1;
 	while (map[i] && map[i] <= 32)
 		i++;
+	while (map[end] && map[end] <= 32)
+		end--;
 	if ((map[i] == '1' && map[end] == '1') || map[i] == '\0')
 		return (GOOD);
 	else if (map[i] == '0')
